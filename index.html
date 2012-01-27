@@ -1,0 +1,161 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Multi-UART Module Usage Manual &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="#" />
+    <link rel="next" title="Multi-UART Module Manual" href="module_manual.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="module_manual.html"
+                        title="next chapter"> &gt&gt </a></p>
+</div>
+
+            
+  <div class="section" id="multi-uart-module-usage-manual">
+<h1>Multi-UART Module Usage Manual<a class="headerlink" href="#multi-uart-module-usage-manual" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module_manual.html">Multi-UART Module Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module_manual.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module_manual.html#demo-application-configuration">Demo Application Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module_manual.html#echo-test-application-description">Echo Test Application Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module_manual.html#programming-guide">Programming Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#structure">Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="module_manual.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="module_manual.html#threads">Threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="module_manual.html#buffering">Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="module_manual.html#communication-model">Communication Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#initialisation">Initialisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#interfacing-to-the-tx-server">Interfacing to the TX Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#interfacing-to-the-rx-server">Interfacing to the RX Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#reconfiguration-of-rx-tx-server">Reconfiguration of RX &amp; TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="module_manual.html#resource-requirements">Resource Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#id1">Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#memory">Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#channel-usage">Channel Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module_manual.html#client-timing-requirements">Client Timing Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Module Testing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test.html#test-script-use">Test Script Use</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="common_api.html">Multi-UART Common API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common_api.html#enum-definitions">Enum Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_api.html#combined-rx-tx-server-launch-functions">Combined RX &amp; TX Server Launch Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rx_api.html">Multi-UART Receive API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#configuration-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#data-structures">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#configuration-functions">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#data-validation-functions">Data Validation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#data-fetch-functions">Data Fetch Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rx_api.html#multi-uart-rx-server">Multi-UART RX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tx_api.html">Multi-UART Transmit API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tx_api.html#configuration-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tx_api.html#data-structures">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tx_api.html#configuration-functions">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tx_api.html#transmission-functions">Transmission Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tx_api.html#multi-uart-tx-server">Multi-UART TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helper_api.html">Multi-UART Helper API</a></li>
+</ul>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Multi-UART Module Usage (0.1)</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module_manual.html">Multi-UART Module Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Module Testing Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_api.html">Multi-UART Common API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rx_api.html">Multi-UART Receive API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tx_api.html">Multi-UART Transmit API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helper_api.html">Multi-UART Helper API</a></li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+
