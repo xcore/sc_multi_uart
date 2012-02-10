@@ -1,0 +1,224 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Multi-UART Helper API &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
+    <link rel="prev" title="Multi-UART Transmit API" href="tx_api.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="tx_api.html"
+                        title="previous chapter"> &lt&lt </a>
+</div>
+
+            
+  <div class="section" id="multi-uart-helper-api">
+<span id="sec-helper-api"></span><h1>Multi-UART Helper API<a class="headerlink" href="#multi-uart-helper-api" title="Permalink to this headline">¶</a></h1>
+<p>This API provides a number of functions that allow the access of architecture specific functionality within C where XC semantics are not available.</p>
+<dl class="function">
+<dt id="get_time">
+unsigned <tt class="descname">get_time</tt><big>(</big>timer<em>&nbsp;t</em><big>)</big><a class="headerlink" href="#get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get time from timer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp from timer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="wait_for">
+unsigned <tt class="descname">wait_for</tt><big>(</big>timer<em>&nbsp;t</em>, unsigned<em>&nbsp;delta</em><big>)</big><a class="headerlink" href="#wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for a time period defined by delta.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer to use</li>
+<li><strong>delta</strong> &#8211; time period to wait</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp on completion of pause</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="wait_until">
+unsigned <tt class="descname">wait_until</tt><big>(</big>timer<em>&nbsp;t</em>, unsigned<em>&nbsp;ts</em><big>)</big><a class="headerlink" href="#wait_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait until a specific time stamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer to use</li>
+<li><strong>ts</strong> &#8211; time stamp to wait until</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp on completion of pause</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="send_streaming_int">
+void <tt class="descname">send_streaming_int</tt><big>(</big>streaming_chanend<em>&nbsp;c</em>, int<em>&nbsp;i</em><big>)</big><a class="headerlink" href="#send_streaming_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send integer value across a streaming channel end.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+<li><strong>i</strong> &#8211; integer to send</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_streaming_uint">
+unsigned <tt class="descname">get_streaming_uint</tt><big>(</big>streaming_chanend<em>&nbsp;c</em><big>)</big><a class="headerlink" href="#get_streaming_uint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unsigned integer from streaming chanend.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">value received over the channel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_streaming_token">
+char <tt class="descname">get_streaming_token</tt><big>(</big>streaming_chanend<em>&nbsp;c</em><big>)</big><a class="headerlink" href="#get_streaming_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get token from streaming chanend.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">token received over channel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_manual.html">Multi-UART Module Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Module Testing Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_api.html">Multi-UART Common API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rx_api.html">Multi-UART Receive API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tx_api.html">Multi-UART Transmit API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Multi-UART Helper API</a></li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+
