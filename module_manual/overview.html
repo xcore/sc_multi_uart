@@ -6,13 +6,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Introduction &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <title>Introduction &mdash; Multi-UART Module Usage Manual v documentation</title>
     <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
     <script type="text/javascript" src="_static/xcomment.js"></script>
-    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
+    <link rel="top" title="Multi-UART Module Usage Manual v documentation" href="index.html" />
     <link rel="next" title="Programming Guide" href="programming_guide.html" />
     <link rel="prev" title="Multi-UART Module Usage Manual" href="index.html" /> 
 
@@ -103,6 +103,7 @@ document.getElementById('d1').style.height=h2 + "px";
 <p>The module can be configured to either use an external clock source or an internal clock source. External clock source only applies to the TX portion of the module (see <a class="reference internal" href="programming_guide.html#sec-tx-conf-header"><span>Static configuration of UART TX</span></a>). The advantage of using an external clock source is that an exact baud rate can be achieved by dividing down a master clock such as 1.8432MHz. This is a typical method that standard RS232 devices will use.</p>
 <p>Using internal clocking is possible, but for TX the implementation currently limits the application to configuring baud rates that divide exactly into the internal clock. So if the system reference runs at 100MHz the maximum baud rate is 100kbaud.</p>
 <p>The RX implementation uses the internal clock under all circumstances. Clock drift is handled by the implementation utilising oversampling to ensure that the bit is sampled as close to the centre of the bit time as possible. This minimises error due to the small drift that is encountered. The syncronisation of the sampling is also reset on every start bit so drift is minimised in a stream of data.</p>
+<p>It should be noted that if extremely long data lengths are used the drift encountered may become large as the fractional error will accumulate over the length of the UART word. By taking the fractional error (say for an internal clock of 100MHz and a baud rate of 115200bps we have a fractional error of 0.055) and multiplying it by the number of bits in a UART word (for 8 data bits, 1 parity and one stop bit we have a word length of 11 bits). Thus for the described configuration a drift of 0.61 clock ticks is encountered. This equates to 0.07%.</p>
 </div>
 </div>
 
@@ -113,7 +114,7 @@ document.getElementById('d1').style.height=h2 + "px";
       </div>
       <div class="sphinxsidebar" id='d2'>
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<h3><a href="index.html">Multi-UART Module Usage Manual</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#supported-functionality">Supported Functionality</a></li>

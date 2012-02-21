@@ -6,13 +6,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Multi-UART Module Manual &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <title>Programming Guide &mdash; Multi-UART Module Usage Manual v documentation</title>
     <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,9 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
     <script type="text/javascript" src="_static/xcomment.js"></script>
-    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
-    <link rel="next" title="Module Testing Scripts" href="test.html" />
-    <link rel="prev" title="Multi-UART Module Usage Manual" href="index.html" /> 
+    <link rel="top" title="Multi-UART Module Usage Manual v documentation" href="index.html" />
+    <link rel="next" title="Verification" href="test.html" />
+    <link rel="prev" title="Introduction" href="overview.html" /> 
 
 <script>
 function setheight() {
@@ -52,382 +52,62 @@ document.getElementById('d1').style.height=h2 + "px";
         <div class="bodywrapper">
           <div class="body">
 <div style="float: right">
-<a href="index.html"
+<a href="overview.html"
                         title="previous chapter"> &lt&lt </a>
 <a href="test.html"
                         title="next chapter"> &gt&gt </a></p>
 </div>
 
             
-  <div class="section" id="multi-uart-module-manual">
-<h1>Multi-UART Module Manual<a class="headerlink" href="#multi-uart-module-manual" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The Multi-UART module provides a software library that allows the use of 8 bit ports for multiple channel UART communication. This library is dynamically re-configurable for applications that require a level of flexibility during operation.</p>
-<p>This document describes the usage of the Multi-UART module and respective API. It follows the examples that are given in the app_multi_uart_demo. This application comprises of a simple transmit and receive test and a more complex echo test application. These can be configured by using the define directives in <tt class="docutils literal"><span class="pre">main.xc</span></tt>.</p>
-</div>
-<div class="section" id="demo-application-configuration">
-<h2>Demo Application Configuration<a class="headerlink" href="#demo-application-configuration" title="Permalink to this headline">¶</a></h2>
-<p>The demo application can be compiled and run in two different modes.</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Simple Transmit &amp; Receive Mode</p>
-<blockquote>
-<div><ul class="simple">
-<li>This mode of operation produces an application that constantly outputs a string on each UART channel. On the receive side the application will print out via the JTAG interface any characters it receives. This can be looped back by connecting the physical pins together for testing.</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">Echo Test Mode</p>
-<blockquote>
-<div><ul class="simple">
-<li>This mode of operation produces an application that operates as an echo device. This therefore echos back any characters that it receives via the same transmit UART channel.</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-<p>Configuration is done utilising the defines listed out below.</p>
-<div class="highlight-none"><div class="highlight"><pre>/* Do a loopback test with the internal reference clock only - uses non-standard baud rates*/
-//#define LOOP_REF_TEST
-
-/* Do echo test */
-#define ECHO_TEST
-
-/* Do simple test */
-//#define SIMPLE_TEST
-
-/* Reconfiguration enabled for simple test */
-//#define SIMPLE_TEST_DO_RECONF
-</pre></div>
-</div>
-<p><strong>LOOP_REF_TEST</strong></p>
-<blockquote>
-<div>This configures the tests with internal clocking only. This means that no external clock source is required to conduct testing. However it will only operate at multiples the internal reference clock (e.g. 100000 bps).</div></blockquote>
-<p><strong>ECHO_TEST</strong></p>
-<blockquote>
-<div>Build the software to run the echo test demo application.</div></blockquote>
-<p><strong>SIMPLE_TEST</strong></p>
-<blockquote>
-<div>Build the simple test application</div></blockquote>
-<p><strong>SIMPLE_TEST_DO_RECONF</strong></p>
-<blockquote>
-<div>Enable reconfiguration on the simple test application - after a specified time within the application the UART will be reconfigured for a different baud rate.</div></blockquote>
-</div>
-<div class="section" id="echo-test-application-description">
-<h2>Echo Test Application Description<a class="headerlink" href="#echo-test-application-description" title="Permalink to this headline">¶</a></h2>
-<p>The Echo Test demonstration application shows a typical structure of an application that might be implemented by the user of this module. The diagram in <a class="reference internal" href="#fig-echo-struct"><span>Echo Test Application Structure</span></a> shows the structure of the demonstration application.</p>
-<p>In addition to the two multi-UART threads the application utilises two further threads - one providing buffering for the UART RX and one handling to the pushing of data to the TX buffer. The RX buffering is implemented as an example only and is not strictly necessary in this application as the TX thread already provides some buffering.</p>
-<p>When the RX thread receives a character over the UART it saves it into the local single entry buffer and puts a data token into the channel. This data token is received by RX buffering thread and tells it which UART channel a character has been received on. The RX buffering thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.</p>
-<p>The TX thread operates by polling the buffer between the RX buffering thread and the Echo Application thread. When an entry is seen it pulls it from the buffer and utilises the API to push the value into the TX thread buffer. From there the TX thread will send that value on the correct UART channel on the 8 bit port.</p>
-<p>The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in <a class="reference internal" href="#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>.</p>
-<p>Specific usage of the API is discussed in <a class="reference internal" href="#sec-interfacing-tx"><span>Interfacing to the TX Server</span></a> and <a class="reference internal" href="#sec-interfacing-rx"><span>Interfacing to the RX Server</span></a>.</p>
-<div class="figure" id="fig-echo-struct">
-<img alt="_images/EchoSoftwareDiagram.png" src="_images/EchoSoftwareDiagram.png" />
-<p class="caption">Echo Test Application Structure</p>
-</div>
-</div>
-<div class="section" id="programming-guide">
-<h2>Programming Guide<a class="headerlink" href="#programming-guide" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="structure">
-<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
-<p>This is an overview of the key header files that are required, as well as the thread structure and information regarding the buffering provision and requirements for the module.</p>
-<div class="section" id="clocking">
-<span id="sec-ext-clk"></span><h4>Clocking<a class="headerlink" href="#clocking" title="Permalink to this headline">¶</a></h4>
-<p>The module can be configured to either use an external clock source or an internal clock source. External clock source only applies to the TX portion of the module (see <a class="reference internal" href="#sec-tx-conf-header"><span>Static configuration of UART TX</span></a>). The advantage of using an external clock source is that an exact baud rate can be achieved by dividing down a master clock such as 1.8432MHz. This is a typical method that standard RS232 devices will use.</p>
-<p>Using internal clocking is possible, but for TX the implementation currently limits the application to configuring baud rates that divide exactly into the internal clock. So if the system reference runs at 100MHz the maximum baud rate is 100kbaud.</p>
-<p>The RX implementation uses the internal clock under all circumstances. Clock drift is handled by the implementation utilising oversampling to ensure that the bit is sampled as close to the centre of the bit time as possible. This minimises error due to the small drift that is encountered. The syncronisation of the sampling is also reset on every start bit so drift is minimised in a stream of data.</p>
-</div>
-<div class="section" id="source-code">
-<h4>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h4>
-<p>All of the files required for operation are located in the <tt class="docutils literal"><span class="pre">module_multi_uart</span></tt> directory. The files that are need to be included for use of this module in an application are:</p>
+  <div class="section" id="programming-guide">
+<h1>Programming Guide<a class="headerlink" href="#programming-guide" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses the requirements of the multi-UART module and typical implementation and usage of the API.</p>
+<div class="section" id="resource-requirements">
+<h2>Resource Requirements<a class="headerlink" href="#resource-requirements" title="Permalink to this headline">¶</a></h2>
+<p>This section provides an overview of the required resources of the module so that the application designer can operate within these constraints accordingly.</p>
+<div class="section" id="ports">
+<h3>Ports<a class="headerlink" href="#ports" title="Permalink to this headline">¶</a></h3>
+<p>The following ports are required for each of the receive and transmit functions -</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">File</th>
-<th class="head">Description</th>
+<tr><th class="head">Operation</th>
+<th class="head">Port Type</th>
+<th class="head">Number required</th>
+<th class="head">Direction</th>
+<th class="head">Port purpose / Notes</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
-<td>Header file for simplified launch of both the TX and RX server threads, also provides the headers for the individual RX and TX API interfaces.</td>
+<tr><td>Transmit</td>
+<td>8 bit port</td>
+<td>1</td>
+<td>Output</td>
+<td>Data transmission</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">multi_uart_common.h</span></tt></td>
-<td>Header file providing configuration ENUM definitions and other constants that may be required for operation</td>
+<tr><td>Transmit</td>
+<td>1 bit port</td>
+<td>1</td>
+<td>Input</td>
+<td>Optional External clocking (see <a class="reference internal" href="overview.html#sec-ext-clk"><span>Clocking</span></a>)</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">multi_uart_rx.h</span></tt></td>
-<td>Header file for accessing the API of the RX UART server - included by <tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">multi_uart_tx.h</span></tt></td>
-<td>Header file for accessing the API of the TX UART server - included by <tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
+<tr><td>Receive</td>
+<td>8 bit port</td>
+<td>1</td>
+<td>Input</td>
+<td>Data Receive</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="threads">
-<h4>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h4>
-<p>The multi-UART module comprises primarily of two threads that act as transmit (TX) and receive (RX) servers. These are able to be operated independently or launched together via the API. This allows for applications where either RX or TX only are required.</p>
-</div>
-<div class="section" id="buffering">
-<h4>Buffering<a class="headerlink" href="#buffering" title="Permalink to this headline">¶</a></h4>
-<p>Buffering for the TX server is handled within the UART TX thread. The buffer is configurable to the number of buffer slots that are available. Data is transferred to the UART TX thread via shared memory and therefore any client thread must be on the same core as the UART thread.</p>
-<p>There is no buffering provided by the RX server. The application must provide a thread that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.</p>
-</div>
-<div class="section" id="communication-model">
-<h4>Communication Model<a class="headerlink" href="#communication-model" title="Permalink to this headline">¶</a></h4>
-<p>This module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the thread and subsequently release the thread when required for reconfiguration.</p>
-<p>The primary means of data transfer for both the RX and TX threads is shared memory. The RX thread utilises a channel to notify any client of available data - this means that events can be utilised within an application to avoid the requirement for polling for received data.</p>
-</div>
-</div>
-<div class="section" id="configuration-of-the-uart-module">
-<h3>Configuration of the UART Module<a class="headerlink" href="#configuration-of-the-uart-module" title="Permalink to this headline">¶</a></h3>
-<p>The UART module configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in <a class="reference internal" href="#sec-initialisation"><span>Initialisation</span></a> and <a class="reference internal" href="#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>.</p>
-<p>Static configuration is done by the application providing configuration header files <tt class="docutils literal"><span class="pre">multi_uart_tx_conf.h</span></tt> and <tt class="docutils literal"><span class="pre">multi_uart_rx_conf.h</span></tt>.</p>
-<div class="section" id="static-configuration-of-uart-tx">
-<span id="sec-tx-conf-header"></span><h4>Static configuration of UART TX<a class="headerlink" href="#static-configuration-of-uart-tx" title="Permalink to this headline">¶</a></h4>
-<p>Below is a summary of the configuration options that are in the <tt class="docutils literal"><span class="pre">multi_uart_tx_conf.h</span></tt> file, their suggested defaults and an explanation of their function.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Define</th>
-<th class="head">Default</th>
-<th class="head">Other options</th>
-<th class="head">Explanation</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>UART_TX_USE_EXTERNAL_CLOCK</td>
-<td>(None)</td>
-<td>Not defined</td>
-<td>The presence of this define turns on or off the requirement to use external clocking this is discussed in <a class="reference internal" href="#sec-ext-clk"><span>Clocking</span></a>.</td>
-</tr>
-<tr><td>UART_TX_CLOCK_RATE_HZ</td>
-<td>1843200 | 100000000</td>
-<td>Any valid clock rate</td>
-<td>Defines the clock rate that the baud rates are derived from</td>
-</tr>
-<tr><td>UART_TX_MAX_BAUD_RATE</td>
-<td>115200</td>
-<td>less than or equal to 115200</td>
-<td>Define the max baud rate the API will allow configuration. Validated to 115200</td>
-</tr>
-<tr><td>UART_TX_CLOCK_DIVIDER</td>
-<td>(UART_TX_CLOCK_RATE_HZ/UART_TX_MAX_BAUD_RATE)</td>
-<td>Any appropriate divider</td>
-<td>It is recommended to leave this at the default. Is used to set the clock divider when configuring clocking from the internal reference clock</td>
-</tr>
-<tr><td>UART_TX_OVERSAMPLE</td>
-<td>2</td>
-<td>{1|2}</td>
-<td>Define the oversampling of the clock - this is where the UART_TX_CLOCK_DIVIDER is &gt; 255 (otherwise set to 1) - only used when using an internal clock reference</td>
-</tr>
-<tr><td>UART_TX_BUF_SIZE</td>
-<td>16</td>
-<td>{1,2,4,8,16,32,...}</td>
-<td>Define the buffer size in UART word entries - needs to be a power of 2 (i.e. 1,2,4,8,16,32)</td>
-</tr>
-<tr><td>UART_TX_CHAN_COUNT</td>
-<td>8</td>
-<td>{1,2,4,8}</td>
-<td>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</td>
-</tr>
-<tr><td>UART_TX_IFB</td>
-<td>0</td>
-<td>{0..n}</td>
-<td>Define the number of interframe bits - n should not make the total number of bits in a UART word exceed 32</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="static-configuration-of-uart-rx">
-<h4>Static configuration of UART RX<a class="headerlink" href="#static-configuration-of-uart-rx" title="Permalink to this headline">¶</a></h4>
-<p>Below is a summary of the configuration options that are in the <tt class="docutils literal"><span class="pre">multi_uart_rx_conf.h</span></tt> file, their suggested defaults and an explanation of their function.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Define</th>
-<th class="head">Default</th>
-<th class="head">Other options</th>
-<th class="head">Explanation</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>UART_RX_CHAN_COUNT</td>
-<td>8</td>
-<td>{1,2,4,8}</td>
-<td>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</td>
-</tr>
-<tr><td>UART_RX_CLOCK_RATE_HZ</td>
-<td>100000000</td>
-<td>System reference clock rate</td>
-<td>Defines the clock rate that the baud rates are derived from</td>
-</tr>
-<tr><td>UART_RX_MAX_BAUD</td>
-<td>115200</td>
-<td>less than or equal to 115200</td>
-<td>Define the max baud rate the API will allow configuration. Validated to 115200.</td>
-</tr>
-<tr><td>UART_RX_CLOCK_DIVIDER</td>
-<td>(UART_RX_CLOCK_RATE_HZ/UART_RX_MAX_BAUD)</td>
-<td>Any appropriate divider</td>
-<td>It is recommended to leave this at the default. Is used to set the clock divider when configuring clocking using either internal or external clocks.</td>
-</tr>
-<tr><td>UART_RX_OVERSAMPLE</td>
-<td>4</td>
-<td>Should remain at 4</td>
-<td>Oversample count for the max baud rate. It is recommended to leave this value as it is unless it is understood the effects that changing this value will have.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="initialisation">
-<span id="sec-initialisation"></span><h3>Initialisation<a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h3>
-<p>The initialisation and configuration process for both the RX and TX operations is the same. For configuration the functions <a class="reference internal" href="rx_api.html#uart_rx_initialise_channel" title="uart_rx_initialise_channel"><span>uart_rx_initialise_channel()</span></a> or <a class="reference internal" href="tx_api.html#uart_tx_initialise_channel" title="uart_tx_initialise_channel"><span>uart_tx_initialise_channel()</span></a> is utilised. The following is example is taken from <cite>echo_test.c</cite> and shows a typical initial configuration.</p>
-<div class="highlight-none"><div class="highlight"><pre>    /* configure UARTs */
-    for (int i = 0; i &lt; 8; i++)
-    {
-        if ((int)baud_rate &lt;= 225)
-            baud_rate = 225;
-        
-        if (uart_tx_initialise_channel( i, even, sb_1, baud_rate, 8 ))
-        {
-            printstr(&quot;Invalid baud rate for tx channel &quot;);
-            printintln(i);
-        }
-        
-        if (uart_rx_initialise_channel( i, even, sb_1, start_0, baud_rate, 8 ))
-        {
-            printstr(&quot;Invalid baud rate for rx channel &quot;);
-            printintln(i);
-        }
-        
-        printint(i); printstr(&quot; =&gt; &quot;); printint(baud_rate); printstr(&quot; bps 8-E-1\n&quot;);
-    }
-</pre></div>
-</div>
-<p>The next stage of initialisation is to release the server threads from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.</p>
-<div class="highlight-none"><div class="highlight"><pre>    /* release UART rx thread */
-    do { temp = get_streaming_uint(cRxBuf); } while (temp != MULTI_UART_GO);
-    send_streaming_int(cRxBuf, 1);
-    
-    /* release UART tx thread */
-    do { temp = get_streaming_uint(cTxUART); } while (temp != MULTI_UART_GO);
-    send_streaming_int(cTxUART, 1);
-</pre></div>
-</div>
-<p>The above examples use the helper functions that are described in Multi-UART Helper API <a class="reference internal" href="helper_api.html#sec-helper-api"><span>Multi-UART Helper API</span></a>. However, if operating within the XC language normal channel interaction can be utilised such as the example below (from the simple test program).</p>
-<div class="highlight-none"><div class="highlight"><pre>    /* release UART rx thread */
-    do { cUART :&gt; temp; } while (temp != MULTI_UART_GO);
-    cUART &lt;: 1;
-</pre></div>
-</div>
-</div>
-<div class="section" id="interfacing-to-the-tx-server">
-<span id="sec-interfacing-tx"></span><h3>Interfacing to the TX Server<a class="headerlink" href="#interfacing-to-the-tx-server" title="Permalink to this headline">¶</a></h3>
-<p>To transmit data using the TX server the application should make use of <a class="reference internal" href="tx_api.html#uart_tx_put_char" title="uart_tx_put_char"><span>uart_tx_put_char()</span></a>. An example use is show below. This example, taken from the simple demo application configuration simply takes a string in the form of a character array and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of <cite>-1</cite> then the loop moves onto the next channel.</p>
-<div class="highlight-none"><div class="highlight"><pre>       /* fill buffers with test strings */
-       buffer_space = uart_tx_put_char(chan_id, (unsigned int)test_str[chan_id][rd_ptr[chan_id]]);
-       
-       if (buffer_space != -1)
-       {
-           if (rd_ptr[chan_id] == 28)
-               rd_ptr[chan_id] = 0;
-           else
-               rd_ptr[chan_id]++;
-       }
-       chan_id++;
-       chan_id &amp;= UART_TX_CHAN_COUNT-1;
-</pre></div>
-</div>
-<p>This operation must be completed on the same core as the TX server thread as the communication module utilises shared memory.</p>
-</div>
-<div class="section" id="interfacing-to-the-rx-server">
-<span id="sec-interfacing-rx"></span><h3>Interfacing to the RX Server<a class="headerlink" href="#interfacing-to-the-rx-server" title="Permalink to this headline">¶</a></h3>
-<p>To receive data from the RX server the application should make use of the channel that is provided. The channel provides notification to the application of which UART channel had data ready. The data itself is store in a single storage slot with no buffering. This means that if the application layer fails to meet the timing requirements (as discussed in Client Timing <a class="reference internal" href="#sec-client-timing"><span>Client Timing Requirements</span></a>) data may be lost and/or duplicated.</p>
-<p>The echo test example implements an application level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.</p>
-<div class="highlight-none"><div class="highlight"><pre>    while (1)
-    {
-        chan_id = (unsigned)get_streaming_token(cRxUART);
-        
-        /* get character over channel */
-        uart_char = (unsigned)uart_rx_grab_char(chan_id);
-        
-        /* process received value */
-        if (uart_rx_validate_char( chan_id, &amp;uart_char ) == 0)
-        {
-            if (rx_elements[chan_id] &lt; ECHO_BUF_SIZE)
-            {
-                rx_buffer[chan_id][rx_wr_ptr[chan_id]] = uart_char;
-                rx_wr_ptr[chan_id]++;
-                if (rx_wr_ptr[chan_id] &gt;= ECHO_BUF_SIZE)
-                    rx_wr_ptr[chan_id] = 0;
-                rx_elements[chan_id]++;
-                
-            } else printstr(&quot;RX Buf Full\n&quot;);
-        }
-        else printstr(&quot;RX Validation fail&quot;);
-    }
-</pre></div>
-</div>
-<p>Once the token is received over the channel informing the application of the UART channel which has data ready the application uses the <a class="reference internal" href="rx_api.html#uart_rx_grab_char" title="uart_rx_grab_char"><span>uart_rx_grab_char()</span></a> function to collect the data from the receive slot. This provides an unvalidated word. The application then utilises the <a class="reference internal" href="rx_api.html#uart_rx_validate_char" title="uart_rx_validate_char"><span>uart_rx_validate_char()</span></a> to ensure that the UART word fits the requirements of the configuration (parity, stop bits etc) and provides the data upon return in the <tt class="docutils literal"><span class="pre">uart_char</span></tt> variable. This data is then inserted into a buffer.</p>
-</div>
-<div class="section" id="reconfiguration-of-rx-tx-server">
-<span id="sec-reconf-rxtx"></span><h3>Reconfiguration of RX &amp; TX Server<a class="headerlink" href="#reconfiguration-of-rx-tx-server" title="Permalink to this headline">¶</a></h3>
-<p>The method for reconfiguring the UART software is the same for both the RX and the TX servers. When the application requires a reconfiguration then a call to <a class="reference internal" href="tx_api.html#uart_tx_reconf_pause" title="uart_tx_reconf_pause"><span>uart_tx_reconf_pause()</span></a> or <a class="reference internal" href="rx_api.html#uart_rx_reconf_pause" title="uart_rx_reconf_pause"><span>uart_rx_reconf_pause()</span></a> needs to be made. When reconfiguring the RX side the server thread will pause immediately, however when pausing the TX side the server thread will pause the application thread to allow the buffers to empty in the TX thread.</p>
-<p>Once the functions exit the server threads will be paused. Configuration is then done utilising the same methodology as initial configuration using a function such as the <a class="reference internal" href="tx_api.html#uart_tx_initialise_channel" title="uart_tx_initialise_channel"><span>uart_tx_initialise_channel()</span></a> or <a class="reference internal" href="rx_api.html#uart_rx_initialise_channel" title="uart_rx_initialise_channel"><span>uart_rx_initialise_channel()</span></a>.</p>
-<p>Following the reconfiguration the application must then call <a class="reference internal" href="tx_api.html#uart_tx_reconf_enable" title="uart_tx_reconf_enable"><span>uart_tx_reconf_enable()</span></a> and <a class="reference internal" href="rx_api.html#uart_rx_reconf_enable" title="uart_rx_reconf_enable"><span>uart_rx_reconf_enable()</span></a> to re-enable the TX and RX threads respectively.</p>
-<p>The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.</p>
-<div class="highlight-none"><div class="highlight"><pre>                    uart_tx_reconf_pause( cTxUART, t );
-                    uart_rx_reconf_pause( cRxBuf );
-                    
-                    /* configure UARTs */
-                    for (int i = 0; i &lt; 8; i++)
-                    {
-                        if ((int)baud_rate &lt;= 225)
-                            baud_rate = 115200;
-                        
-                        if (uart_tx_initialise_channel( i, even, sb_1, baud_rate, 8 ))
-                        {
-                            printstr(&quot;Invalid baud rate for tx channel &quot;);
-                            printintln(i);
-                        }
-                        
-                        if (uart_rx_initialise_channel( i, even, sb_1, start_0, baud_rate, 8 ))
-                        {
-                            printstr(&quot;Invalid baud rate for rx channel &quot;);
-                            printintln(i);
-                        }
-                        
-                        printint(i); printstr(&quot; =&gt; &quot;); printint(baud_rate); printstr(&quot; bps 8-E-1\n&quot;);
-                    }
-                    
-                    baud_rate /= 2;
-                    
-                    uart_tx_reconf_enable( cTxUART );
-                    uart_rx_reconf_enable( cRxBuf );
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="resource-requirements">
-<h2>Resource Requirements<a class="headerlink" href="#resource-requirements" title="Permalink to this headline">¶</a></h2>
-<p>This section provides an overview of the required resources of the module so that the application designer can operate within these constraints accordingly.</p>
-<div class="section" id="id1">
-<h3>Threads<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -498,6 +178,7 @@ document.getElementById('d1').style.height=h2 + "px";
 </tr>
 </tbody>
 </table>
+<p><strong>Note</strong> These values are meant as a guide and are correct as of Jan 24. 2012 - they may change if fixes are implemented or functionality is added.</p>
 </div>
 <div class="section" id="channel-usage">
 <h3>Channel Usage<a class="headerlink" href="#channel-usage" title="Permalink to this headline">¶</a></h3>
@@ -523,15 +204,310 @@ document.getElementById('d1').style.height=h2 + "px";
 </div>
 <div class="section" id="client-timing-requirements">
 <span id="sec-client-timing"></span><h3>Client Timing Requirements<a class="headerlink" href="#client-timing-requirements" title="Permalink to this headline">¶</a></h3>
-<p>If the application requires custom buffering on the receive side then the buffering thread must take no more time than the following equation allows.</p>
+<p>The application that interfaces to the receive side of UART component must meet the following timing requirement. This requirement is dependent on configuration so the worst case configuration must be accounted for - this means the shortest UART word (length of the start, data parity and stop bits combined).</p>
 <p>Taking an example where the following values are applied -</p>
 <blockquote>
 <div><ul class="simple">
+<li>UART_CHAN_COUNT = 8</li>
 <li>MAX_BAUD = 115200 bps</li>
 <li>MIN_BIT_COUNT = 10 (i.e 1 Start Bit, 8 data bits and 1 stop bit)</li>
 </ul>
 </div></blockquote>
-<p>The resultant timing requirement is 86.8 μS. This would be defined and constrained using the XTA tool.</p>
+<p>The resultant timing requirement is 10.85 μS. This would be defined and constrained using the XTA tool.</p>
+</div>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>This is an overview of the key header files that are required, as well as the thread structure and information regarding the buffering provision and requirements for the module.</p>
+<div class="section" id="source-code">
+<h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h3>
+<p>All of the files required for operation are located in the <tt class="docutils literal"><span class="pre">module_multi_uart</span></tt> directory. The files that are need to be included for use of this module in an application are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">File</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
+<td>Header file for simplified launch of both the TX and RX server threads, also provides the headers for the individual RX and TX API interfaces.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">multi_uart_common.h</span></tt></td>
+<td>Header file providing configuration ENUM definitions and other constants that may be required for operation</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">multi_uart_rx.h</span></tt></td>
+<td>Header file for accessing the API of the RX UART server - included by <tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">multi_uart_tx.h</span></tt></td>
+<td>Header file for accessing the API of the TX UART server - included by <tt class="docutils literal"><span class="pre">multi_uart_rxtx.h</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h3>Threads<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The multi-UART module comprises primarily of two threads that act as transmit (TX) and receive (RX) servers. These are able to be operated independently or launched together via the API. This allows for applications where either RX or TX only are required.</p>
+</div>
+<div class="section" id="buffering">
+<h3>Buffering<a class="headerlink" href="#buffering" title="Permalink to this headline">¶</a></h3>
+<p>Buffering for the TX server is handled within the UART TX thread. The buffer is configurable allowing the number of buffer slots that are available to be defined. This is only limited by the available memory left by the rest of the code and data memory usage. Data is transferred to the UART TX thread via shared memory and therefore any client thread must be on the same core as the UART thread.</p>
+<p>There is no buffering provided by the RX server. The application must provide a thread that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.</p>
+</div>
+<div class="section" id="communication-model">
+<h3>Communication Model<a class="headerlink" href="#communication-model" title="Permalink to this headline">¶</a></h3>
+<p>This module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the thread and subsequently release the thread when required for reconfiguration.</p>
+<p>The primary means of data transfer for both the RX and TX threads is shared memory. The RX thread utilises a channel to notify any client of available data - this means that events can be utilised within an application to avoid the requirement for polling for received data.</p>
+</div>
+</div>
+<div class="section" id="configuration-of-the-uart-module">
+<h2>Configuration of the UART Module<a class="headerlink" href="#configuration-of-the-uart-module" title="Permalink to this headline">¶</a></h2>
+<p>The UART module configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in <a class="reference internal" href="#sec-initialisation"><span>Initialisation</span></a> and <a class="reference internal" href="#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>.</p>
+<p>Static configuration is done by the application providing configuration header files <tt class="docutils literal"><span class="pre">multi_uart_tx_conf.h</span></tt> and <tt class="docutils literal"><span class="pre">multi_uart_rx_conf.h</span></tt>.</p>
+<div class="section" id="static-configuration-of-uart-tx">
+<span id="sec-tx-conf-header"></span><h3>Static configuration of UART TX<a class="headerlink" href="#static-configuration-of-uart-tx" title="Permalink to this headline">¶</a></h3>
+<p>Below is a summary of the configuration options that are in the <tt class="docutils literal"><span class="pre">multi_uart_tx_conf.h</span></tt> file, their suggested defaults and an explanation of their function.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Define</th>
+<th class="head">Default</th>
+<th class="head">Other options</th>
+<th class="head">Explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>UART_TX_USE_EXTERNAL_CLOCK</td>
+<td>(None)</td>
+<td>Not defined</td>
+<td>The presence of this define turns on or off the requirement to use external clocking this is discussed in <a class="reference internal" href="overview.html#sec-ext-clk"><span>Clocking</span></a>.</td>
+</tr>
+<tr><td>UART_TX_CLOCK_RATE_HZ</td>
+<td>1843200 | 100000000</td>
+<td>Any valid clock rate</td>
+<td>Defines the clock rate that the baud rates are derived from</td>
+</tr>
+<tr><td>UART_TX_MAX_BAUD_RATE</td>
+<td>115200</td>
+<td>less than or equal to 115200</td>
+<td>Define the max baud rate the API will allow configuration. Validated to 115200</td>
+</tr>
+<tr><td>UART_TX_CLOCK_DIVIDER</td>
+<td>(UART_TX_CLOCK_RATE_HZ / UART_TX_MAX_BAUD_RATE)</td>
+<td>Any appropriate divider</td>
+<td>It is recommended to leave this at the default. Is used to set the clock divider when configuring clocking from the internal reference clock</td>
+</tr>
+<tr><td>UART_TX_OVERSAMPLE</td>
+<td>2</td>
+<td>{1|2}</td>
+<td>Define the oversampling of the clock - this is where the UART_TX_CLOCK_DIVIDER is &gt; 255 (otherwise set to 1) - only used when using an internal clock reference</td>
+</tr>
+<tr><td>UART_TX_BUF_SIZE</td>
+<td>16</td>
+<td>{1,2,4,8,16,32,...}</td>
+<td>Define the buffer size in UART word entries - needs to be a power of 2 (i.e. 1,2,4,8,16,32)</td>
+</tr>
+<tr><td>UART_TX_CHAN_COUNT</td>
+<td>8</td>
+<td>{1,2,4,8}</td>
+<td>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</td>
+</tr>
+<tr><td>UART_TX_IFB</td>
+<td>0</td>
+<td>{0..n}</td>
+<td>Define the number of interframe bits - n should not make the total number of bits in a UART word exceed 32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="static-configuration-of-uart-rx">
+<h3>Static configuration of UART RX<a class="headerlink" href="#static-configuration-of-uart-rx" title="Permalink to this headline">¶</a></h3>
+<p>Below is a summary of the configuration options that are in the <tt class="docutils literal"><span class="pre">multi_uart_rx_conf.h</span></tt> file, their suggested defaults and an explanation of their function.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Define</th>
+<th class="head">Default</th>
+<th class="head">Other options</th>
+<th class="head">Explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>UART_RX_CHAN_COUNT</td>
+<td>8</td>
+<td>{1,2,4,8}</td>
+<td>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</td>
+</tr>
+<tr><td>UART_RX_CLOCK_RATE_HZ</td>
+<td>100000000</td>
+<td>System reference clock rate</td>
+<td>Defines the clock rate that the baud rates are derived from</td>
+</tr>
+<tr><td>UART_RX_MAX_BAUD</td>
+<td>115200</td>
+<td>less than or equal to 115200</td>
+<td>Define the max baud rate the API will allow configuration. Validated to 115200.</td>
+</tr>
+<tr><td>UART_RX_CLOCK_DIVIDER</td>
+<td>(UART_RX_CLOCK_RATE_HZ / UART_RX_MAX_BAUD)</td>
+<td>Any appropriate divider</td>
+<td>It is recommended to leave this at the default. Is used to set the clock divider when configuring clocking using either internal or external clocks.</td>
+</tr>
+<tr><td>UART_RX_OVERSAMPLE</td>
+<td>4</td>
+<td>Should remain at 4</td>
+<td>Oversample count for the max baud rate. It is recommended to leave this value as it is unless it is understood the effects that changing this value will have.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="initialisation">
+<span id="sec-initialisation"></span><h2>Initialisation<a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h2>
+<p>The initialisation and configuration process for both the RX and TX operations is the same. For configuration the functions <a class="reference internal" href="rx_api.html#uart_rx_initialise_channel" title="uart_rx_initialise_channel"><span>uart_rx_initialise_channel()</span></a> or <a class="reference internal" href="tx_api.html#uart_tx_initialise_channel" title="uart_tx_initialise_channel"><span>uart_tx_initialise_channel()</span></a> is utilised. The flow is visualised in <a class="reference internal" href="#fig-uart-init-flow"><span>UART Initialisation Flow</span></a> and a working example taken from the echo test application that is utilised for verification.</p>
+<div class="figure align-center" id="fig-uart-init-flow">
+<img alt="_images/InitFlow.png" src="_images/InitFlow.png" style="width: 50%;" />
+<p class="caption">UART Initialisation Flow</p>
+</div>
+<p>The following working example is taken from <cite>echo_test.c</cite> and shows a typical initial configuration.</p>
+<div class="highlight-none"><div class="highlight"><pre>    /* configure UARTs */
+    for (int i = 0; i &lt; 8; i++)
+    {
+        if ((int)baud_rate &lt;= 225)
+            baud_rate = 225;
+        
+        if (uart_tx_initialise_channel( i, even, sb_1, baud_rate, 8 ))
+        {
+            printstr(&quot;Invalid baud rate for tx channel &quot;);
+            printintln(i);
+        }
+        
+        if (uart_rx_initialise_channel( i, even, sb_1, start_0, baud_rate, 8 ))
+        {
+            printstr(&quot;Invalid baud rate for rx channel &quot;);
+            printintln(i);
+        }
+        
+        printint(i); printstr(&quot; =&gt; &quot;); printint(baud_rate); printstr(&quot; bps 8-E-1\n&quot;);
+    }
+</pre></div>
+</div>
+<p>The next stage of initialisation is to release the server threads from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.</p>
+<div class="highlight-none"><div class="highlight"><pre>    /* release UART rx thread */
+    do { temp = get_streaming_uint(cRxBuf); } while (temp != MULTI_UART_GO);
+    send_streaming_int(cRxBuf, 1);
+    
+    /* release UART tx thread */
+    do { temp = get_streaming_uint(cTxUART); } while (temp != MULTI_UART_GO);
+    send_streaming_int(cTxUART, 1);
+</pre></div>
+</div>
+<p>The above examples use the helper functions that are described in Multi-UART Helper API <a class="reference internal" href="helper_api.html#sec-helper-api"><span>Multi-UART Helper API</span></a>. However, if operating within the XC language normal channel interaction can be utilised such as the example below (from the simple test program).</p>
+<div class="highlight-none"><div class="highlight"><pre>    /* release UART rx thread */
+    do { cUART :&gt; temp; } while (temp != MULTI_UART_GO);
+    cUART &lt;: 1;
+</pre></div>
+</div>
+</div>
+<div class="section" id="interfacing-to-the-tx-server">
+<span id="sec-interfacing-tx"></span><h2>Interfacing to the TX Server<a class="headerlink" href="#interfacing-to-the-tx-server" title="Permalink to this headline">¶</a></h2>
+<p>To transmit data using the TX server the application should make use of <a class="reference internal" href="tx_api.html#uart_tx_put_char" title="uart_tx_put_char"><span>uart_tx_put_char()</span></a>. An example use is shown below. This example, taken from the simple demo application configuration simply takes a string in the form of a character array and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of <cite>-1</cite> then the loop moves onto the next channel.</p>
+<div class="highlight-none"><div class="highlight"><pre>       /* fill buffers with test strings */
+       buffer_space = uart_tx_put_char(chan_id, (unsigned int)test_str[chan_id][rd_ptr[chan_id]]);
+       
+       if (buffer_space != -1)
+       {
+           if (rd_ptr[chan_id] == 28)
+               rd_ptr[chan_id] = 0;
+           else
+               rd_ptr[chan_id]++;
+       }
+       chan_id++;
+       chan_id &amp;= UART_TX_CHAN_COUNT-1;
+</pre></div>
+</div>
+<p>This operation must be completed on the same core as the TX server thread as the communication module utilises shared memory.</p>
+</div>
+<div class="section" id="interfacing-to-the-rx-server">
+<span id="sec-interfacing-rx"></span><h2>Interfacing to the RX Server<a class="headerlink" href="#interfacing-to-the-rx-server" title="Permalink to this headline">¶</a></h2>
+<p>To receive data from the RX server the application should make use of the channel that is provided. The channel provides notification to the application of which UART channel has data ready. The data itself is stored in a single storage slot with no buffering. This means that if the application layer fails to meet the timing requirements (as discussed in Client Timing <a class="reference internal" href="#sec-client-timing"><span>Client Timing Requirements</span></a>) data may be lost and/or duplicated.</p>
+<p>The echo test example implements an application level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.</p>
+<div class="highlight-none"><div class="highlight"><pre>    while (1)
+    {
+        chan_id = (unsigned)get_streaming_token(cRxUART);
+        
+        /* get character over channel */
+        uart_char = (unsigned)uart_rx_grab_char(chan_id);
+        
+        temp = uart_char;
+        
+        /* process received value */
+        if ((rv = uart_rx_validate_char( chan_id, &amp;uart_char )) == 0)
+        {
+            if (rx_elements[chan_id] &lt; ECHO_BUF_SIZE)
+            {
+                rx_buffer[chan_id][rx_wr_ptr[chan_id]] = uart_char;
+                rx_wr_ptr[chan_id]++;
+                if (rx_wr_ptr[chan_id] &gt;= ECHO_BUF_SIZE)
+                    rx_wr_ptr[chan_id] = 0;
+                rx_elements[chan_id]++;
+                
+            } else printstr(&quot;RX Buf Full\n&quot;);
+        }
+        else { printstr(&quot;RX Validation fail\n&quot;); printhexln(temp); printintln(rv); }
+    }
+</pre></div>
+</div>
+<p>Once the token is received over the channel informing the application of the UART channel which has data ready the application uses the <a class="reference internal" href="rx_api.html#uart_rx_grab_char" title="uart_rx_grab_char"><span>uart_rx_grab_char()</span></a> function to collect the data from the receive slot. This provides an unvalidated word. The application then utilises the <a class="reference internal" href="rx_api.html#uart_rx_validate_char" title="uart_rx_validate_char"><span>uart_rx_validate_char()</span></a> to ensure that the UART word fits the requirements of the configuration (parity, stop bits etc) and provides the data upon return in the <tt class="docutils literal"><span class="pre">uart_char</span></tt> variable. This data is then inserted into a buffer.</p>
+</div>
+<div class="section" id="reconfiguration-of-rx-tx-server">
+<span id="sec-reconf-rxtx"></span><h2>Reconfiguration of RX &amp; TX Server<a class="headerlink" href="#reconfiguration-of-rx-tx-server" title="Permalink to this headline">¶</a></h2>
+<p>The method for reconfiguring the UART software is the same for both the RX and the TX servers. When the application requires a reconfiguration then a call to <a class="reference internal" href="tx_api.html#uart_tx_reconf_pause" title="uart_tx_reconf_pause"><span>uart_tx_reconf_pause()</span></a> or <a class="reference internal" href="rx_api.html#uart_rx_reconf_pause" title="uart_rx_reconf_pause"><span>uart_rx_reconf_pause()</span></a> needs to be made. When reconfiguring the RX side the server thread will pause immediately, however when pausing the TX side the server thread will pause the application thread to allow the buffers to empty in the TX thread.</p>
+<p>Once the functions exit the server threads will be paused. Configuration is then done utilising the same methodology as initial configuration using a function such as the <a class="reference internal" href="tx_api.html#uart_tx_initialise_channel" title="uart_tx_initialise_channel"><span>uart_tx_initialise_channel()</span></a> or <a class="reference internal" href="rx_api.html#uart_rx_initialise_channel" title="uart_rx_initialise_channel"><span>uart_rx_initialise_channel()</span></a>.</p>
+<p>Following the reconfiguration the application must then call <a class="reference internal" href="tx_api.html#uart_tx_reconf_enable" title="uart_tx_reconf_enable"><span>uart_tx_reconf_enable()</span></a> and <a class="reference internal" href="rx_api.html#uart_rx_reconf_enable" title="uart_rx_reconf_enable"><span>uart_rx_reconf_enable()</span></a> to re-enable the TX and RX threads respectively.</p>
+<p>The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.</p>
+<div class="highlight-none"><div class="highlight"><pre>                    uart_tx_reconf_pause( cTxUART, t );
+                    uart_rx_reconf_pause( cRxBuf );
+                    
+                    /* configure UARTs */
+                    for (int i = 0; i &lt; 8; i++)
+                    {
+                        if ((int)baud_rate &lt;= 225)
+                            baud_rate = 115200;
+                        
+                        if (uart_tx_initialise_channel( i, even, sb_1, baud_rate, 8 ))
+                        {
+                            printstr(&quot;Invalid baud rate for tx channel &quot;);
+                            printintln(i);
+                        }
+                        
+                        if (uart_rx_initialise_channel( i, even, sb_1, start_0, baud_rate, 8 ))
+                        {
+                            printstr(&quot;Invalid baud rate for rx channel &quot;);
+                            printintln(i);
+                        }
+                        
+                        printint(i); printstr(&quot; =&gt; &quot;); printint(baud_rate); printstr(&quot; bps 8-E-1\n&quot;);
+                    }
+                    
+                    baud_rate /= 2;
+                    
+                    uart_tx_reconf_enable( cTxUART );
+                    uart_rx_reconf_enable( cRxBuf );
+</pre></div>
 </div>
 </div>
 </div>
@@ -543,42 +519,37 @@ document.getElementById('d1').style.height=h2 + "px";
       </div>
       <div class="sphinxsidebar" id='d2'>
         <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<h3><a href="index.html">Multi-UART Module Usage Manual</a></h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Multi-UART Module Manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#demo-application-configuration">Demo Application Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#echo-test-application-description">Echo Test Application Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#programming-guide">Programming Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#clocking">Clocking</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#source-code">Source Code</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#threads">Threads</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#buffering">Buffering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#communication-model">Communication Model</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-of-the-uart-module">Configuration of the UART Module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#static-configuration-of-uart-tx">Static configuration of UART TX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#static-configuration-of-uart-rx">Static configuration of UART RX</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#initialisation">Initialisation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interfacing-to-the-tx-server">Interfacing to the TX Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interfacing-to-the-rx-server">Interfacing to the RX Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reconfiguration-of-rx-tx-server">Reconfiguration of RX &amp; TX Server</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Programming Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resource-requirements">Resource Requirements</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ports">Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#threads">Threads</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#memory">Memory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#channel-usage">Channel Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#client-timing-requirements">Client Timing Requirements</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#structure">Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#source-code">Source Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buffering">Buffering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-model">Communication Model</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">Module Testing Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-of-the-uart-module">Configuration of the UART Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#static-configuration-of-uart-tx">Static configuration of UART TX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-configuration-of-uart-rx">Static configuration of UART RX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#initialisation">Initialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interfacing-to-the-tx-server">Interfacing to the TX Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interfacing-to-the-rx-server">Interfacing to the RX Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reconfiguration-of-rx-tx-server">Reconfiguration of RX &amp; TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Verification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="common_api.html">Multi-UART Common API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rx_api.html">Multi-UART Receive API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tx_api.html">Multi-UART Transmit API</a></li>

@@ -1,0 +1,62 @@
+Running Sphinx v1.0.7
+loading pickled environment... not yet created
+building [html]: targets for 8 source files that are out of date
+updating environment: 8 added, 0 changed, 0 removed
+reading sources... [ 12%] common_api
+Rendering Doxygen enum ENUM_UART_CONFIG_PARITY
+Rendering Doxygen enum ENUM_UART_CONFIG_STOP_BITS
+Rendering Doxygen enum ENUM_UART_CONFIG_POLARITY
+Rendering Doxygen function void run_multi_uart_rxtx_int_clk
+Rendering Doxygen function void run_multi_uart_rxtx
+reading sources... [ 25%] helper_api
+Rendering Doxygen function unsigned get_time
+Rendering Doxygen function unsigned wait_for
+Rendering Doxygen function unsigned wait_until
+Rendering Doxygen function void send_streaming_int
+Rendering Doxygen function unsigned get_streaming_uint
+Rendering Doxygen function char get_streaming_token
+reading sources... [ 37%] index
+reading sources... [ 50%] overview
+reading sources... [ 62%] programming_guide
+reading sources... [ 75%] rx_api
+Rendering Doxygen struct STRUCT_MULTI_UART_RX_PORTS
+Rendering Doxygen struct STRUCT_MULTI_UART_RX_CHANNEL
+Rendering Doxygen function int uart_rx_initialise_channel
+Rendering Doxygen function void uart_rx_reconf_pause
+Rendering Doxygen function void uart_rx_reconf_enable
+Rendering Doxygen function int uart_rx_validate_char
+Rendering Doxygen function unsigned uart_rx_grab_char
+Rendering Doxygen function void run_multi_uart_rx
+reading sources... [ 87%] test
+reading sources... [100%] tx_api
+Rendering Doxygen struct STRUCT_MULTI_UART_TX_PORTS
+Rendering Doxygen struct STRUCT_MULTI_UART_TX_CHANNEL
+Rendering Doxygen function int uart_tx_initialise_channel
+Rendering Doxygen function void uart_tx_reconf_pause
+Rendering Doxygen function void uart_tx_reconf_enable
+Rendering Doxygen function unsigned int uart_tx_assemble_word
+Rendering Doxygen function int uart_tx_put_char
+Rendering Doxygen function void run_multi_uart_tx
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 12%] common_api
+writing output... [ 25%] helper_api
+writing output... [ 37%] index
+writing output... [ 50%] overview
+writing output... [ 62%] programming_guide
+writing output... [ 75%] rx_api
+writing output... [ 87%] test
+writing output... [100%] tx_api
+
+writing additional files... genindex search
+copying images... [ 33%] images/EchoSoftwareDiagram.png
+copying images... [ 66%] images/OscPhoto.JPG
+copying images... [100%] images/InitFlow.png
+
+copying static files... done
+dumping search index... done
+dumping object inventory... done
+build succeeded.
