@@ -1,0 +1,795 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Multi-UART Common API &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
+    <link rel="next" title="Programming Guide" href="Programming Guide.html" />
+    <link rel="prev" title="Component Description" href="Component Description.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="Component Description.html"
+                        title="previous chapter"> &lt&lt </a>
+<a href="Programming Guide.html"
+                        title="next chapter"> &gt&gt </a></p>
+</div>
+
+            
+  <div class="section" id="multi-uart-common-api">
+<span id="sec-common-api"></span><h1>Multi-UART Common API<a class="headerlink" href="#multi-uart-common-api" title="Permalink to this headline">¶</a></h1>
+<p>The following describes the shared API between the RX and TX code.</p>
+<div class="section" id="enum-definitions">
+<span id="sec-common-enum"></span><h2>Enum Definitions<a class="headerlink" href="#enum-definitions" title="Permalink to this headline">¶</a></h2>
+<dl class="type">
+<dt id="ENUM_UART_CONFIG_PARITY">
+<tt class="descname">ENUM_UART_CONFIG_PARITY</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define the parity configuration.</p>
+<p><strong>Enum Values:</strong></p>
+<blockquote>
+<div><dl class="member">
+<dt id="ENUM_UART_CONFIG_PARITY.odd">
+<tt class="descname">odd</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY.odd" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0x1</div></blockquote>
+<p>Odd parity.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_PARITY.even">
+<tt class="descname">even</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY.even" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0x2</div></blockquote>
+<p>Even parity.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_PARITY.mark">
+<tt class="descname">mark</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY.mark" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0x3</div></blockquote>
+<p>Mark (always 1) parity bit.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_PARITY.space">
+<tt class="descname">space</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY.space" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0x4</div></blockquote>
+<p>Space (always 0) parity bit.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_PARITY.none">
+<tt class="descname">none</tt><a class="headerlink" href="#ENUM_UART_CONFIG_PARITY.none" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0x0</div></blockquote>
+<p>No parity bit.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="type">
+<dt id="ENUM_UART_CONFIG_STOP_BITS">
+<tt class="descname">ENUM_UART_CONFIG_STOP_BITS</tt><a class="headerlink" href="#ENUM_UART_CONFIG_STOP_BITS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the number of stop bits.</p>
+<p><strong>Enum Values:</strong></p>
+<blockquote>
+<div><dl class="member">
+<dt id="ENUM_UART_CONFIG_STOP_BITS.sb_1">
+<tt class="descname">sb_1</tt><a class="headerlink" href="#ENUM_UART_CONFIG_STOP_BITS.sb_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single stop bit.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_STOP_BITS.sb_2">
+<tt class="descname">sb_2</tt><a class="headerlink" href="#ENUM_UART_CONFIG_STOP_BITS.sb_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two stop bits.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="type">
+<dt id="ENUM_UART_CONFIG_POLARITY">
+<tt class="descname">ENUM_UART_CONFIG_POLARITY</tt><a class="headerlink" href="#ENUM_UART_CONFIG_POLARITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start bit polarity configuration (currently unused).</p>
+<p><strong>Enum Values:</strong></p>
+<blockquote>
+<div><dl class="member">
+<dt id="ENUM_UART_CONFIG_POLARITY.start_1">
+<tt class="descname">start_1</tt><a class="headerlink" href="#ENUM_UART_CONFIG_POLARITY.start_1" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>1</div></blockquote>
+<p>Start bit is a 1, implies stop bit/idle is a 0.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="ENUM_UART_CONFIG_POLARITY.start_0">
+<tt class="descname">start_0</tt><a class="headerlink" href="#ENUM_UART_CONFIG_POLARITY.start_0" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>0</div></blockquote>
+<p>Start bit is a 0, implies stop bit/idle is a 1.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="combined-rx-tx-server-launch-functions">
+<span id="sec-common-func"></span><h2>Combined RX &amp; TX Server Launch Functions<a class="headerlink" href="#combined-rx-tx-server-launch-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="run_multi_uart_rxtx_int_clk">
+void <tt class="descname">run_multi_uart_rxtx_int_clk</tt><big>(</big>streaming chanend<em>&nbsp;cTxUart</em>, s_multi_uart_tx_ports<em>&nbsp;&amp;uart_tx_ports</em>, streaming chanend<em>&nbsp;cRxUart</em>, s_multi_uart_rx_ports<em>&nbsp;&amp;uart_rx_ports</em>, clock<em>&nbsp;uart_clock_rx</em>, clock<em>&nbsp;uart_clock_tx</em><big>)</big><a class="headerlink" href="#run_multi_uart_rxtx_int_clk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure and run the Multi-UART TX &amp; RX server threads using internal clocks for TX &amp; RX.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cTxUart</strong> &#8211; TX Server Channel</li>
+<li><strong>uart_tx_ports</strong> &#8211; TX Ports structure</li>
+<li><strong>cRxUart</strong> &#8211; RX Server Channel</li>
+<li><strong>uart_rx_ports</strong> &#8211; RX Ports structure</li>
+<li><strong>uart_clock_rx</strong> &#8211; Clock block to run the RX port from</li>
+<li><strong>uart_clock_tx</strong> &#8211; Clock block to run the TX port from</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="run_multi_uart_rxtx">
+void <tt class="descname">run_multi_uart_rxtx</tt><big>(</big>streaming chanend<em>&nbsp;cTxUart</em>, s_multi_uart_tx_ports<em>&nbsp;&amp;uart_tx_ports</em>, streaming chanend<em>&nbsp;cRxUart</em>, s_multi_uart_rx_ports<em>&nbsp;&amp;uart_rx_ports</em>, clock<em>&nbsp;uart_clock_rx</em>, in port<em>&nbsp;uart_ext_clk_pin</em>, clock<em>&nbsp;uart_clock_tx</em><big>)</big><a class="headerlink" href="#run_multi_uart_rxtx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure and run the Multi-UART TX &amp; RX server threads using an external clock for TX.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cTxUart</strong> &#8211; TX Server Channel</li>
+<li><strong>uart_tx_ports</strong> &#8211; TX Ports structure (reference parameter)</li>
+<li><strong>cRxUart</strong> &#8211; RX Server Channel</li>
+<li><strong>uart_rx_ports</strong> &#8211; RX Ports structure (reference parameter)</li>
+<li><strong>uart_clock_rx</strong> &#8211; Clock block to run the RX port from</li>
+<li><strong>uart_ext_clk_pin</strong> &#8211; External clock reference input pin</li>
+<li><strong>uart_clock_tx</strong> &#8211; Clock block to run the TX port from</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="multi-uart-transmit-api">
+<span id="sec-tx-api"></span><h1>Multi-UART Transmit API<a class="headerlink" href="#multi-uart-transmit-api" title="Permalink to this headline">¶</a></h1>
+<p>The following describes the public API for use in applications and the API&#8217;s usage.</p>
+<div class="section" id="configuration-defines">
+<span id="sec-tx-conf-defines"></span><h2>Configuration Defines<a class="headerlink" href="#configuration-defines" title="Permalink to this headline">¶</a></h2>
+<p>The file <tt class="docutils literal"><span class="pre">multi_uart_tx_conf.h</span></tt> must be provided in the application source code. This file should comprise of the following defines:</p>
+<p><strong>UART_TX_USE_EXTERNAL_CLOCK</strong></p>
+<blockquote>
+<div>Define whether to use an external clock reference for transmit - do not define this if using the internal clocking</div></blockquote>
+<p><strong>UART_TX_CHAN_COUNT</strong></p>
+<blockquote>
+<div>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</div></blockquote>
+<p><strong>UART_TX_CLOCK_RATE_HZ</strong></p>
+<blockquote>
+<div>This defines the master clock rate - if using an external clock then set this appropriately (e.g. 1843200 for a 1.8432MHz external clock)</div></blockquote>
+<p><strong>UART_TX_MAX_BAUD</strong></p>
+<blockquote>
+<div>Define the maximum application baud rate - this implementation is validated to 115200 baud</div></blockquote>
+<p><strong>UART_TX_CLOCK_DIVIDER</strong></p>
+<blockquote>
+<div>This should be defined as <tt class="docutils literal"><span class="pre">(UART_TX_CLOCK_RATE_HZ/UART_TX_MAX_BAUD_RATE)</span></tt>. But some use cases may require a custom divide.</div></blockquote>
+<p><strong>UART_TX_OVERSAMPLE</strong></p>
+<blockquote>
+<div>Define the oversampling of the clock - this is where the UART_TX_CLOCK_DIVIDER is &gt; 255 (otherwise set to 1) - only used when using an internal clock reference</div></blockquote>
+<p><strong>UART_TX_BUF_SIZE</strong></p>
+<blockquote>
+<div>Define the buffer size in UART word entries - needs to be a power of 2 (i.e. 1,2,4,8,16,32)</div></blockquote>
+<p><strong>UART_TX_IFB</strong></p>
+<blockquote>
+<div>Define the number of interframe bits</div></blockquote>
+</div>
+<div class="section" id="data-structures">
+<span id="sec-tx-data-struct"></span><h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<dl class="type">
+<dt id="STRUCT_MULTI_UART_TX_PORTS">
+<tt class="descname">STRUCT_MULTI_UART_TX_PORTS</tt><a class="headerlink" href="#STRUCT_MULTI_UART_TX_PORTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure used to hold ports - used to enable extensibility in the future.</p>
+<p><strong>Structure Members:</strong></p>
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_TX_PORTS.pUart">
+buffered out port:8 <tt class="descname">pUart</tt><a class="headerlink" href="#STRUCT_MULTI_UART_TX_PORTS.pUart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="STRUCT_MULTI_UART_TX_CHANNEL">
+<tt class="descname">STRUCT_MULTI_UART_TX_CHANNEL</tt><a class="headerlink" href="#STRUCT_MULTI_UART_TX_CHANNEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure to hold configuration information and data for the UART channel TX side - this should only be interacted with via the API and not accessed directly.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="configuration-functions">
+<span id="sec-tx-conf-func"></span><h2>Configuration Functions<a class="headerlink" href="#configuration-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uart_tx_initialise_channel">
+int <tt class="descname">uart_tx_initialise_channel</tt><big>(</big>int<em>&nbsp;channel_id</em>, e_uart_config_parity<em>&nbsp;parity</em>, e_uart_config_stop_bits<em>&nbsp;stop_bits</em>, e_uart_config_polarity<em>&nbsp;polarity</em>, int<em>&nbsp;baud</em>, int<em>&nbsp;char_len</em><big>)</big><a class="headerlink" href="#uart_tx_initialise_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the UART channel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>channel_id</strong> &#8211; Channel Identifier</li>
+<li><strong>parity</strong> &#8211; Parity configuration</li>
+<li><strong>stop_bits</strong> &#8211; Stop bit configuration</li>
+<li><strong>polarity</strong> &#8211; Start/Stop bit polarity setting</li>
+<li><strong>baud</strong> &#8211; Required baud rate</li>
+<li><strong>char_len</strong> &#8211; Length of a character in bits (e.g. 8 bits)</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return 0 on success</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="uart_tx_reconf_pause">
+void <tt class="descname">uart_tx_reconf_pause</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em>, timer<em>&nbsp;t</em><big>)</big><a class="headerlink" href="#uart_tx_reconf_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause the Multi-UART TX thread for reconfiguration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cUART</strong> &#8211; chanend to UART TX thread</li>
+<li><strong>t</strong> &#8211; timer for running buffer clearance pause</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="uart_tx_reconf_enable">
+void <tt class="descname">uart_tx_reconf_enable</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em><big>)</big><a class="headerlink" href="#uart_tx_reconf_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release the UART into normal operation - must be called after uart_tx_reconf_pause.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cUART</strong> &#8211; channel end to TX UART</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="transmission-functions">
+<span id="sec-tx-func"></span><h2>Transmission Functions<a class="headerlink" href="#transmission-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uart_tx_assemble_word">
+unsigned int <tt class="descname">uart_tx_assemble_word</tt><big>(</big>int<em>&nbsp;channel_id</em>, unsigned int<em>&nbsp;uart_char</em><big>)</big><a class="headerlink" href="#uart_tx_assemble_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assemble full word for transmission.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>channel_id</strong> &#8211; Channel identifier</li>
+<li><strong>uart_char</strong> &#8211; The character being sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Full UART word in the format (msb -&gt; lsb) STOP|PARITY|DATA|START</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="uart_tx_put_char">
+int <tt class="descname">uart_tx_put_char</tt><big>(</big>int<em>&nbsp;channel_id</em>, unsigned int<em>&nbsp;uart_char</em><big>)</big><a class="headerlink" href="#uart_tx_put_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assemble UART word from UART Character and insert into the appropriate UART buffer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>channel_id</strong> &#8211; Channel identifier</li>
+<li><strong>uart_char</strong> &#8211; Character to be sent over UART</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">0 for OK, -1 for buffer full</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="multi-uart-tx-server">
+<span id="sec-tx-server-func"></span><h2>Multi-UART TX Server<a class="headerlink" href="#multi-uart-tx-server" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="run_multi_uart_tx">
+void <tt class="descname">run_multi_uart_tx</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em>, s_multi_uart_tx_ports<em>&nbsp;&amp;tx_ports</em>, clock<em>&nbsp;uart_clock</em><big>)</big><a class="headerlink" href="#run_multi_uart_tx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi UART Transmit Thread.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="multi-uart-receive-api">
+<span id="sec-rx-api"></span><h1>Multi-UART Receive API<a class="headerlink" href="#multi-uart-receive-api" title="Permalink to this headline">¶</a></h1>
+<p>The following describes the public API for use in applications and the API&#8217;s usage.</p>
+<div class="section" id="sec-rx-conf-defines">
+<span id="id1"></span><h2>Configuration Defines<a class="headerlink" href="#sec-rx-conf-defines" title="Permalink to this headline">¶</a></h2>
+<p>The file <tt class="docutils literal"><span class="pre">multi_uart_rx_conf.h</span></tt> must be provided in the application source code. This file should comprise of the following defines:</p>
+<p><strong>UART_RX_CHAN_COUNT</strong></p>
+<blockquote>
+<div>Define the number of channels that are to be supported, must fit in the port. Also, must be a power of 2 (i.e. 1,2,4,8) - not all channels have to be utilised</div></blockquote>
+<p><strong>UART_RX_CLOCK_RATE_HZ</strong></p>
+<blockquote>
+<div>This defines the master clock rate - in this implementation this is the system clock in Hertz. This should be 100000000.</div></blockquote>
+<p><strong>UART_RX_MAX_BAUD</strong></p>
+<blockquote>
+<div>Define the maximum application baud rate - this implementation is validated to 115200 baud</div></blockquote>
+<p><strong>UART_RX_CLOCK_DIVIDER</strong></p>
+<blockquote>
+<div>This should be defined as <tt class="docutils literal"><span class="pre">(UART_RX_CLOCK_RATE_HZ/UART_RX_MAX_BAUD)</span></tt>. But some use cases may require a custom divide.</div></blockquote>
+<p><strong>UART_RX_OVERSAMPLE</strong></p>
+<blockquote>
+<div>Define receive oversample for maximum baud rate. This should be left at 4.</div></blockquote>
+</div>
+<div class="section" id="sec-rx-data-struct">
+<span id="id2"></span><h2>Data Structures<a class="headerlink" href="#sec-rx-data-struct" title="Permalink to this headline">¶</a></h2>
+<dl class="type">
+<dt id="STRUCT_MULTI_UART_RX_PORTS">
+<tt class="descname">STRUCT_MULTI_UART_RX_PORTS</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_PORTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure used to hold ports - used to enable extensibility in the future.</p>
+<p><strong>Structure Members:</strong></p>
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_PORTS.pUart">
+buffered in port:32 <tt class="descname">pUart</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_PORTS.pUart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL">
+<tt class="descname">STRUCT_MULTI_UART_RX_CHANNEL</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Structure to hold configuration information and data for the UART channel RX side - this should only be interacted with via the API and not accessed directly.</p>
+<p><strong>Structure Members:</strong></p>
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.uart_char_len">
+int <tt class="descname">uart_char_len</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.uart_char_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>length of the UART character</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.uart_word_len">
+int <tt class="descname">uart_word_len</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.uart_word_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of bits in UART word e.g.</p>
+<p>Start bit + 8 bit data + parity + 2 stop bits is a 12 bit UART word</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.clocks_per_bit">
+int <tt class="descname">clocks_per_bit</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.clocks_per_bit" title="Permalink to this definition">¶</a></dt>
+<dd><p>define baud rate in relation to max baud rate</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.invert_output">
+int <tt class="descname">invert_output</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.invert_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>define if output is inverted (set to 1)</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.use_sample">
+int <tt class="descname">use_sample</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.use_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample in bit stream to use</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.sb_mode">
+e_uart_config_stop_bits <tt class="descname">sb_mode</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.sb_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop bit configuration.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.parity_mode">
+e_uart_config_parity <tt class="descname">parity_mode</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.parity_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parity mode configuration.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="STRUCT_MULTI_UART_RX_CHANNEL.polarity_mode">
+e_uart_config_polarity <tt class="descname">polarity_mode</tt><a class="headerlink" href="#STRUCT_MULTI_UART_RX_CHANNEL.polarity_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Polarity mode of start/stop bits.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sec-rx-conf-func">
+<span id="id3"></span><h2>Configuration Functions<a class="headerlink" href="#sec-rx-conf-func" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uart_rx_initialise_channel">
+int <tt class="descname">uart_rx_initialise_channel</tt><big>(</big>int<em>&nbsp;channel_id</em>, e_uart_config_parity<em>&nbsp;parity</em>, e_uart_config_stop_bits<em>&nbsp;stop_bits</em>, e_uart_config_polarity<em>&nbsp;polarity</em>, int<em>&nbsp;baud</em>, int<em>&nbsp;char_len</em><big>)</big><a class="headerlink" href="#uart_rx_initialise_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the UART channel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>channel_id</strong> &#8211; Channel Identifier</li>
+<li><strong>parity</strong> &#8211; Parity configuration</li>
+<li><strong>stop_bits</strong> &#8211; Stop bit configuration</li>
+<li><strong>polarity</strong> &#8211; Polarity configuration of start/stop bits</li>
+<li><strong>baud</strong> &#8211; Required baud rate</li>
+<li><strong>char_len</strong> &#8211; Length of a character in bits (e.g. 8 bits)</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return 0 on success</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="uart_rx_reconf_pause">
+void <tt class="descname">uart_rx_reconf_pause</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em><big>)</big><a class="headerlink" href="#uart_rx_reconf_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause the UART via channel for reconfiguration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cUART</strong> &#8211; streaming channel end to RX server</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="uart_rx_reconf_enable">
+void <tt class="descname">uart_rx_reconf_enable</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em><big>)</big><a class="headerlink" href="#uart_rx_reconf_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release the UART into normal operation - must be called after uart_rx_reconf_pause.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cUART</strong> &#8211; channel end to RX UART</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="data-validation-functions">
+<span id="sec-rx-data-validation-func"></span><h2>Data Validation Functions<a class="headerlink" href="#data-validation-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uart_rx_validate_char">
+int <tt class="descname">uart_rx_validate_char</tt><big>(</big>int<em>&nbsp;chan_id</em>, unsigned<em>&nbsp;&amp;uart_word</em><big>)</big><a class="headerlink" href="#uart_rx_validate_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate received UART word according to channel configuration and provide a cleaned UART character.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>chan_id</strong> &#8211; UART channel ID from which the char came from</li>
+<li><strong>uart_word</strong> &#8211; UART char in the format DATA_BITS|PARITY|STOP BITS (parity optional according to config), modified to clean UART charcater on successful * return</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return 0 on valid data, -1 on validation fail</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="data-fetch-functions">
+<h2>Data Fetch Functions<a class="headerlink" href="#data-fetch-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uart_rx_grab_char">
+unsigned <tt class="descname">uart_rx_grab_char</tt><big>(</big>unsigned<em>&nbsp;chan_id</em><big>)</big><a class="headerlink" href="#uart_rx_grab_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the received value from an RX slot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>chan_id</strong> &#8211; channel id to grab</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">value in slot</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="multi-uart-rx-server">
+<span id="sec-rx-server-func"></span><h2>Multi-UART RX Server<a class="headerlink" href="#multi-uart-rx-server" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="run_multi_uart_rx">
+void <tt class="descname">run_multi_uart_rx</tt><big>(</big>streaming chanend<em>&nbsp;cUART</em>, s_multi_uart_rx_ports<em>&nbsp;&amp;tx_ports</em>, clock<em>&nbsp;uart_clock</em><big>)</big><a class="headerlink" href="#run_multi_uart_rx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-UART Receive Server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cUART</strong> &#8211; channel interface for RX UART</li>
+<li><strong>tx_ports</strong> &#8211; port structure</li>
+<li><strong>uart_clock</strong> &#8211; clock block for UART</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="multi-uart-helper-api">
+<span id="sec-helper-api"></span><h1>Multi-UART Helper API<a class="headerlink" href="#multi-uart-helper-api" title="Permalink to this headline">¶</a></h1>
+<p>This API provides a number of functions that allow the access of architecture specific functionality within C where XC semantics are not available.</p>
+<dl class="function">
+<dt id="get_time">
+unsigned <tt class="descname">get_time</tt><big>(</big>timer<em>&nbsp;t</em><big>)</big><a class="headerlink" href="#get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get time from timer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp from timer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="wait_for">
+unsigned <tt class="descname">wait_for</tt><big>(</big>timer<em>&nbsp;t</em>, unsigned<em>&nbsp;delta</em><big>)</big><a class="headerlink" href="#wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for a time period defined by delta.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer to use</li>
+<li><strong>delta</strong> &#8211; time period to wait</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp on completion of pause</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="wait_until">
+unsigned <tt class="descname">wait_until</tt><big>(</big>timer<em>&nbsp;t</em>, unsigned<em>&nbsp;ts</em><big>)</big><a class="headerlink" href="#wait_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait until a specific time stamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> &#8211; timer to use</li>
+<li><strong>ts</strong> &#8211; time stamp to wait until</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">timestamp on completion of pause</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="send_streaming_int">
+void <tt class="descname">send_streaming_int</tt><big>(</big>streaming_chanend<em>&nbsp;c</em>, int<em>&nbsp;i</em><big>)</big><a class="headerlink" href="#send_streaming_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send integer value across a streaming channel end.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+<li><strong>i</strong> &#8211; integer to send</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_streaming_uint">
+unsigned <tt class="descname">get_streaming_uint</tt><big>(</big>streaming_chanend<em>&nbsp;c</em><big>)</big><a class="headerlink" href="#get_streaming_uint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unsigned integer from streaming chanend.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">value received over the channel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_streaming_token">
+char <tt class="descname">get_streaming_token</tt><big>(</big>streaming_chanend<em>&nbsp;c</em><big>)</big><a class="headerlink" href="#get_streaming_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get token from streaming chanend.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; chanend to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">token received over channel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resource Requirements.html">Resource Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Multi-UART Common API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#enum-definitions">Enum Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#combined-rx-tx-server-launch-functions">Combined RX &amp; TX Server Launch Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#multi-uart-transmit-api">Multi-UART Transmit API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-functions">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transmission-functions">Transmission Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-uart-tx-server">Multi-UART TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#multi-uart-receive-api">Multi-UART Receive API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sec-rx-conf-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sec-rx-data-struct">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sec-rx-conf-func">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-validation-functions">Data Validation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-fetch-functions">Data Fetch Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-uart-rx-server">Multi-UART RX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#multi-uart-helper-api">Multi-UART Helper API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example Applications.html">Example Applications</a></li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+

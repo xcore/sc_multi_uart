@@ -1,0 +1,268 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Resource Requirements &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
+    <link rel="next" title="Hardware Requirements" href="Hardware Requirements.html" />
+    <link rel="prev" title="Introduction" href="Overview.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="Overview.html"
+                        title="previous chapter"> &lt&lt </a>
+<a href="Hardware Requirements.html"
+                        title="next chapter"> &gt&gt </a></p>
+</div>
+
+            
+  <div class="section" id="resource-requirements">
+<h1>Resource Requirements<a class="headerlink" href="#resource-requirements" title="Permalink to this headline">¶</a></h1>
+<p>This section provides an overview of the required resources of the component so that the application designer can operate within these constraints accordingly.</p>
+<div class="section" id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Permalink to this headline">¶</a></h2>
+<p>The following ports are required for each of the receive and transmit functions -</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operation</th>
+<th class="head">Port Type</th>
+<th class="head">Number required</th>
+<th class="head">Direction</th>
+<th class="head">Port purpose / Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Transmit</td>
+<td>8 bit port</td>
+<td>1</td>
+<td>Output</td>
+<td>Data transmission</td>
+</tr>
+<tr><td>Transmit</td>
+<td>1 bit port</td>
+<td>1</td>
+<td>Input</td>
+<td>Optional External clocking (see <a class="reference internal" href="Component Description.html#sec-ext-clk"><span>Clocking</span></a>)</td>
+</tr>
+<tr><td>Receive</td>
+<td>8 bit port</td>
+<td>1</td>
+<td>Input</td>
+<td>Data Receive</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="threads">
+<h2>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operation</th>
+<th class="head">Thread Count</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Receive</td>
+<td>1</td>
+<td>Single thread server, may require application defined buffering thread - requires 62.5MIPS per thread</td>
+</tr>
+<tr><td>Transmit</td>
+<td>1</td>
+<td>Single thread server - requires 62.5MIPS per thread</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="memory">
+<h2>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h2>
+<p>The following is a summary of memory usage of the component for all functionality utilised by the echo test application when compiled at optimisation level 3. It assumes a TX buffer of 16 slots and operating at the maximum of 8 UART channels. This is deemed to be a guide only and memory usage may differ according how much of the API is utilised.</p>
+<p>Stack usage is estimated at 460 bytes.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operation</th>
+<th class="head">Code (bytes)</th>
+<th class="head">Data (bytes)</th>
+<th class="head">Total Usage (bytes)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Receive Thread</td>
+<td>316</td>
+<td>424</td>
+<td>740</td>
+</tr>
+<tr><td>Receive API</td>
+<td>410</td>
+<td>0</td>
+<td>410</td>
+</tr>
+<tr><td>Transmit Thread</td>
+<td>1322</td>
+<td>940</td>
+<td>2262</td>
+</tr>
+<tr><td>Transmit API</td>
+<td>480</td>
+<td>0</td>
+<td>480</td>
+</tr>
+<tr><td><strong>Total</strong></td>
+<td><strong>2159</strong></td>
+<td><strong>1364</strong></td>
+<td><strong>3523</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong> These values are meant as a guide and are correct as of Jan 24. 2012 - they may change if fixes are implemented or functionality is added.</p>
+</div>
+<div class="section" id="channel-usage">
+<h2>Channel Usage<a class="headerlink" href="#channel-usage" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operation</th>
+<th class="head">Channel Usage &amp; Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Receive</td>
+<td>1 x Streaming Chanend</td>
+</tr>
+<tr><td>Transmit</td>
+<td>1 x Streaming Chanend</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="client-timing-requirements">
+<span id="sec-client-timing"></span><h2>Client Timing Requirements<a class="headerlink" href="#client-timing-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The application that interfaces to the receive side of UART component must meet the following timing requirement. This requirement is dependent on configuration so the worst case configuration must be accounted for - this means the shortest UART word (length of the start, data parity and stop bits combined).</p>
+<p>Taking an example where the following values are applied -</p>
+<blockquote>
+<div><ul class="simple">
+<li>UART_CHAN_COUNT = 8</li>
+<li>MAX_BAUD = 115200 bps</li>
+<li>MIN_BIT_COUNT = 10 (i.e 1 Start Bit, 8 data bits and 1 stop bit)</li>
+</ul>
+</div></blockquote>
+<p>The resultant timing requirement is 10.85 μS. This would be defined and constrained using the XTA tool.</p>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Resource Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ports">Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#threads">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#channel-usage">Channel Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-timing-requirements">Client Timing Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">Multi-UART Common API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-transmit-api">Multi-UART Transmit API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-receive-api">Multi-UART Receive API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-helper-api">Multi-UART Helper API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example Applications.html">Example Applications</a></li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+

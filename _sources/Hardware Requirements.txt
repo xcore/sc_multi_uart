@@ -1,0 +1,12 @@
+Hardware Requirements
+======================
+
+Pinouts in each slots
+---------------------
+
+Pinouts in each slot using a template to be provided [TBA]
+
+Icons to be added are: [TBA]
+ - XSoftIP logo [TBA]
+ - Slicekit logo [TBA]
+ - icons to denote slot compatibility [TBA]

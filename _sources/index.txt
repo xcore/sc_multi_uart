@@ -1,13 +1,13 @@
-Serial to Ethernet Bridging Application Manual
-==============================================
+Multi-UART Module Usage Manual
+=================================
 
 .. toctree::
 
-   01_Overview
-   02_HardwarePlatform
-   03_SystemOverview
-   04_GettingStarted
-   05_ProgrammingGuide
-   06_API
-   07_UserInterface
-   08_References
+   Overview
+   Resource Requirements
+   Hardware Requirements
+   Component Description
+   API
+   Programming Guide
+   Example Applications
+   

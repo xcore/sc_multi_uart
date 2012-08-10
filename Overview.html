@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; Multi-UART Module Usage v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="index.html" />
+    <link rel="next" title="Resource Requirements" href="Resource Requirements.html" />
+    <link rel="prev" title="Multi-UART Module Usage Manual" href="index.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="index.html"
+                        title="previous chapter"> &lt&lt </a>
+<a href="Resource Requirements.html"
+                        title="next chapter"> &gt&gt </a></p>
+</div>
+
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Multi-UART component provides a software library that allows the use of 8 bit ports for multiple channel UART communication. This library is dynamically re-configurable for applications that require a level of flexibility during operation.</p>
+<p>This document describes an overview of the Multi-UART component, resource requirements, API and programming details. It follows the examples that are given in the app_multi_uart_demo.</p>
+<div class="section" id="supported-functionality">
+<h2>Supported Functionality<a class="headerlink" href="#supported-functionality" title="Permalink to this headline">¶</a></h2>
+<p>The Multi-UART provides the following functionality. All options are dynamically reconfigurable via the API.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Function</th>
+<th class="head">Operational Range</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Baud Rate</td>
+<td>150 to 115200 bps</td>
+<td>Dependent on clocking (see <a class="reference internal" href="Component Description.html#sec-ext-clk"><span>Clocking</span></a>)</td>
+</tr>
+<tr><td>Parity</td>
+<td>{None, Mark, Space, Odd, Even}</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>Stop Bits</td>
+<td>{1,2}</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>Data Length</td>
+<td>1 to 30 bits</td>
+<td>Max 30 bits assumes 1 stop bit and no parity.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="slicekit-compatibility">
+<h2>Slicekit Compatibility<a class="headerlink" href="#slicekit-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>SliceKit logo [TBA]</p>
+<p>Basic slice connector compatibility using the approved icons and a short discussion of the capabilities in different slots [TBA]</p>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Multi-UART Module Usage (0.1)</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-functionality">Supported Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slicekit-compatibility">Slicekit Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Resource Requirements.html">Resource Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">Multi-UART Common API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-transmit-api">Multi-UART Transmit API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-receive-api">Multi-UART Receive API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-helper-api">Multi-UART Helper API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example Applications.html">Example Applications</a></li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+

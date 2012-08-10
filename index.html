@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Serial to Ethernet Bridging Application Manual &mdash; Application to demonstrate Serial to Ethernet bridging v0.1 documentation</title>
+    <title>Multi-UART Module Usage Manual &mdash; Multi-UART Module Usage v0.1 documentation</title>
     <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
     <script type="text/javascript" src="_static/xcomment.js"></script>
-    <link rel="top" title="Application to demonstrate Serial to Ethernet bridging v0.1 documentation" href="#" />
-    <link rel="next" title="Application Overview" href="01_Overview.html" /> 
+    <link rel="top" title="Multi-UART Module Usage v0.1 documentation" href="#" />
+    <link rel="next" title="Introduction" href="Overview.html" /> 
 
 <script>
 function setheight() {
@@ -51,74 +51,92 @@ document.getElementById('d1').style.height=h2 + "px";
         <div class="bodywrapper">
           <div class="body">
 <div style="float: right">
-<a href="01_Overview.html"
+<a href="Overview.html"
                         title="next chapter"> &gt&gt </a></p>
 </div>
 
             
-  <div class="section" id="serial-to-ethernet-bridging-application-manual">
-<h1>Serial to Ethernet Bridging Application Manual<a class="headerlink" href="#serial-to-ethernet-bridging-application-manual" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="multi-uart-module-usage-manual">
+<h1>Multi-UART Module Usage Manual<a class="headerlink" href="#multi-uart-module-usage-manual" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01_Overview.html">Application Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="01_Overview.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Overview.html#supported-functionality">Supported Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Overview.html#slicekit-compatibility">Slicekit Compatibility</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="02_HardwarePlatform.html">HW platforms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02_HardwarePlatform.html#hardware-requirements">Hardware Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_HardwarePlatform.html#hardware-setup">Hardware SetUp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resource Requirements.html">Resource Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Resource Requirements.html#ports">Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Resource Requirements.html#threads">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Resource Requirements.html#memory">Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Resource Requirements.html#channel-usage">Channel Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Resource Requirements.html#client-timing-requirements">Client Timing Requirements</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03_SystemOverview.html">System Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="03_SystemOverview.html#thread-diagram-of-s2e-app">Thread diagram of s2e app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_SystemOverview.html#software-components-used">Software components used</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="03_SystemOverview.html#description-of-operation">Description of Operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03_SystemOverview.html#resource-usage">Resource Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hardware Requirements.html#pinouts-in-each-slots">Pinouts in each slots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Component Description.html#threads">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Component Description.html#buffering">Buffering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Component Description.html#communication-model">Communication Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Component Description.html#clocking">Clocking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">Multi-UART Common API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API.html#enum-definitions">Enum Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#combined-rx-tx-server-launch-functions">Combined RX &amp; TX Server Launch Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-transmit-api">Multi-UART Transmit API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API.html#configuration-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#data-structures">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#configuration-functions">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#transmission-functions">Transmission Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#multi-uart-tx-server">Multi-UART TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-receive-api">Multi-UART Receive API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="API.html#sec-rx-conf-defines">Configuration Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#sec-rx-data-struct">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#sec-rx-conf-func">Configuration Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#data-validation-functions">Data Validation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#data-fetch-functions">Data Fetch Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API.html#multi-uart-rx-server">Multi-UART RX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-helper-api">Multi-UART Helper API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#structure">Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Programming Guide.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#configuration-of-the-uart-component">Configuration of the UART component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Programming Guide.html#static-configuration-of-uart-tx">Static configuration of UART TX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Programming Guide.html#static-configuration-of-uart-rx">Static configuration of UART RX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#initialisation">Initialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#interfacing-to-the-tx-server">Interfacing to the TX Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#interfacing-to-the-rx-server">Interfacing to the RX Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programming Guide.html#reconfiguration-of-rx-tx-server">Reconfiguration of RX &amp; TX Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example Applications.html">Example Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Example Applications.html#demonstration-and-test-applications">Demonstration and Test Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example Applications.html#demo-application-hardware">Demo Application Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example Applications.html#demo-application-configuration">Demo Application Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example Applications.html#echo-test-application-description">Echo Test Application Description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example Applications.html#component-testing-scripts">Component Testing Scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example Applications.html#test-script-use">Test Script Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example Applications.html#simulation-test-plugin">Simulation Test Plugin</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04_GettingStarted.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04_GettingStarted.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04_GettingStarted.html#building-with-the-xde">Building with the XDE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04_GettingStarted.html#building-from-the-command-line">Building from the command line</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04_GettingStarted.html#makefiles">Makefiles</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="04_GettingStarted.html#installing-the-application-onto-flash">Installing the application onto flash</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04_GettingStarted.html#using-command-line-tools">Using Command Line Tools</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="05_ProgrammingGuide.html">Programming Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="05_ProgrammingGuide.html#thread-diagram">Thread Diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_ProgrammingGuide.html#flash-interface">Flash Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="05_ProgrammingGuide.html#webserver">Webserver</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="06_API.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#configuration-defines">Configuration Defines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#constants">Constants</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#data-structures">Data Structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#configuration-functions">Configuration Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#interface-functions">Interface functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_API.html#module-functions">Module functions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="07_UserInterface.html">User Interface Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="07_UserInterface.html#web-interface">Web Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_UserInterface.html#telnet-interface">Telnet interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="07_UserInterface.html#uart-configuration">Uart Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="07_UserInterface.html#sample-usage">Sample Usage:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="07_UserInterface.html#uart-data-communication">Uart Data Communication</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="08_References.html">References</a></li>
 </ul>
 </div>
 </div>
@@ -130,16 +148,18 @@ document.getElementById('d1').style.height=h2 + "px";
       </div>
       <div class="sphinxsidebar" id='d2'>
         <div class="sphinxsidebarwrapper">
-<h3><a href="#">Application to demonstrate Serial to Ethernet bridging (0.1)</a></h3>
+<h3><a href="#">Multi-UART Module Usage (0.1)</a></h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01_Overview.html">Application Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_HardwarePlatform.html">HW platforms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_SystemOverview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_GettingStarted.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_ProgrammingGuide.html">Programming Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_API.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_UserInterface.html">User Interface Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_References.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resource Requirements.html">Resource Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">Multi-UART Common API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-transmit-api">Multi-UART Transmit API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-receive-api">Multi-UART Receive API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-helper-api">Multi-UART Helper API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example Applications.html">Example Applications</a></li>
 </ul>
 
 <div id="searchbox" style="display: none;margin-bottom: 10px;">
