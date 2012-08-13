@@ -70,113 +70,91 @@ document.getElementById('d1').style.height=h2 + "px";
 </ul>
 </div></blockquote>
 <p>The demo applications will build by default for the Motor Control Board. To build for XK-1 you need to make the following changes.</p>
+<p>MultiUART component requires 8-bit ports for both UART transmit and UART receive ports. The version runs on L1 (one core). The Slices should be assembled in the following manner:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col width="24%" />
+<col width="25%" />
+<col width="25%" />
+<col width="26%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">File</th>
-<th class="head">Original Value</th>
-<th class="head">New Value</th>
+<tr><th class="head"><strong>Slice</strong></th>
+<th class="head"><strong>Core Board - Core</strong></th>
+<th class="head"><strong>Core Board - Type</strong></th>
+<th class="head"><strong>Core Board - Jumper</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">src/main.xc</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">#define</span> <span class="pre">UART_CORE</span> <span class="pre">1</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">#define</span> <span class="pre">UART_CORE</span> <span class="pre">0</span></tt></td>
-</tr>
-<tr><td><tt class="docutils literal"><span class="pre">Makefile</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">TARGET</span> <span class="pre">=</span> <span class="pre">MCB_UART</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">TARGET</span> <span class="pre">=</span> <span class="pre">XK1_UART</span></tt></td>
+<tr><td>UART</td>
+<td>Core 0</td>
+<td>Type 0</td>
+<td>J4</td>
 </tr>
 </tbody>
 </table>
-<p>The IO connections are made to the long connector at the base of the board - labelled JP1. The table in <a class="reference internal" href="#table-connector-breakout"><span>Motor Control Board Connector Breakout for Demo &amp; Test Applications</span></a> shows the IO breakout for the port in relation to the ports that are utilised for the demo applications running with an external oscillator.</p>
-<table border="1" class="docutils" id="table-connector-breakout">
-<caption>Motor Control Board Connector Breakout for Demo &amp; Test Applications</caption>
+<dl class="docutils">
+<dt>The UART slice has two types of voltage levels of communications.</dt>
+<dd><ul class="first last simple">
+<li>CMOS TTL</li>
+<li>RS-232</li>
+</ul>
+</dd>
+</dl>
+<p>By default, this uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the MUART slice. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of the UART slice. When using TTL levels, UART device pins must be connected to J3 of UART slice (along with J3 25-26 pins shorted). UART channel information of UART slice is as:</p>
+<table border="1" class="docutils">
 <colgroup>
-<col width="30%" />
-<col width="25%" />
-<col width="45%" />
+<col width="28%" />
+<col width="36%" />
+<col width="36%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">XMOS Port</th>
-<th class="head">JP1 Pin</th>
-<th class="head">Demo Function</th>
+<tr><th class="head"><strong>UART Channel</strong></th>
+<th class="head"><strong>J3/J4 Pin no.(TX)</strong></th>
+<th class="head"><strong>J3/J4 Pin no.(RX)</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>XS1_PORT_1A</td>
-<td>28</td>
-<td>External Reference</td>
+<tr><td>0</td>
+<td>1</td>
+<td>2</td>
 </tr>
-<tr><td rowspan="8">XS1_PORT_8A</td>
-<td>39</td>
-<td>UART TX Channel 0</td>
+<tr><td>1</td>
+<td>5</td>
+<td>6</td>
 </tr>
-<tr><td>40</td>
-<td>UART TX Channel 1</td>
+<tr><td>2</td>
+<td>7</td>
+<td>8</td>
 </tr>
-<tr><td>42</td>
-<td>UART TX Channel 2</td>
+<tr><td>3</td>
+<td>11</td>
+<td>12</td>
 </tr>
-<tr><td>43</td>
-<td>UART TX Channel 3</td>
+<tr><td>4</td>
+<td>13</td>
+<td>14</td>
 </tr>
-<tr><td>44</td>
-<td>UART TX Channel 4</td>
+<tr><td>5</td>
+<td>17</td>
+<td>18</td>
 </tr>
-<tr><td>46</td>
-<td>UART TX Channel 5</td>
-</tr>
-<tr><td>41</td>
-<td>UART TX Channel 6</td>
-</tr>
-<tr><td>45</td>
-<td>UART TX Channel 7</td>
-</tr>
-<tr><td rowspan="8">XS1_PORT_8C</td>
+<tr><td>6</td>
 <td>19</td>
-<td>UART RX Channel 0</td>
+<td>20</td>
 </tr>
-<tr><td>20</td>
-<td>UART RX Channel 1</td>
-</tr>
-<tr><td>22</td>
-<td>UART RX Channel 2</td>
-</tr>
-<tr><td>23</td>
-<td>UART RX Channel 3</td>
-</tr>
-<tr><td>24</td>
-<td>UART RX Channel 4</td>
-</tr>
-<tr><td>47</td>
-<td>UART RX Channel 5</td>
-</tr>
-<tr><td>21</td>
-<td>UART RX Channel 6</td>
-</tr>
-<tr><td>NC</td>
-<td>UART RX Channel 7</td>
+<tr><td>7</td>
+<td>23</td>
+<td>24</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="demo-application-configuration">
 <h3>Demo Application Configuration<a class="headerlink" href="#demo-application-configuration" title="Permalink to this headline">¶</a></h3>
-<p>The demo application can be compiled and run in two different modes.</p>
+<p>The demo application can be compiled and run in following modes.</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Simple Transmit &amp; Receive Mode</p>
-<blockquote>
-<div><ul class="simple">
-<li>This mode of operation produces an application that constantly outputs a string on each UART channel. On the receive side the application will print out via the JTAG interface any characters it receives. This can be looped back by connecting the physical pins together for testing.</li>
-</ul>
-</div></blockquote>
-</li>
 <li><p class="first">Echo Test Mode</p>
 <blockquote>
 <div><ul class="simple">
@@ -203,151 +181,18 @@ document.getElementById('d1').style.height=h2 + "px";
 <p><strong>LOOP_REF_TEST</strong></p>
 <blockquote>
 <div>This configures the tests with internal clocking only. This means that no external clock source is required to conduct testing. However it will only operate at multiples the internal reference clock (e.g. 100000 bps).</div></blockquote>
-<p><strong>ECHO_TEST</strong></p>
-<blockquote>
-<div>Build the software to run the echo test demo application.</div></blockquote>
-<p><strong>SIMPLE_TEST</strong></p>
-<blockquote>
-<div>Build the simple test application</div></blockquote>
-<p><strong>SIMPLE_TEST_DO_RECONF</strong></p>
-<blockquote>
-<div>Enable reconfiguration on the simple test application - after a specified time within the application the UART will be reconfigured for a different baud rate.</div></blockquote>
 </div>
-<div class="section" id="echo-test-application-description">
-<h3>Echo Test Application Description<a class="headerlink" href="#echo-test-application-description" title="Permalink to this headline">¶</a></h3>
-<p>The Echo Test demonstration application shows a typical structure of an application that might be implemented by the user of this component. The diagram in <a class="reference internal" href="#fig-echo-struct"><span>Echo Test Application Structure</span></a> shows the structure of the demonstration application.</p>
+<div class="section" id="application-description">
+<h3>Application Description<a class="headerlink" href="#application-description" title="Permalink to this headline">¶</a></h3>
+<p>The Echo Test demonstration application shows a typical structure of an application that might be implemented by the user of this component. The diagram in <em class="xref std std-ref">fig_echo_struct</em> shows the structure of the demonstration application.</p>
 <p>In addition to the two multi-UART threads the application utilises two further threads - one providing buffering for the UART RX and one handling to the pushing of data to the TX buffer. The RX buffering is implemented as an example only and is not strictly necessary in this application as the TX thread already provides some buffering.</p>
 <p>When the RX thread receives a character over the UART it saves it into the local single entry buffer and puts a data token into the channel. This data token is received by RX buffering thread and tells it which UART channel a character has been received on. The RX buffering thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.</p>
 <p>The TX thread operates by polling the buffer between the RX buffering thread and the Echo Application thread. When an entry is seen it pulls it from the buffer and utilises the API to push the value into the TX thread buffer. From there the TX thread will send that value on the correct UART channel on the 8 bit port.</p>
 <p>The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in <a class="reference internal" href="Programming Guide.html#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>.</p>
 <p>Specific usage of the API is discussed in <a class="reference internal" href="Programming Guide.html#sec-interfacing-tx"><span>Interfacing to the TX Server</span></a> and <a class="reference internal" href="Programming Guide.html#sec-interfacing-rx"><span>Interfacing to the RX Server</span></a>.</p>
 <div class="figure" id="fig-echo-struct">
-<img alt="_images/EchoSoftwareDiagram1.png" src="_images/EchoSoftwareDiagram1.png" />
-<p class="caption">Echo Test Application Structure</p>
+<img alt="_images/EchoSoftwareDiagram.png" src="_images/EchoSoftwareDiagram.png" />
 </div>
-</div>
-</div>
-<div class="section" id="component-testing-scripts">
-<span id="sec-test"></span><h2>Component Testing Scripts<a class="headerlink" href="#component-testing-scripts" title="Permalink to this headline">¶</a></h2>
-<p>The component is provided with a python testing script that utilises the echo test application to verify the operation of the Multi-UART component. It covers two particular traffic types.</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Simple slow speed character traffic</p>
-<blockquote>
-<div><ul class="simple">
-<li>This type of traffic is not dissimilar to manually typed in characters. They will have a pause in the order of milliseconds between each character.</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">Burst data traffic</p>
-<blockquote>
-<div><ul class="simple">
-<li>This form of traffic is more akin to communication between two devices that don&#8217;t require human input, but streams strings of symbols across the UART interface. This traffic typically has minimal space between the symbols as it will be well buffered.</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-<div class="section" id="test-script-use">
-<h3>Test Script Use<a class="headerlink" href="#test-script-use" title="Permalink to this headline">¶</a></h3>
-<p>The test scripts require a Python environment with PySerial installed (see <a class="reference external" href="http://pyserial.sourceforge.net/"><span>http://pyserial.sourceforge.net/</span></a>), as well as a suitable serial device to connect to your hardware.</p>
-<p>The tests are provided as part of the component repository in <cite>sc_multi_uart/test/serial_test</cite>.</p>
-<p>This python script has a number of command line configuration flags that can be utilised to define the test that you want to carry out. These can be seen by passing the <tt class="docutils literal"><span class="pre">-h</span></tt> flag to the script. A summary is listed below.</p>
-<div class="highlight-none"><div class="highlight"><pre>usage: serial_test.py [-h] [-l] [-t PORTS_FOR_TEST [PORTS_FOR_TEST ...]]
-                  [-c CONFIG_STRINGS [CONFIG_STRINGS ...]] [-s SEED]
-                  [--echo-test] [--multi-speed-echo-test] [--burst-test]
-                  [--multi-speed-burst-test] [--log LOG_FILE]
-
-XMOS UART Testing System
-
-optional arguments:
-    -h, --help            show this help message and exit
-    -l, --list-devices    List available UARTs on this system
-    -t PORTS_FOR_TEST [PORTS_FOR_TEST ...]
-                    List of UARTs to test (see -l to obtain a full list of
-                    available ports)
-    -c CONFIG_STRINGS [CONFIG_STRINGS ...]
-                    List of configurations in the format baud-bits-parity-
-                    stop_bits e.g for 115200 bps with 8 bit characters,
-                    even parity and 1 stop bit you would use 115200-8-E-1.
-                    Valid parity is N-none, M-mark, S-space, E-even,
-                    O-odd. Default configurations will be 115200-8-E-1
-    -s SEED, --seed SEED
-                    Integer seed for psuedo random tests - if not given
-                    then a random seed will be used and reported
-    --echo-test     Do the simple echo test at a single speed
-    --multi-speed-echo-test
-                    Do the simple echo test at multiple speeds using the
-                    auto-reconfiguration command to halve the baud rate
-    --burst-test    Do the simple burst test at a single speed
-    --multi-speed-burst-test
-                    Do the burst test at multiple speeds using the auto-
-                    reconfiguration command to halve the baud rate
-    --log LOG_FILE  File name for failure logging
-</pre></div>
-</div>
-<p>To find the names for the UART devices that are connected to the machine you are operating on run the following command.</p>
-<div class="highlight-none"><div class="highlight"><pre>&gt; python serial_test.py -l
-Available Serial ports -
-    /dev/tty.Bluetooth-PDA-Sync
-    /dev/tty.Bluetooth-Modem
-    /dev/tty.usbserial-FTFLQAFM
-</pre></div>
-</div>
-<p>The host machine we are using has two serial bluetooth devices and a USB to Serial adapter connected (<tt class="docutils literal"><span class="pre">/dev/tty.usbserial-FTFLQAFM</span></tt>). This is the device will use for our testing in this instance.</p>
-<p>To run a simple echo test the following command can be used. This will run a test at 115200 bits per second, with 8 bit data, even parity and a single stop bit (as defined by the configuration).</p>
-<p>Multiple UART devices can be passed to the <cite>-t</cite> flag. The respective number of configurations needs to be passed to the <cite>-c</cite> flag.</p>
-<div class="highlight-none"><div class="highlight"><pre>&gt; python serial_test.py -t /dev/tty.usbserial-FTFLQAFM -c 115200-8-E-1 --echo-test
-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-Simple Echo Tests...
-
-------------------------------------------------------
-Running SIMPLE ECHO test on port /dev/tty.usbserial-FTFLQAFM with config 115200-8-E-1
-/dev/tty.usbserial-FTFLQAFM configured
-Using seed 911979
-Waiting for the UART to make sense... sending &#39;A&#39;
-.Cleaning up UART buffers
-
-Running test...
-[######100%########]COMPLETED: 2048 of 2048 PASS: 2048 FAIL: 0
-Simple Echo Test COMPLETED =&gt; PASS
-------------------------------------------------------
-</pre></div>
-</div>
-<p>The burst tests can be run in a similar manner.</p>
-<p>Multiple speed tests can be configured to run. This assumes that the echo test application is set to reconfigure to half the baud rate when an <cite>r</cite> is sent to the device.</p>
-<p>When running a burst test the user may desire that any failed burst tests are logged to a file for later analysis. This can be defined using the <cite>&#8211;log</cite> flag.</p>
-<p>The test script utilises a pseudo-random data stream. Specific pseudo random tests can be re-run by defining the initial seed value using the <cite>-s</cite> flag.</p>
-</div>
-<div class="section" id="simulation-test-plugin">
-<h3>Simulation Test Plugin<a class="headerlink" href="#simulation-test-plugin" title="Permalink to this headline">¶</a></h3>
-<p>Tests can also be conducted on the simulator. A simulator plugin is provided in the <tt class="docutils literal"><span class="pre">test/plugin</span></tt> directory within the <tt class="docutils literal"><span class="pre">sc_multi_uart</span></tt> repository. Information on programming plugins can be found in the XMOS tools documentation.</p>
-<p>The plugin is designed to target the XK-1 build configuration of the echo server as described above. The plugin is targeted at providing a debug methodology and as such does not result in a pass/fail. It generates a stream of UART characters to the specified channel. These will be echoed back. The execution trace and also the VCD trace of the output can be analysed to debug any issues that may be encountered.</p>
-<p>An example session running the simulator is shown below.</p>
-<div class="highlight-none"><div class="highlight"><pre>&gt; xsim -t --trace-to uart_trace.log --plugin uart_test.so &quot;0 X0D16 0 X0D00&quot; --vcd-tracing &quot;-o uart_sim.vcd -cycles -ports -ports-detailed&quot; ../../app_multi_uart_demo/bin/multi_uart_demo.xe
-
-Initiated UART test plugin...
-Running echo test...
-0 =&gt; 115200 bps 8-E-1
-1 =&gt; 115200 bps 8-E-1
-2 =&gt; 115200 bps 8-E-1
-3 =&gt; 115200 bps 8-E-1
-4 =&gt; 115200 bps 8-E-1
-5 =&gt; 115200 bps 8-E-1
-6 =&gt; 115200 bps 8-E-1
-7 =&gt; 115200 bps 8-E-1
-RX Buf running
-[1] Generated byte 0xa7 =&gt; 0xffffff4e
-Done byte
-[2] Generated byte 0xf1 =&gt; 0xffffffe2
-Done byte
-[3] Generated byte 0xd9 =&gt; 0xffffffb2
-Done byte
-[4] Generated byte 0x2a =&gt; 0xfffffe54
-Done byte
-</pre></div>
-</div>
-<p>This outputs a stream of characters to port 8B, bit 3 (this is the third UART channel) and also provides a port and execution trace for inspection.</p>
 </div>
 </div>
 </div>
@@ -374,12 +219,7 @@ Done byte
 <li class="toctree-l2"><a class="reference internal" href="#demonstration-and-test-applications">Demonstration and Test Applications</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#demo-application-hardware">Demo Application Hardware</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#demo-application-configuration">Demo Application Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#echo-test-application-description">Echo Test Application Description</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#component-testing-scripts">Component Testing Scripts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#test-script-use">Test Script Use</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#simulation-test-plugin">Simulation Test Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-description">Application Description</a></li>
 </ul>
 </li>
 </ul>

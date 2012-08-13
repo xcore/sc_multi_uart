@@ -34,5 +34,12 @@ Slicekit Compatibility
 
 SliceKit logo [TBA]
 
-Basic slice connector compatibility using the approved icons and a short discussion of the capabilities in different slots [TBA]
+MUART slice is an I/O slice and is compatible to all connectors of the Slicekit Core board.
 
+.. _fig_slicekit_compatibility:
+
+.. figure:: images/all_slots_compatible.png
+    :align: center
+    :width: 50%
+    
+    Slicekit Core board connector compatibilty
