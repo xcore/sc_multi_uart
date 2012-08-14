@@ -1,19 +1,21 @@
 Example Applications
 =====================
 
-This section discusses both the demonstration and test applications that are utilised in verification of the multi-UART component. It also deals with the scripts that are utilised to ensure that the UART is operating under a variety of conditions (such as long streams of burst traffic).
+This section discusses the demonstration application that uses multi-UART component.
 
-Demonstration and Test Applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Demonstration Application
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Demo Application Hardware
----------------------------
+-------------------------
 
 The echo demonstration application can be run on the slice kit Board. The following other parts are required - 
 
-    * USB to Serial adapter (e.g. FTDI TTL-232R-3V3 from Farnell)
+    * RS232 to COM port cable (provided with slice card package)
     
-The demo applications will build by default for the Motor Control Board. To build for XK-1 you need to make the following changes.
+The demo application is built by default for Slicekit Core Board, SQAURE Connector type. To build for other connectors, choose from the following changes.
+
+To build for CIRCLE connector, make the following changes:
 
 .. list-table::
     :header-rows: 1
@@ -22,18 +24,43 @@ The demo applications will build by default for the Motor Control Board. To buil
       - Original Value
       - New Value
     * - ``src/main.xc``
-      - ``#define UART_CORE 1``
-      - ``#define UART_CORE 0``
+      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
+      - ``#define SK_MULTI_UART_SLOT_CIRCLE 1``
     * - ``Makefile``
-      - ``TARGET = SKC_ALL``
+      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
+      - ``TARGET = SK_MULTI_UART_SLOT_CIRCLE``
 
-MultiUART component requires 8-bit ports for both UART transmit and UART receive ports. The version runs on L1 (one core). The Slices should be assembled in the following manner:
+To build for TRIANGLE connector, make the following changes:
 
-===================== ====================== ====================== =======================
-**Slice**             **Core Board - Core**  **Core Board - Type**  **Core Board - Jumper**
-===================== ====================== ====================== =======================
-UART                  Core 0                 Type 0                 J4
-===================== ====================== ====================== =======================
+.. list-table::
+    :header-rows: 1
+    
+    * - File
+      - Original Value
+      - New Value
+    * - ``src/main.xc``
+      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
+      - ``#define SK_MULTI_UART_SLOT_TRIANGLE 1``
+    * - ``Makefile``
+      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
+      - ``TARGET = SK_MULTI_UART_SLOT_TRIANGLE``
+
+To build for STAR connector, make the following changes:
+
+.. list-table::
+    :header-rows: 1
+    
+    * - File
+      - Original Value
+      - New Value
+    * - ``src/main.xc``
+      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
+      - ``#define SK_MULTI_UART_SLOT_STAR 1``
+    * - ``Makefile``
+      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
+      - ``TARGET = SK_MULTI_UART_SLOT_STAR``
+
+MultiUART component requires 8-bit ports for both UART transmit and UART receive ports. The version runs on L1 (one core) and also on L2 core, based on connector type selection. 
 
 The UART slice has two types of voltage levels of communications.
     * CMOS TTL
@@ -43,7 +70,7 @@ By default, this uses the RS-232 levels. In order to use the CMOS TTL levels, sh
 
 .. _table_connector_breakout:
 
-.. table:: MUART slice for Demo Applications 
+MUART slice for Demo Applications 
 
 ================ ===================== =====================
 **UART Channel** **J3/J4 Pin no.(TX)** **J3/J4 Pin no.(RX)**
@@ -62,39 +89,29 @@ By default, this uses the RS-232 levels. In order to use the CMOS TTL levels, sh
 Demo Application Configuration
 --------------------------------
 
-The demo application can be compiled and run in following modes.
-        
-    * Echo Test Mode
-    
-        * This mode of operation produces an application that operates as an echo device. This therefore echos back any characters that it receives via the same transmit UART channel.
-        
-Configuration is done utilising the defines listed out below.
+The demo application configuration is done utilising the defines listed out below.
 
-.. literalinclude:: app_multi_uart_demo/src/main.xc
+.. literalinclude:: app_slicekit_com_demo/src/common.h
     :start-after: //:demo_app_config
     :end-before:  //:
-    
-**LOOP_REF_TEST**
-
-    This configures the tests with internal clocking only. This means that no external clock source is required to conduct testing. However it will only operate at multiples the internal reference clock (e.g. 100000 bps).
     
     
 Application Description
 ------------------------
 
-The Echo Test demonstration application shows a typical structure of an application that might be implemented by the user of this component. The diagram in :ref:`fig_echo_struct` shows the structure of the demonstration application.
+The demonstration application shows a typical structure of an application that might be implemented by the user of this component. 
 
-In addition to the two multi-UART threads the application utilises two further threads - one providing buffering for the UART RX and one handling to the pushing of data to the TX buffer. The RX buffering is implemented as an example only and is not strictly necessary in this application as the TX thread already provides some buffering.
+In addition to the two multi-UART threads the application utilises one more thread to manage UART data from transmit and receive threads. Application operates on a state machine to differentiate between user commands and user data. Application provides some buffers to hold data received from UARTs. The RX buffering is implemented as an example only and is not strictly necessary in this application. TX thread already provides some buffering supported at the component level.
 
-When the RX thread receives a character over the UART it saves it into the local single entry buffer and puts a data token into the channel. This data token is received by RX buffering thread and tells it which UART channel a character has been received on. The RX buffering thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.
+When the RX thread receives a character over the UART it saves it into the local buffer, and a state handler operates on the data to identify its type and performs relevant processign actions as described below:
 
-The TX thread operates by polling the buffer between the RX buffering thread and the Echo Application thread. When an entry is seen it pulls it from the buffer and utilises the API to push the value into the TX thread buffer. From there the TX thread will send that value on the correct UART channel on the 8 bit port.
+[TBA]
+
+Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.
+
+The TX handler operates by polling this buffer. When an entry is seen it pulls it from the buffer and perform action based on state of the handler. The TX handler will process that value on the correct UART channel on the 8 bit port.
 
 The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`.
 
 Specific usage of the API is discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
-
-.. _fig_echo_struct:
-
-.. figure:: images/EchoSoftwareDiagram.png
 
