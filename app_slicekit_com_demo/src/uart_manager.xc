@@ -387,7 +387,7 @@ static void uart_state_hanlder(char uart_id, unsigned uart_char,
 		break;
 	case UART_CMD_ECHO_HELP:
 	{
-		int len = str_cpy(uart_rx_channel_state[uart_id].channel_data[0], IDX_USAGE_HELP);
+		int len = string_copy(uart_rx_channel_state[uart_id].channel_data[0], IDX_USAGE_HELP);
 		uart_rx_channel_state[uart_id].buf_depth += len;
 		uart_rx_channel_state[uart_id].write_index += len;
 		uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_DATA;

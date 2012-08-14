@@ -38,7 +38,7 @@ int itoa(int n, char buf[], int base, int fill)
   return i;
 }
 
-int str_cpy(char *src, int index)
+int string_copy(char *src, int index)
 {
 	int len = strlen(&trace_messages[index][0]);
 	strcpy(src, &trace_messages[index][0]);

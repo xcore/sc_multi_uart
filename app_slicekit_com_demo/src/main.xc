@@ -8,7 +8,11 @@
 #include "common.h"
 
 #define ENABLE_XSCOPE 1
+#define SK_MULTI_UART_SLOT_SQUARE 1
+
+#ifdef SK_MULTI_UART_SLOT_SQUARE
 #define UART_CORE   1
+#endif //SK_MULTI_UART_SLOT_SQUARE
 
 #if ENABLE_XSCOPE == 1
 #include <xscope.h>
