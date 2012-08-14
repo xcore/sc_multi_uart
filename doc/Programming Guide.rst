@@ -1,138 +1,17 @@
 Programming Guide
 ==================
 
-This section discusses the requirements of the multi-UART module and typical implementation and usage of the API.
-
-Resource Requirements
-~~~~~~~~~~~~~~~~~~~~~~~
-
-This section provides an overview of the required resources of the module so that the application designer can operate within these constraints accordingly.
-
-Ports
-+++++++
-
-The following ports are required for each of the receive and transmit functions - 
-
-.. list-table::
-    :header-rows: 1
-    
-    * - Operation
-      - Port Type
-      - Number required
-      - Direction
-      - Port purpose / Notes
-    * - Transmit
-      - 8 bit port
-      - 1
-      - Output
-      - Data transmission
-    * - Transmit
-      - 1 bit port
-      - 1
-      - Input
-      - Optional External clocking (see :ref:`sec_ext_clk`)
-    * - Receive
-      - 8 bit port
-      - 1
-      - Input
-      - Data Receive
-
-Threads
-++++++++++
-
-.. list-table::
-    :header-rows: 1
-    
-    * - Operation
-      - Thread Count
-      - Notes
-    * - Receive
-      - 1
-      - Single thread server, may require application defined buffering thread - requires 62.5MIPS per thread
-    * - Transmit
-      - 1
-      - Single thread server - requires 62.5MIPS per thread
-
-Memory
-++++++++++
-
-The following is a summary of memory usage of the module for all functionality utilised by the echo test application when compiled at optimisation level 3. It assumes a TX buffer of 16 slots and operating at the maximum of 8 UART channels. This is deemed to be a guide only and memory usage may differ according how much of the API is utilised.
-
-Stack usage is estimated at 460 bytes.
-
-.. list-table::
-    :header-rows: 1
-    
-    * - Operation
-      - Code (bytes)
-      - Data (bytes)
-      - Total Usage (bytes)
-    * - Receive Thread
-      - 316
-      - 424
-      - 740
-    * - Receive API
-      - 410
-      - 0
-      - 410
-    * - Transmit Thread
-      - 1322
-      - 940
-      - 2262
-    * - Transmit API
-      - 480
-      - 0
-      - 480
-    * - **Total**
-      - **2159**
-      - **1364**
-      - **3523**
-
-**Note** These values are meant as a guide and are correct as of Jan 24. 2012 - they may change if fixes are implemented or functionality is added.
-      
-Channel Usage
-+++++++++++++++
-
-.. list-table::
-    :header-rows: 1
-    
-    * - Operation
-      - Channel Usage & Type
-    * - Receive
-      - 1 x Streaming Chanend
-    * - Transmit
-      - 1 x Streaming Chanend
-
-.. _sec_client_timing:
-
-Client Timing Requirements
-++++++++++++++++++++++++++++
-
-The application that interfaces to the receive side of UART component must meet the following timing requirement. This requirement is dependent on configuration so the worst case configuration must be accounted for - this means the shortest UART word (length of the start, data parity and stop bits combined).
-
-.. raw:: latex
-
-    \[ \frac{1}{UART\_CHAN\_COUNT \times \left (  \frac{MAX\_BAUD}{MIN\_BIT\_COUNT} \right )} \]
-    
-Taking an example where the following values are applied -
-
-    * UART_CHAN_COUNT = 8
-    * MAX_BAUD = 115200 bps
-    * MIN_BIT_COUNT = 10 (i.e 1 Start Bit, 8 data bits and 1 stop bit)
-    
-The resultant timing requirement is 10.85 |microsec|. This would be defined and constrained using the XTA tool.
-
-.. |microsec| unicode:: U+03BC U+0053
+This section discusses the programming aspects of the multi-UART component and typical implementation and usage of the API.
 
 Structure
 ~~~~~~~~~~
 
-This is an overview of the key header files that are required, as well as the thread structure and information regarding the buffering provision and requirements for the module.
+This is an overview of the key header files that are required, as well as the thread structure and information regarding the buffering provision and requirements for the component.
 
 Source Code
 ++++++++++++
 
-All of the files required for operation are located in the ``module_multi_uart`` directory. The files that are need to be included for use of this module in an application are:
+All of the files required for operation are located in the ``module_multi_uart`` directory. The files that are need to be included for use of this component in an application are:
 
 .. list-table::
     :header-rows: 1
@@ -148,29 +27,10 @@ All of the files required for operation are located in the ``module_multi_uart``
     * - ``multi_uart_tx.h``
       - Header file for accessing the API of the TX UART server - included by ``multi_uart_rxtx.h``
 
-Threads
-++++++++
+Configuration of the UART component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The multi-UART module comprises primarily of two threads that act as transmit (TX) and receive (RX) servers. These are able to be operated independently or launched together via the API. This allows for applications where either RX or TX only are required.
-
-Buffering
-++++++++++
-
-Buffering for the TX server is handled within the UART TX thread. The buffer is configurable allowing the number of buffer slots that are available to be defined. This is only limited by the available memory left by the rest of the code and data memory usage. Data is transferred to the UART TX thread via shared memory and therefore any client thread must be on the same core as the UART thread.
-
-There is no buffering provided by the RX server. The application must provide a thread that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.
-
-Communication Model
-++++++++++++++++++++
-
-This module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the thread and subsequently release the thread when required for reconfiguration.
-
-The primary means of data transfer for both the RX and TX threads is shared memory. The RX thread utilises a channel to notify any client of available data - this means that events can be utilised within an application to avoid the requirement for polling for received data.
-
-Configuration of the UART Module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The UART module configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`. 
+The UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`. 
 
 Static configuration is done by the application providing configuration header files ``multi_uart_tx_conf.h`` and ``multi_uart_rx_conf.h``. 
 
