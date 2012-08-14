@@ -24,7 +24,9 @@
     <location>https://github.com/xcore/sc_multi_uart.git</location>
     <name>sc_multi_uart</name>
     <maintainer>Srinivas-E</maintainer>
+    <partnumber>XM-001810-DH</partnumber>
     <release parenthash = "1b7eba1c0d8b620956f7e80bee7e3d7783892766" version = "1.0.0rc0" githash = "fa29fd8fccc7ad3353a22248ccc57e6e5e84cd9f"></release>
+    <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xpd_version>1.0</xpd_version>
     <version>1.0.0rc0</version>
