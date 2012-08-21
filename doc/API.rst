@@ -3,7 +3,7 @@
 Multi-UART Common API 
 ======================
 
-The following describes the shared API between the RX and TX code.
+The following describes the shared API between the UART RX Server and UART TX Server code.
 
 .. _sec_common_enum:
 

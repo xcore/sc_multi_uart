@@ -4,12 +4,15 @@ Hardware Requirements
 Pinouts in each slots
 ---------------------
 
-Pinouts in each slot using a template to be provided [TBA]
+Pinouts in each slot: [Using a provided template TBA]
 
-Icons to be added are: 
+MUART Slice Card
+----------------
 
- - XSoftIP logo [TBA]
- - Slicekit logo [TBA]
+This Slice Card is a part of XSoftIP library
+
+ - [XSoftIP logo TBA]
+ - [Slicekit logo TBA]
 
 Slicekit Compatibility
 ----------------------
