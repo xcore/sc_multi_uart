@@ -1,7 +1,7 @@
 Component Description
 =====================
 
-Multi-UART component consists of Transmit and receive servers. An application utilizing this component can use them independently or togeather based on the application needs.
+Multi-UART component consists of Transmit and Receive servers. An application utilizing this component can use them independently or togeather based on the application needs.
 
 Threads
 -------
@@ -28,7 +28,7 @@ The primary means of data transfer for both the RX and TX threads is shared memo
 Clocking
 --------
 
-The component can be configured to either use an external clock source or an internal clock source. External clock source only applies to the TX portion of the component (see :ref:`sec_tx_conf_header`). The advantage of using an external clock source is that an exact baud rate can be achieved by dividing down a master clock such as 1.8432MHz. This is a typical method that standard RS232 devices will use.
+This component can be configured to either use an external clock source or an internal clock source. External clock source only applies to the TX portion of the component (see :ref:`sec_tx_conf_header`). The advantage of using an external clock source is that an exact baud rate can be achieved by dividing down a master clock such as 1.8432MHz. This is a typical method that standard RS232 devices will use.
 
 Using internal clocking is possible, but for TX the implementation currently limits the application to configuring baud rates that divide exactly into the internal clock. So if the system reference runs at 100MHz the maximum baud rate is 100kbaud.
 

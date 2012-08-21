@@ -61,15 +61,18 @@ document.getElementById('d1').style.height=h2 + "px";
 <p>This section discusses the demonstration application that uses multi-UART component.</p>
 <div class="section" id="demonstration-application">
 <h2>Demonstration Application<a class="headerlink" href="#demonstration-application" title="Permalink to this headline">¶</a></h2>
+<p>This application is available as <tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> directory under <tt class="docutils literal"><span class="pre">sc_multi_uart</span></tt> component directory.</p>
 <div class="section" id="demo-application-hardware">
 <h3>Demo Application Hardware<a class="headerlink" href="#demo-application-hardware" title="Permalink to this headline">¶</a></h3>
-<p>The echo demonstration application can be run on the slice kit Board. The following other parts are required -</p>
+<p>The echo demonstration application can be run on Slicekit core board. The following parts are required -</p>
 <blockquote>
 <div><ul class="simple">
-<li>RS232 to COM port cable (provided with slice card package)</li>
+<li>Slicekit Core board</li>
+<li>MUART Slice Card</li>
+<li>RS232 to COM port cable (provided with MUART Slice Card package)</li>
 </ul>
 </div></blockquote>
-<p>The demo application is built by default for Slicekit Core Board, SQAURE Connector type. To build for other connectors, choose from the following changes.</p>
+<p>The demo application is built by default for Slicekit Core board, SQAURE connector type. To build for other connectors, choose from the following changes.</p>
 <p>To build for CIRCLE connector, make the following changes:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -142,25 +145,25 @@ document.getElementById('d1').style.height=h2 + "px";
 </tr>
 </tbody>
 </table>
-<p>MultiUART component requires 8-bit ports for both UART transmit and UART receive ports. The version runs on L1 (one core) and also on L2 core, based on connector type selection.</p>
+<p>Multi-UART component requires 8-bit ports for both UART transmit and UART receive ports. This component version runs on both L1 (one core) and also on L2 core based Slicekit Core boards, based on appropriate connector type selection as described.</p>
 <dl class="docutils">
-<dt>The UART slice has two types of voltage levels of communications.</dt>
+<dt>Multi-UART Slice Card has two types of voltage levels of communications.</dt>
 <dd><ul class="first last simple">
 <li>CMOS TTL</li>
 <li>RS-232</li>
 </ul>
 </dd>
 </dl>
-<p>By default, this uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the MUART slice. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of the UART slice. When using TTL levels, UART device pins must be connected to J3 of UART slice (along with J3 25-26 pins shorted). UART channel information of UART slice is as:</p>
-<p id="table-connector-breakout">MUART slice for Demo Applications</p>
+<p>By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of Multi-UART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of Multi-UART Slice Card is as follows:</p>
+<p id="table-connector-breakout">MUART Slice Card for Demo Applications</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="28%" />
-<col width="36%" />
-<col width="36%" />
+<col width="31%" />
+<col width="34%" />
+<col width="34%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head"><strong>UART Channel</strong></th>
+<tr><th class="head"><strong>UART Identifier</strong></th>
 <th class="head"><strong>J3/J4 Pin no.(TX)</strong></th>
 <th class="head"><strong>J3/J4 Pin no.(RX)</strong></th>
 </tr>
@@ -214,11 +217,11 @@ document.getElementById('d1').style.height=h2 + "px";
 <div class="section" id="application-description">
 <h3>Application Description<a class="headerlink" href="#application-description" title="Permalink to this headline">¶</a></h3>
 <p>The demonstration application shows a typical structure of an application that might be implemented by the user of this component.</p>
-<p>In addition to the two multi-UART threads the application utilises one more thread to manage UART data from transmit and receive threads. Application operates on a state machine to differentiate between user commands and user data. Application provides some buffers to hold data received from UARTs. The RX buffering is implemented as an example only and is not strictly necessary in this application. TX thread already provides some buffering supported at the component level.</p>
+<p>In addition to the two Multi-UART threads, application utilises one more thread to manage UART data from transmit and receive threads. Application operates on a state machine to differentiate between user commands and user data. Application provides some buffers to hold data received from UARTs. The RX buffering is implemented as an example only and is not strictly necessary in this application. TX thread already provides some buffering supported at the component level.</p>
 <p>When the RX thread receives a character over the UART it saves it into the local buffer, and a state handler operates on the data to identify its type and performs relevant processign actions as described below:</p>
 <p>[TBA]</p>
 <p>Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.</p>
-<p>The TX handler operates by polling this buffer. When an entry is seen it pulls it from the buffer and perform action based on state of the handler. The TX handler will process that value on the correct UART channel on the 8 bit port.</p>
+<p>The TX handler operates by polling this buffer. When an entry is seen it pulls it from the buffer and perform action based on state of the handler. The TX handler will process that value on the correct UART identifier on the 8 bit port.</p>
 <p>The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in <a class="reference internal" href="Programming Guide.html#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>.</p>
 <p>Specific usage of the API is discussed in <a class="reference internal" href="Programming Guide.html#sec-interfacing-tx"><span>Interfacing to the TX Server</span></a> and <a class="reference internal" href="Programming Guide.html#sec-interfacing-rx"><span>Interfacing to the RX Server</span></a>.</p>
 </div>

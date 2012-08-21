@@ -3,12 +3,12 @@ Introduction
 
 The Multi-UART component provides a software library that allows the use of 8 bit ports for multiple channel UART communication. This library is dynamically re-configurable for applications that require a level of flexibility during operation.
 
-This document describes an overview of the Multi-UART component, resource requirements, API and programming details. It follows the examples that are given in the app_multi_uart_demo.
+This document describes an overview of the Multi-UART component, resource requirements, API and programming details. It follows an example that is available in  app_slicekit_com_demo.
 
 Supported Functionality
 ------------------------
 
-The Multi-UART provides the following functionality. All options are dynamically reconfigurable via the API.
+Multi-UART component provides the following functionality. All options are dynamically reconfigurable via the API.
 
 .. list-table::
     :header-rows: 1
@@ -34,7 +34,7 @@ Slicekit Compatibility
 
 SliceKit logo [TBA]
 
-MUART slice is an I/O slice and is compatible to all connectors of the Slicekit Core board.
+MUART Slice Card is an I/O slice and is compatible to all connectors of the Slicekit Core board.
 
 .. _fig_slicekit_compatibility:
 

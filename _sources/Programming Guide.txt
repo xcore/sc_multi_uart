@@ -1,7 +1,7 @@
 Programming Guide
 ==================
 
-This section discusses the programming aspects of the multi-UART component and typical implementation and usage of the API.
+This section discusses the programming aspects of the Multi-UART component and typical implementation and usage of the API.
 
 Structure
 ~~~~~~~~~~
@@ -27,10 +27,10 @@ All of the files required for operation are located in the ``module_multi_uart``
     * - ``multi_uart_tx.h``
       - Header file for accessing the API of the TX UART server - included by ``multi_uart_rxtx.h``
 
-Configuration of the UART component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration of Multi-UART component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`. 
+Multi-UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`. 
 
 Static configuration is done by the application providing configuration header files ``multi_uart_tx_conf.h`` and ``multi_uart_rx_conf.h``. 
 
