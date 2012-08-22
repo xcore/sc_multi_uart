@@ -40,10 +40,6 @@ typedef struct STRUCT_UART_RX_CHANNEL_FIFO
 	int 			read_index;						//Index of consumed data
 	int 			write_index;					//Input data to Tx api
 	unsigned 		buf_depth;						//depth of buffer to be consumed
-	e_bool			is_currently_serviced;			//T/F: Indicates whether channel is just
-    int             last_added_timestamp;           // A timestamp of when the an item was last added to the fifo
-													// serviced; if T, select next channel
-    int             consume_data;
 }s_uart_rx_channel_fifo;
 
 /** Data structure to hold uart config data */

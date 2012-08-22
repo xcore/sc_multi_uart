@@ -7,7 +7,7 @@
 #include "uart_manager.h"
 #include "common.h"
 
-#define ENABLE_XSCOPE 1
+//#define ENABLE_XSCOPE 1
 #define SK_MULTI_UART_SLOT_SQUARE 1
 
 #ifdef SK_MULTI_UART_SLOT_SQUARE

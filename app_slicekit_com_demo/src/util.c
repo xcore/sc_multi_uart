@@ -4,13 +4,17 @@
 char trace_messages[NUM_TX_TRACE_MSGS][TRACE_MSGS_MAX_MEN] = {
 		"Choose one of the following options \n e - echo data \n r - UART reconfiguration \n g - get file \n p - put file \n h - usage help\n",			//IDX_USAGE_HELP
 		"Welcome to MUART slice demo\n Choose one of the following options \n e - echo data \n r - UART reconfiguration \n g - get file \n p - put file \n h - usage help\n",  //IDX_WELCOME_USAGE
-		"UART now echoes back the data entered\n", //IDX_ECHO_MODE_MSG
-		"Enter new baud rate for UART \n", //IDX_RECONF_MODE_MSG
+		"UART now echoes back the data entered\n", 				//IDX_ECHO_MODE_MSG
+		"Enter new baud rate for UART \n", 						//IDX_RECONF_MODE_MSG
 		"Restart serial console with new baud rate setting \n", //IDX_RECONF_SUCCESS_MSG
-		"Specify a valid baud rate \n", 	//IDX_RECONF_FAIL_MSG
+		"Specify a valid baud rate \n", 						//IDX_RECONF_FAIL_MSG
+		"Press any key to fetch file from UART \n", 			//IDX_PUT_FILE_MSG
+		"Buffered file data is lost \n", 						//IDX_FILE_DATA_LOST_MSG
+		"Invalid request\n Use 'get' option before using 'put' option \n", //IDX_INVALID_PUT_REQUEST
+		"\nFile received in ticks and send in ticks\n",			//IDX_FILE_STATS
 		"UART is in Command mode. Press 'h' for help\n",		//IDX_CMD_MODE_MSG
-		"UART is in Data mode\n",			//IDX_DATA_MODE_MSG
-		"Invalid choice. Press 'h' for help\n",		//IDX_INVALID_USAGE
+		"UART is in Data mode\n",								//IDX_DATA_MODE_MSG
+		"Invalid choice. Press 'h' for help\n",					//IDX_INVALID_USAGE
 };
 
 
