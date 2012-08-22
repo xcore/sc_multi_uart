@@ -3,6 +3,7 @@
 
 int itoa(int n, char buf[], int base, int fill);
 
-int string_copy(REFERENCE_PARAM(char, src), int index);
+int copy_console_message(REFERENCE_PARAM(char, msg), int index);
+void string_copy(REFERENCE_PARAM(char, dest), REFERENCE_PARAM(char, src), int len);
 
 #endif /* UTIL_H_ */
