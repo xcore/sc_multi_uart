@@ -27,7 +27,10 @@
 #include "xc_ptr.h"
 #include "util.h"
 
-#define ENABLE_XSCOPE 1
+//#define ENABLE_XSCOPE 1
+#ifndef ENABLE_XSCOPE
+#include <print.h>
+#endif
 
 #if ENABLE_XSCOPE == 1
 #include <print.h>
@@ -217,10 +220,8 @@ static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_r
         }
         else
         {
-//#ifdef DEBUG_LEVEL_3
             printstr("Successful Uart configuration for channel: ");
             printintln(channel_id);
-//#endif //DEBUG_LEVEL_3
         }
     } // for(channel_id = 0; channel_id < UART_TX_CHAN_COUNT; channel_id++)
     /* Release UART rx thread */

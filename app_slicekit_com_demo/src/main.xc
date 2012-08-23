@@ -7,15 +7,12 @@
 #include "uart_manager.h"
 #include "common.h"
 
-//#define ENABLE_XSCOPE 1
-#define SK_MULTI_UART_SLOT_SQUARE 1
+#define SK_MULTI_UART_SLOT_STAR 1
 
 #ifdef SK_MULTI_UART_SLOT_SQUARE
 #define UART_CORE   1
-#endif //SK_MULTI_UART_SLOT_SQUARE
-
-#if ENABLE_XSCOPE == 1
-#include <xscope.h>
+#elif SK_MULTI_UART_SLOT_STAR
+#define UART_CORE   0
 #endif
 
 #define PORT_TX on stdcore[UART_CORE]: XS1_PORT_8B
