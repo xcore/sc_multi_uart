@@ -80,9 +80,9 @@ typedef struct uart_mode_state_t {
 /*---------------------------------------------------------------------------
  global variables
  ---------------------------------------------------------------------------*/
-s_uart_channel_config uart_channel_config[UART_TX_CHAN_COUNT];
-s_uart_rx_channel_fifo uart_rx_channel_state[UART_RX_CHAN_COUNT];
-uart_comm_state_t uart_comm_state[UART_RX_CHAN_COUNT];
+s_uart_channel_config uart_channel_config[NUM_ACTIVE_UARTS];
+s_uart_rx_channel_fifo uart_rx_channel_state[NUM_ACTIVE_UARTS];
+uart_comm_state_t uart_comm_state[NUM_ACTIVE_UARTS];
 int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 4800, 600};
 /*---------------------------------------------------------------------------
  static variables
@@ -105,8 +105,8 @@ int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 480
 static void init_uart_parameters(void)
 {
     int i;
-    /* Assumption: UART_TX_CHAN_COUNT == UART_TX_CHAN_COUNT always */
-    for(i = 0; i < UART_TX_CHAN_COUNT; i++)
+    /* Assumption: NUM_ACTIVE_UARTS == NUM_ACTIVE_UARTS always */
+    for(i = 0; i < NUM_ACTIVE_UARTS; i++)
     {
         // Initialize Uart channels configuration data structure
         uart_channel_config[i].channel_id = i;
@@ -129,7 +129,7 @@ static void init_uart_parameters(void)
         uart_comm_state[i].put_ts = 0;
         uart_comm_state[i].uart_usage_mode = UART_CMD_ECHO_HELP;
         uart_comm_state[i].uart_mode = UART_MODE_CMD;
-    } //for (i=0;i<UART_TX_CHAN_COUNT;i++)
+    } //for (i=0;i<NUM_ACTIVE_UARTS;i++)
 }
 
 /** =========================================================================
@@ -209,7 +209,7 @@ static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_r
     int channel_id;
     int chnl_config_status = 0;
     char temp;
-    for(channel_id = 0; channel_id < UART_TX_CHAN_COUNT; channel_id++)
+    for(channel_id = 0; channel_id < NUM_ACTIVE_UARTS; channel_id++)
     {
         chnl_config_status = configure_uart_channel(channel_id);
         if(0 != chnl_config_status)
@@ -223,7 +223,7 @@ static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_r
             printstr("Successful Uart configuration for channel: ");
             printintln(channel_id);
         }
-    } // for(channel_id = 0; channel_id < UART_TX_CHAN_COUNT; channel_id++)
+    } // for(channel_id = 0; channel_id < NUM_ACTIVE_UARTS; channel_id++)
     /* Release UART rx thread */
     do { c_rx_uart :> temp;} while (temp != MULTI_UART_GO); c_rx_uart <: 1;
     /* Release UART tx thread */
@@ -551,8 +551,10 @@ static void uart_tx_hanlder(int uart_id)
 
 /** 
  *  The multi uart manager thread. This thread
- *  (i) periodically polls for data on application Tx buffer, in order to transmit to telnet clients
- *  (ii) waits for channel data from MUART Rx thread
+ *  initiliazes MUART server and data structures maintained by
+ *  application handler, waits for UART data received from
+ *  MUART Rx thread and processes, and transmits processed
+ *  application data to MUART Tx thread
  *
  *  \param	chanend cWbSvr2AppMgr channel end sharing web server thread
  *  \param	chanend c_tx_uart		channel end sharing channel to MUART TX thrd
@@ -596,7 +598,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
             	uart_tx_hanlder(uart_id);
 
             	uart_id++;
-                if (uart_id >= UART_TX_CHAN_COUNT)
+                if (uart_id >= NUM_ACTIVE_UARTS)
                 	uart_id = 0;
 
                 break;

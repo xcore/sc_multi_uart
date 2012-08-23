@@ -26,11 +26,11 @@ constants
 
 //:demo_app_config
 /* Define number of UARTs to be configured */
-#define UART_APP_TX_CHAN_COUNT		8 // Must be Same as UART_TX_CHAN_COUNT
-/* Length of application buffer to hold received UART data */
+#define NUM_ACTIVE_UARTS			UART_RX_CHAN_COUNT
+/* Define length of application buffer (in bytes) to hold received UART data */
 #define RX_CHANNEL_FIFO_LEN			1024
 //:
-#define TRACE_MSGS_MAX_MEN			200
+#define CONSOLE_MSGS_MAX_MEN		200
 
 /*---------------------------------------------------------------------------
 typedefs
@@ -56,7 +56,7 @@ typedef enum ENUM_TEXT_MSGS
 	IDX_CMD_MODE_MSG,
 	IDX_DATA_MODE_MSG,
 	IDX_INVALID_USAGE,
-	NUM_TX_TRACE_MSGS,
+	NUM_CONSOLE_MSGS,
 }e_tx_text_msgs;
 
 /*---------------------------------------------------------------------------

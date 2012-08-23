@@ -1,7 +1,7 @@
 #include <string.h>
 #include "common.h"
 
-char trace_messages[NUM_TX_TRACE_MSGS][TRACE_MSGS_MAX_MEN] = {
+char trace_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Choose one of the following options \n e - echo data \n r - UART reconfiguration \n g - get file \n p - put file \n h - usage help\n",			//IDX_USAGE_HELP
 		"Welcome to MUART Slice Card demo\n Choose one of the following options \n e - echo data \n r - UART reconfiguration \n g - get file \n p - put file \n h - usage help\n",  //IDX_WELCOME_USAGE
 		"UART now echoes back the data entered\n", 				//IDX_ECHO_MODE_MSG
