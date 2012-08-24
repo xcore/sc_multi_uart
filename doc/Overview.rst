@@ -34,12 +34,11 @@ Slicekit Compatibility
 
 SliceKit logo [TBA]
 
-MUART Slice Card is an I/O slice and is compatible to all connectors of the Slicekit Core board.
+XA-SK-UART8 Slice Card is an I/O slice and is compatible to Square, Traingle and Star type connectors of Slicekit Core board.
 
 .. _fig_slicekit_compatibility:
 
-.. figure:: images/all_slots_compatible.png
+.. figure:: images/Square-Triangle-Star.png
     :align: center
-    :width: 50%
     
     Slicekit Core board connector compatibilty

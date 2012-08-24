@@ -7,22 +7,21 @@
 #include "uart_manager.h"
 #include "common.h"
 
-#define SK_MULTI_UART_SLOT_STAR 1
+#define SK_MULTI_UART_SLOT_SQUARE 1
 
 #ifdef SK_MULTI_UART_SLOT_SQUARE
 #define UART_CORE   1
 #elif SK_MULTI_UART_SLOT_STAR
 #define UART_CORE   0
+#elif SK_MULTI_UART_SLOT_TRIANGLE
+#define UART_CORE   0
 #endif
 
-#define PORT_TX on stdcore[UART_CORE]: XS1_PORT_8B
-#define PORT_RX on stdcore[UART_CORE]: XS1_PORT_8A
-
-s_multi_uart_tx_ports uart_tx_ports = { PORT_TX };
-s_multi_uart_rx_ports uart_rx_ports = {	PORT_RX };
+s_multi_uart_tx_ports uart_tx_ports = { PORT_UART_TX };
+s_multi_uart_rx_ports uart_rx_ports = {	PORT_UART_RX };
 
 on stdcore[UART_CORE]: clock clk_uart_tx = XS1_CLKBLK_4;
-on stdcore[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1F; /* Define 1 bit external clock */
+on stdcore[UART_CORE]: in port p_uart_ref_ext_clk = PORT_UART_EXT_CLK; /* Define 1 bit external clock */
 on stdcore[UART_CORE]: clock clk_uart_rx = XS1_CLKBLK_5;
 
 void dummy()
