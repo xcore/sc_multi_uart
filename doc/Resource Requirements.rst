@@ -1,7 +1,7 @@
 Resource Requirements
 =====================
 
-This section provides an overview of the required resources of sc_multi_uart component so that the application designer can operate within these constraints accordingly.
+This section provides an overview of the required resources of ``sc_multi_uart`` component so that the application designer can operate within these constraints accordingly.
 
 Ports
 +++++++

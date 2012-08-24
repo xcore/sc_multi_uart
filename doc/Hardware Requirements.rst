@@ -1,24 +1,34 @@
-Hardware Requirements
-======================
+Evaluation Platforms
+====================
 
-Pinouts in each slots
----------------------
+Recommended Hardware
+--------------------
 
-Pinouts in each slot: [Using a provided template TBA]
+This component may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
 
-MUART Slice Card
-----------------
+   * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-MUART plus XA-SK-ATAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor), OR
+   * XK-SK-L2-ST (Slicekit Starter Kit, containing all of the above).
 
-This Slice Card is a part of XSoftIP library
-
- - [XSoftIP logo TBA]
- - [Slicekit logo TBA]
-
-Slicekit Compatibility
+XA-SK-MUART Slice Card
 ----------------------
 
+This Slice Card can be evaluated using XSoftIP library resources
+
+ - [XSoftIP logo TBA]
+ 
+    XSoftIP logo
+
+ - [Slicekit Core board logo TBA]
+
+    Slicekit Core board logo
+    
 .. figure:: images/all_slots_compatible.png
     :align: center
     :width: 50%
     
     Slicekit Core board connector compatibilty
+
+Pinouts in each slots
+---------------------
+
+Pinouts in each slot: [Using a provided template TBA]

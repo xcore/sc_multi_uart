@@ -3,15 +3,15 @@ Example Applications
 
 This section discusses the demonstration application that uses Multi-UART component.
 
-Demonstration Application
-~~~~~~~~~~~~~~~~~~~~~~~~~
+**app_slicekit_com_demo** Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This application is available as ``app_slicekit_com_demo`` under ``sc_multi_uart`` component directory.
 
-Demo Application Hardware
--------------------------
+Recommended Hardware
+---------------------
 
-app_slicekit_com_demo application can be demonstrated on Slicekit Core board. The following parts are required
+``app_slicekit_com_demo`` application can be evaluated on Slicekit Core board. The following parts are required
 
     * Slicekit Core board
     * MUART Slice Card
@@ -31,8 +31,8 @@ Following tools may be installed on the host system in order to use the demo app
 
 .. _sec_slice_card_connection:
 
-Slice Card Build options
-------------------------
+Build options
+--------------
 
 This demo application is built by default for Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
 
@@ -57,7 +57,7 @@ Multi-UART Slice Card has two types of voltage levels of communications.
     * CMOS TTL
     * RS-232
     
-By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of Multi-UART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of Multi-UART Slice Card is as follows:
+By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of MUART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of MUART Slice Card is as follows:
 
 .. _table_connector_breakout:
 
@@ -76,10 +76,8 @@ MUART Slice Card for Demo Applications
 7                   23                    24
 =================== ===================== =====================
 
-Components Dependency
----------------------
 
-``app_slicekit_com_demo`` application uses the following components in order to achive its desired functionality.
+``app_slicekit_com_demo`` application use the following components in order to achive its desired functionality.
 
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
@@ -88,7 +86,7 @@ Components Dependency
 Application Configuration
 -------------------------
 
-The demo application configuration is done utilising the defines listed out below.
+``app_slicekit_com_demo`` application configuration is done utilising the defines listed out below:
 
 .. literalinclude:: app_slicekit_com_demo/src/common.h
     :start-after: //:demo_app_config
@@ -102,21 +100,23 @@ The demonstration application shows a typical structure of an application that m
 
 In addition to the two Multi-UART threads used by ``sc_multi_uart`` component, application utilises one more thread to manage UART data from transmit and receive threads. 
 
-UART data received can be typically user commands to perform various user actions and UART transaction data (see :ref:`sec_demo_features`).
+UART data received can be typically user commands to perform various user actions or UART data received can be transaction data related to a user action (see :ref:`sec_demo_features`).
 
 Application operates on a state machine to differentiate between user commands and user data. Application provides some buffers to hold data received from UARTs. When the RX thread receives a character over the UART it saves it into the local buffer. A state handler operates on the received data to identify its type and performs relevant actions .
 
-Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and is not strictly necessary in this application. TX thread already provides some buffering supported at the component level. 
+Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. TX thread already provides some buffering supported at the component level. 
 
-TX handler operates by polling the buffer which is filled by Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform action based on current state of the handler.
+TX handler operates by polling the buffer which is filled by Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform an action based on current state of the handler.
 
-The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
+The channel for TX thread is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
 
 
 .. _sec_demo_usage:
 
 Getting Started
----------------
++++++++++++++++
+
+This section describes how to use the demo application with Slicekit hardware.
 
 #. Connect MUART Slice Card to the Slicekit Core board. MUART slice can be connected to either ``Circle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`
 
@@ -124,7 +124,7 @@ Getting Started
 
 #. Connect other end of cable to Host (PC) DB-9 connector slot
 
-#. Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see :ref:`sec_demo_tools`) for default parameters which are as follows: 115200 baud, 8 bit character length, Even parity config, 1 stop bit and No hardware flow control  
+#. Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see :ref:`sec_demo_tools`) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
 
 #. Switch on the power supply to the Slicekit Core board
 
@@ -135,15 +135,15 @@ Getting Started
 
 .. _sec_demo_features:
 
-User Options
-------------
+Usage Options
++++++++++++++
 
 User selects one of the following characters in order to use the relevant demo application feature
 
     * e - in this mode, user entered character is echoed back on the console. In order to come out of this mode, user should press ``Esc`` key
     * r - this option can be selected in order to reconfigure UART for a different baud rate
     * g - upload a file via console option; uploaded file should be of size < 1024 characters and crc_appender application should be run prior to file upload (see :ref:`sec_crc_appender_usage`)
-    * p - this option prints previously uploaded file via get option, on to the console; at the end, it displays timing consumed (in milli sec) to upload a file and transmit back the same file to console
+    * p - this option prints previously uploaded file via get option on to the console; at the end, it displays timing consumed (in milli sec) to upload a file and transmit back the same file to console
     * h - displays user menu
     
     At any instance ``Esc`` key can be pressed to revert back to user menu.
@@ -154,9 +154,101 @@ User selects one of the following characters in order to use the relevant demo a
 CRC Calculation Application
 ---------------------------
 
-For uploading a file via UART console, user can select any file whose size is < 1024 bytes. 
-An application executable ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. demonstartion application calculates CRC of the received bytes and checks it against the CRC value calculated by the application. This ensures all the user uploaded data is integrity checked by the application.
+For uploading a file via UART console, user can select any file with size is < 1024 bytes. If the file size is greater than this size, only the first 1024 bytes are used. This limitation is primarily due to buffer length constraints of the application, in order to store the received file and send it back when requested.
+
+An application executable ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. ``app_slicekit_com_demo`` calculates CRC of the received bytes and checks it against the CRC value calculated by ``crc_appender`` application. This ensures all the user uploaded data is integrity checked.
 
 Sample Usage:
 
-  crc_appender <file_name>
+   ::
+
+       crc_appender <file_name>
+
+
+Building Procedure
+~~~~~~~~~~~~~~~~~~
+
+Following section describes the procedure in order to build the software.
+
+Installation
+------------
+
+The following components are required to build ``app_slicekit_com_demo`` application or develop sample Multi-UART applications:
+    * sc_multi_uart: git://github.com/xcore/sc_multi_uart.git
+    * sc_util: git://github.com/xcore/sc_util.git
+    * xcommon: git://github.com/xcore/xcommon.git (Optional)
+
+Once the zipfiles are downloaded you can install, build and use the software.
+
+Building with the XDE
+---------------------
+
+To install the software, open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and follow these steps:
+
+#. Choose `File` |submenu| `Import`.
+
+#. Choose `General` |submenu| `Existing Projects into Workspace` and click **Next**.
+
+#. Click **Browse** next to `Select archive file` and select the file firmware ZIP file.
+
+#. Make sure the projects you want to import are ticked in the `Projects` list. Import all the components and whichever applications you are interested in.
+
+#. Click **Finish**.
+
+To build, select `app_slicekit_com_demo` in Project Explorer pane and click the **Build** icon.
+
+Building from the command line
+------------------------------
+
+To build from the command line, change to `app_slicekit_com_demo` directory and execute the command:
+
+   ::
+
+       xmake all
+
+Makefiles
+---------
+
+The main Makefile for the project is in the application directory. This file specifies build options and used modules. The Makefile uses the common build infrastructure in ``xcommon``. This system includes the source files from the relevant modules and is documented within ``xcommon``.
+
+Installing the application onto flash 
+-------------------------------------
+
+Using XDE
++++++++++
+
+To upgrade (or flash) the firmware you must, firstly:
+
+#. Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. This XTAG-2 can now be connected to your PC or Mac.
+
+#. Switch on the power supply to Slicekit Core board
+
+#. Start the XMOS Development Environment and open a workspace
+
+#. Choose *File* |submenu| *Import* |submenu| *C/XC* |submenu| *C/XC Executable*
+
+#. Click **Browse** and select the new firmware (XE) file
+
+#. Click **Next** and **Finish**
+
+#. A Debug Configurations window is displayed. Click **Close**
+
+#. Choose *Run* |submenu| *Run Configurations*
+
+#. Double-click *Flash Programmer* to create a new configuration
+
+#. Browse for the XE file in the *Project* and *C/XC Application* boxes
+
+#. Ensure the *XTAG-2* device appears in the adapter list
+
+#. Click **Run**
+
+
+Using Command Line Tools
+++++++++++++++++++++++++
+
+#. Open the XMOS command line tools (Desktop Tools Prompt) and execute the following command:
+
+   ::
+
+       xflash <binary>.xe

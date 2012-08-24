@@ -10,4 +10,3 @@ Multi-UART Module Usage Manual
    API
    Programming Guide
    Example Applications
-   
