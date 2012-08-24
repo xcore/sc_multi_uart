@@ -67,9 +67,9 @@ document.getElementById('d1').style.height=h2 + "px";
 <p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application can be evaluated on Slicekit Core board. The following parts are required</p>
 <blockquote>
 <div><ul class="simple">
-<li>Slicekit Core board</li>
-<li>MUART Slice Card</li>
-<li>RS232 to COM port cable (provided with MUART Slice Card package)</li>
+<li>XP-SKC-L2 (Slicekit L2 Core Board)</li>
+<li>XA-SK-UART8 Slice Card</li>
+<li>RS232 to COM port cable (provided with XA-SK-UART8 Slice Card package)</li>
 </ul>
 </div></blockquote>
 </div>
@@ -87,7 +87,7 @@ document.getElementById('d1').style.height=h2 + "px";
 </div>
 <div class="section" id="build-options">
 <span id="sec-slice-card-connection"></span><h3>Build options<a class="headerlink" href="#build-options" title="Permalink to this headline">¶</a></h3>
-<p>This demo application is built by default for Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:</p>
+<p>This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:</p>
 <p>To build for STAR connector, make the following changes:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -112,17 +112,41 @@ document.getElementById('d1').style.height=h2 + "px";
 </tr>
 </tbody>
 </table>
+<p>To build for TRIANGLE connector, make the following changes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">File</th>
+<th class="head">Original Value</th>
+<th class="head">New Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">src/main.xc</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">#define</span> <span class="pre">SK_MULTI_UART_SLOT_SQUARE</span> <span class="pre">1</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">#define</span> <span class="pre">SK_MULTI_UART_SLOT_TRIANGLE</span> <span class="pre">1</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Makefile</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">TARGET</span> <span class="pre">=</span> <span class="pre">SK_MULTI_UART_SLOT_SQUARE</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">TARGET</span> <span class="pre">=</span> <span class="pre">SK_MULTI_UART_SLOT_TRIANGLE</span></tt></td>
+</tr>
+</tbody>
+</table>
 <p>Multi-UART component requires 8-bit ports for both UART transmit and UART receive ports.</p>
 <dl class="docutils">
-<dt>Multi-UART Slice Card has two types of voltage levels of communications.</dt>
+<dt>XA-SK-UART8 Slice Card has two types of voltage levels of communications.</dt>
 <dd><ul class="first last simple">
 <li>CMOS TTL</li>
 <li>RS-232</li>
 </ul>
 </dd>
 </dl>
-<p>By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of MUART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of MUART Slice Card is as follows:</p>
-<p id="table-connector-breakout">MUART Slice Card for Demo Applications</p>
+<p>By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-UART8 Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 Slice Card is as follows:</p>
+<p id="table-connector-breakout">XA-SK-UART8 Slice Card for Demo Applications</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -201,8 +225,8 @@ document.getElementById('d1').style.height=h2 + "px";
 <span id="sec-demo-usage"></span><h4>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h4>
 <p>This section describes how to use the demo application with Slicekit hardware.</p>
 <ol class="arabic simple">
-<li>Connect MUART Slice Card to the Slicekit Core board. MUART slice can be connected to either <tt class="docutils literal"><span class="pre">Circle</span></tt> or <tt class="docutils literal"><span class="pre">Star</span></tt> connector of Slicekit Core board as discussed in <a class="reference internal" href="#sec-slice-card-connection"><span>Build options</span></a></li>
-<li>Connect COM port cable (provided with MUART Slice Card package) to DB-9 connector on MUART Slice Card. This enables UART 0 by default</li>
+<li>Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either <tt class="docutils literal"><span class="pre">Square</span></tt>, <tt class="docutils literal"><span class="pre">Tringle</span></tt> or <tt class="docutils literal"><span class="pre">Star</span></tt> connector of Slicekit Core board as discussed in <a class="reference internal" href="#sec-slice-card-connection"><span>Build options</span></a></li>
+<li>Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default</li>
 <li>Connect other end of cable to Host (PC) DB-9 connector slot</li>
 <li>Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see <a class="reference internal" href="#sec-demo-tools"><span>Required Software Tools</span></a>) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control</li>
 <li>Switch on the power supply to the Slicekit Core board</li>

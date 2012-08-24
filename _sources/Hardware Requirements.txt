@@ -6,10 +6,10 @@ Recommended Hardware
 
 This component may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
 
-   * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-MUART plus XA-SK-ATAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor), OR
+   * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-UART8 plus XA-SK-ATAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor), OR
    * XK-SK-L2-ST (Slicekit Starter Kit, containing all of the above).
 
-XA-SK-MUART Slice Card
+XA-SK-UART8 Slice Card
 ----------------------
 
 This Slice Card can be evaluated using XSoftIP library resources
@@ -22,9 +22,8 @@ This Slice Card can be evaluated using XSoftIP library resources
 
     Slicekit Core board logo
     
-.. figure:: images/all_slots_compatible.png
+.. figure:: images/Square-Triangle-Star.png
     :align: center
-    :width: 50%
     
     Slicekit Core board connector compatibilty
 

@@ -13,9 +13,9 @@ Recommended Hardware
 
 ``app_slicekit_com_demo`` application can be evaluated on Slicekit Core board. The following parts are required
 
-    * Slicekit Core board
-    * MUART Slice Card
-    * RS232 to COM port cable (provided with MUART Slice Card package)
+    * XP-SKC-L2 (Slicekit L2 Core Board)
+    * XA-SK-UART8 Slice Card
+    * RS232 to COM port cable (provided with XA-SK-UART8 Slice Card package)
     
 .. _sec_demo_tools:
 
@@ -34,7 +34,7 @@ Following tools may be installed on the host system in order to use the demo app
 Build options
 --------------
 
-This demo application is built by default for Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
+This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
 
 To build for STAR connector, make the following changes:
 
@@ -51,17 +51,32 @@ To build for STAR connector, make the following changes:
       - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
       - ``TARGET = SK_MULTI_UART_SLOT_STAR``
 
+To build for TRIANGLE connector, make the following changes:
+
+.. list-table::
+    :header-rows: 1
+    
+    * - File
+      - Original Value
+      - New Value
+    * - ``src/main.xc``
+      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
+      - ``#define SK_MULTI_UART_SLOT_TRIANGLE 1``
+    * - ``Makefile``
+      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
+      - ``TARGET = SK_MULTI_UART_SLOT_TRIANGLE``
+
 Multi-UART component requires 8-bit ports for both UART transmit and UART receive ports.
 
-Multi-UART Slice Card has two types of voltage levels of communications.
+XA-SK-UART8 Slice Card has two types of voltage levels of communications.
     * CMOS TTL
     * RS-232
     
-By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of MUART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of MUART Slice Card is as follows:
+By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-UART8 Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 Slice Card is as follows:
 
 .. _table_connector_breakout:
 
-MUART Slice Card for Demo Applications 
+XA-SK-UART8 Slice Card for Demo Applications 
 
 =================== ===================== =====================
 **UART Identifier** **J3/J4 Pin no.(TX)** **J3/J4 Pin no.(RX)**
@@ -118,9 +133,9 @@ Getting Started
 
 This section describes how to use the demo application with Slicekit hardware.
 
-#. Connect MUART Slice Card to the Slicekit Core board. MUART slice can be connected to either ``Circle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`
+#. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`
 
-#. Connect COM port cable (provided with MUART Slice Card package) to DB-9 connector on MUART Slice Card. This enables UART 0 by default
+#. Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default
 
 #. Connect other end of cable to Host (PC) DB-9 connector slot
 
