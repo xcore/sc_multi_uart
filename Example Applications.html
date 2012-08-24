@@ -59,12 +59,12 @@ document.getElementById('d1').style.height=h2 + "px";
   <div class="section" id="example-applications">
 <h1>Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this headline">¶</a></h1>
 <p>This section discusses the demonstration application that uses Multi-UART component.</p>
-<div class="section" id="demonstration-application">
-<h2>Demonstration Application<a class="headerlink" href="#demonstration-application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="app-slicekit-com-demo-application">
+<h2><strong>app_slicekit_com_demo</strong> Application<a class="headerlink" href="#app-slicekit-com-demo-application" title="Permalink to this headline">¶</a></h2>
 <p>This application is available as <tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> under <tt class="docutils literal"><span class="pre">sc_multi_uart</span></tt> component directory.</p>
-<div class="section" id="demo-application-hardware">
-<h3>Demo Application Hardware<a class="headerlink" href="#demo-application-hardware" title="Permalink to this headline">¶</a></h3>
-<p>app_slicekit_com_demo application can be demonstrated on Slicekit Core board. The following parts are required</p>
+<div class="section" id="recommended-hardware">
+<h3>Recommended Hardware<a class="headerlink" href="#recommended-hardware" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application can be evaluated on Slicekit Core board. The following parts are required</p>
 <blockquote>
 <div><ul class="simple">
 <li>Slicekit Core board</li>
@@ -85,8 +85,8 @@ document.getElementById('d1').style.height=h2 + "px";
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="slice-card-build-options">
-<span id="sec-slice-card-connection"></span><h3>Slice Card Build options<a class="headerlink" href="#slice-card-build-options" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="build-options">
+<span id="sec-slice-card-connection"></span><h3>Build options<a class="headerlink" href="#build-options" title="Permalink to this headline">¶</a></h3>
 <p>This demo application is built by default for Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:</p>
 <p>To build for STAR connector, make the following changes:</p>
 <table border="1" class="docutils">
@@ -121,7 +121,7 @@ document.getElementById('d1').style.height=h2 + "px";
 </ul>
 </dd>
 </dl>
-<p>By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of Multi-UART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of Multi-UART Slice Card is as follows:</p>
+<p>By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. At a time, only one voltage level type can be used for all 8 UART channels (RS-232 or CMOS TTL). When using the RS-232 levels, UART device pins must be connected to J4 of MUART Slice Card. When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of MUART Slice Card is as follows:</p>
 <p id="table-connector-breakout">MUART Slice Card for Demo Applications</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -170,10 +170,7 @@ document.getElementById('d1').style.height=h2 + "px";
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="components-dependency">
-<h3>Components Dependency<a class="headerlink" href="#components-dependency" title="Permalink to this headline">¶</a></h3>
-<p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application uses the following components in order to achive its desired functionality.</p>
+<p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application use the following components in order to achive its desired functionality.</p>
 <blockquote>
 <div><ul class="simple">
 <li><strong>sc_multi_uart</strong>: utilizes TX and RX servers provided by the component</li>
@@ -183,7 +180,7 @@ document.getElementById('d1').style.height=h2 + "px";
 </div>
 <div class="section" id="application-configuration">
 <h3>Application Configuration<a class="headerlink" href="#application-configuration" title="Permalink to this headline">¶</a></h3>
-<p>The demo application configuration is done utilising the defines listed out below.</p>
+<p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application configuration is done utilising the defines listed out below:</p>
 <div class="highlight-none"><div class="highlight"><pre>/* Define number of UARTs to be configured */
 #define UART_APP_TX_CHAN_COUNT		8 // Must be Same as UART_TX_CHAN_COUNT
 /* Length of application buffer to hold received UART data */
@@ -195,45 +192,122 @@ document.getElementById('d1').style.height=h2 + "px";
 <h3>Application Description<a class="headerlink" href="#application-description" title="Permalink to this headline">¶</a></h3>
 <p>The demonstration application shows a typical structure of an application that might be implemented by the user of <tt class="docutils literal"><span class="pre">sc_multi_uart</span></tt> component.</p>
 <p>In addition to the two Multi-UART threads used by <tt class="docutils literal"><span class="pre">sc_multi_uart</span></tt> component, application utilises one more thread to manage UART data from transmit and receive threads.</p>
-<p>UART data received can be typically user commands to perform various user actions and UART transaction data (see <a class="reference internal" href="#sec-demo-features"><span>User Options</span></a>).</p>
+<p>UART data received can be typically user commands to perform various user actions or UART data received can be transaction data related to a user action (see <a class="reference internal" href="#sec-demo-features"><span>Usage Options</span></a>).</p>
 <p>Application operates on a state machine to differentiate between user commands and user data. Application provides some buffers to hold data received from UARTs. When the RX thread receives a character over the UART it saves it into the local buffer. A state handler operates on the received data to identify its type and performs relevant actions .</p>
-<p>Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and is not strictly necessary in this application. TX thread already provides some buffering supported at the component level.</p>
-<p>TX handler operates by polling the buffer which is filled by Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform action based on current state of the handler.</p>
-<p>The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in <a class="reference internal" href="Programming Guide.html#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>. Specific usage of the API is also discussed in <a class="reference internal" href="Programming Guide.html#sec-interfacing-tx"><span>Interfacing to the TX Server</span></a> and <a class="reference internal" href="Programming Guide.html#sec-interfacing-rx"><span>Interfacing to the RX Server</span></a>.</p>
-</div>
+<p>Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then grabs this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. TX thread already provides some buffering supported at the component level.</p>
+<p>TX handler operates by polling the buffer which is filled by Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform an action based on current state of the handler.</p>
+<p>The channel for TX thread is primarily used for reconfiguration. This is discussed in more detail in <a class="reference internal" href="Programming Guide.html#sec-reconf-rxtx"><span>Reconfiguration of RX &amp; TX Server</span></a>. Specific usage of the API is also discussed in <a class="reference internal" href="Programming Guide.html#sec-interfacing-tx"><span>Interfacing to the TX Server</span></a> and <a class="reference internal" href="Programming Guide.html#sec-interfacing-rx"><span>Interfacing to the RX Server</span></a>.</p>
 <div class="section" id="getting-started">
-<span id="sec-demo-usage"></span><h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<span id="sec-demo-usage"></span><h4>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h4>
+<p>This section describes how to use the demo application with Slicekit hardware.</p>
 <ol class="arabic simple">
-<li>Connect MUART Slice Card to the Slicekit Core board. MUART slice can be connected to either <tt class="docutils literal"><span class="pre">Circle</span></tt> or <tt class="docutils literal"><span class="pre">Star</span></tt> connector of Slicekit Core board as discussed in <a class="reference internal" href="#sec-slice-card-connection"><span>Slice Card Build options</span></a></li>
+<li>Connect MUART Slice Card to the Slicekit Core board. MUART slice can be connected to either <tt class="docutils literal"><span class="pre">Circle</span></tt> or <tt class="docutils literal"><span class="pre">Star</span></tt> connector of Slicekit Core board as discussed in <a class="reference internal" href="#sec-slice-card-connection"><span>Build options</span></a></li>
 <li>Connect COM port cable (provided with MUART Slice Card package) to DB-9 connector on MUART Slice Card. This enables UART 0 by default</li>
 <li>Connect other end of cable to Host (PC) DB-9 connector slot</li>
-<li>Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see <a class="reference internal" href="#sec-demo-tools"><span>Required Software Tools</span></a>) for default parameters which are as follows: 115200 baud, 8 bit character length, Even parity config, 1 stop bit and No hardware flow control</li>
+<li>Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see <a class="reference internal" href="#sec-demo-tools"><span>Required Software Tools</span></a>) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control</li>
 <li>Switch on the power supply to the Slicekit Core board</li>
 <li>Upon any key press on console, a user menu is displayed</li>
-<li>From there, demo is guided by the selection of respective options, which are described in more detail in <a class="reference internal" href="#sec-demo-features"><span>User Options</span></a></li>
+<li>From there, demo is guided by the selection of respective options, which are described in more detail in <a class="reference internal" href="#sec-demo-features"><span>Usage Options</span></a></li>
 </ol>
 </div>
-<div class="section" id="user-options">
-<span id="sec-demo-features"></span><h3>User Options<a class="headerlink" href="#user-options" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="usage-options">
+<span id="sec-demo-features"></span><h4>Usage Options<a class="headerlink" href="#usage-options" title="Permalink to this headline">¶</a></h4>
 <p>User selects one of the following characters in order to use the relevant demo application feature</p>
 <blockquote>
 <div><ul class="simple">
 <li>e - in this mode, user entered character is echoed back on the console. In order to come out of this mode, user should press <tt class="docutils literal"><span class="pre">Esc</span></tt> key</li>
 <li>r - this option can be selected in order to reconfigure UART for a different baud rate</li>
 <li>g - upload a file via console option; uploaded file should be of size &lt; 1024 characters and crc_appender application should be run prior to file upload (see <a class="reference internal" href="#sec-crc-appender-usage"><span>CRC Calculation Application</span></a>)</li>
-<li>p - this option prints previously uploaded file via get option, on to the console; at the end, it displays timing consumed (in milli sec) to upload a file and transmit back the same file to console</li>
+<li>p - this option prints previously uploaded file via get option on to the console; at the end, it displays timing consumed (in milli sec) to upload a file and transmit back the same file to console</li>
 <li>h - displays user menu</li>
 </ul>
 <p>At any instance <tt class="docutils literal"><span class="pre">Esc</span></tt> key can be pressed to revert back to user menu.</p>
 </div></blockquote>
 </div>
+</div>
 <div class="section" id="crc-calculation-application">
 <span id="sec-crc-appender-usage"></span><h3>CRC Calculation Application<a class="headerlink" href="#crc-calculation-application" title="Permalink to this headline">¶</a></h3>
-<p>For uploading a file via UART console, user can select any file whose size is &lt; 1024 bytes.
-An application executable <tt class="docutils literal"><span class="pre">crc_appender</span></tt> which is available in <tt class="docutils literal"><span class="pre">test</span></tt> folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. demonstartion application calculates CRC of the received bytes and checks it against the CRC value calculated by the application. This ensures all the user uploaded data is integrity checked by the application.</p>
+<p>For uploading a file via UART console, user can select any file with size is &lt; 1024 bytes. If the file size is greater than this size, only the first 1024 bytes are used. This limitation is primarily due to buffer length constraints of the application, in order to store the received file and send it back when requested.</p>
+<p>An application executable <tt class="docutils literal"><span class="pre">crc_appender</span></tt> which is available in <tt class="docutils literal"><span class="pre">test</span></tt> folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. <tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> calculates CRC of the received bytes and checks it against the CRC value calculated by <tt class="docutils literal"><span class="pre">crc_appender</span></tt> application. This ensures all the user uploaded data is integrity checked.</p>
 <p>Sample Usage:</p>
 <blockquote>
-<div>crc_appender &lt;file_name&gt;</div></blockquote>
+<div><div class="highlight-none"><div class="highlight"><pre>crc_appender &lt;file_name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="building-procedure">
+<h2>Building Procedure<a class="headerlink" href="#building-procedure" title="Permalink to this headline">¶</a></h2>
+<p>Following section describes the procedure in order to build the software.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>The following components are required to build <tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application or develop sample Multi-UART applications:</dt>
+<dd><ul class="first last simple">
+<li>sc_multi_uart: git://github.com/xcore/sc_multi_uart.git</li>
+<li>sc_util: git://github.com/xcore/sc_util.git</li>
+<li>xcommon: git://github.com/xcore/xcommon.git (Optional)</li>
+</ul>
+</dd>
+</dl>
+<p>Once the zipfiles are downloaded you can install, build and use the software.</p>
+</div>
+<div class="section" id="building-with-the-xde">
+<h3>Building with the XDE<a class="headerlink" href="#building-with-the-xde" title="Permalink to this headline">¶</a></h3>
+<p>To install the software, open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and follow these steps:</p>
+<ol class="arabic simple">
+<li>Choose <cite>File</cite> <strong>&gt;</strong> <cite>Import</cite>.</li>
+<li>Choose <cite>General</cite> <strong>&gt;</strong> <cite>Existing Projects into Workspace</cite> and click <strong>Next</strong>.</li>
+<li>Click <strong>Browse</strong> next to <cite>Select archive file</cite> and select the file firmware ZIP file.</li>
+<li>Make sure the projects you want to import are ticked in the <cite>Projects</cite> list. Import all the components and whichever applications you are interested in.</li>
+<li>Click <strong>Finish</strong>.</li>
+</ol>
+<p>To build, select <cite>app_slicekit_com_demo</cite> in Project Explorer pane and click the <strong>Build</strong> icon.</p>
+</div>
+<div class="section" id="building-from-the-command-line">
+<h3>Building from the command line<a class="headerlink" href="#building-from-the-command-line" title="Permalink to this headline">¶</a></h3>
+<p>To build from the command line, change to <cite>app_slicekit_com_demo</cite> directory and execute the command:</p>
+<blockquote>
+<div><div class="highlight-none"><div class="highlight"><pre>xmake all
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="makefiles">
+<h3>Makefiles<a class="headerlink" href="#makefiles" title="Permalink to this headline">¶</a></h3>
+<p>The main Makefile for the project is in the application directory. This file specifies build options and used modules. The Makefile uses the common build infrastructure in <tt class="docutils literal"><span class="pre">xcommon</span></tt>. This system includes the source files from the relevant modules and is documented within <tt class="docutils literal"><span class="pre">xcommon</span></tt>.</p>
+</div>
+<div class="section" id="installing-the-application-onto-flash">
+<h3>Installing the application onto flash<a class="headerlink" href="#installing-the-application-onto-flash" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-xde">
+<h4>Using XDE<a class="headerlink" href="#using-xde" title="Permalink to this headline">¶</a></h4>
+<p>To upgrade (or flash) the firmware you must, firstly:</p>
+<ol class="arabic simple">
+<li>Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. This XTAG-2 can now be connected to your PC or Mac.</li>
+<li>Switch on the power supply to Slicekit Core board</li>
+<li>Start the XMOS Development Environment and open a workspace</li>
+<li>Choose <em>File</em> <strong>&gt;</strong> <em>Import</em> <strong>&gt;</strong> <em>C/XC</em> <strong>&gt;</strong> <em>C/XC Executable</em></li>
+<li>Click <strong>Browse</strong> and select the new firmware (XE) file</li>
+<li>Click <strong>Next</strong> and <strong>Finish</strong></li>
+<li>A Debug Configurations window is displayed. Click <strong>Close</strong></li>
+<li>Choose <em>Run</em> <strong>&gt;</strong> <em>Run Configurations</em></li>
+<li>Double-click <em>Flash Programmer</em> to create a new configuration</li>
+<li>Browse for the XE file in the <em>Project</em> and <em>C/XC Application</em> boxes</li>
+<li>Ensure the <em>XTAG-2</em> device appears in the adapter list</li>
+<li>Click <strong>Run</strong></li>
+</ol>
+</div>
+<div class="section" id="using-command-line-tools">
+<h4>Using Command Line Tools<a class="headerlink" href="#using-command-line-tools" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic">
+<li><p class="first">Open the XMOS command line tools (Desktop Tools Prompt) and execute the following command:</p>
+<div class="highlight-none"><div class="highlight"><pre>xflash &lt;binary&gt;.xe
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -249,7 +323,7 @@ An application executable <tt class="docutils literal"><span class="pre">crc_app
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Overview.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Resource Requirements.html">Resource Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Hardware Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware Requirements.html">Evaluation Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Component Description.html">Component Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">Multi-UART Common API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-transmit-api">Multi-UART Transmit API</a></li>
@@ -257,16 +331,29 @@ An application executable <tt class="docutils literal"><span class="pre">crc_app
 <li class="toctree-l1"><a class="reference internal" href="API.html#multi-uart-helper-api">Multi-UART Helper API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Programming Guide.html">Programming Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Example Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#demonstration-application">Demonstration Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#demo-application-hardware">Demo Application Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app-slicekit-com-demo-application"><strong>app_slicekit_com_demo</strong> Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-hardware">Recommended Hardware</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#required-software-tools">Required Software Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#slice-card-build-options">Slice Card Build options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#components-dependency">Components Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-options">Build options</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#application-configuration">Application Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#application-description">Application Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#user-options">User Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-description">Application Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-options">Usage Options</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#crc-calculation-application">CRC Calculation Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-procedure">Building Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-with-the-xde">Building with the XDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-from-the-command-line">Building from the command line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#makefiles">Makefiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-application-onto-flash">Installing the application onto flash</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-xde">Using XDE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-command-line-tools">Using Command Line Tools</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
