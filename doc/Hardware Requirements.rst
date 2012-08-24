@@ -7,27 +7,18 @@ Recommended Hardware
 This component may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
 
    * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-UART8 plus XA-SK-ATAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor), OR
-   * XK-SK-L2-ST (Slicekit Starter Kit, containing all of the above).
 
 XA-SK-UART8 Slice Card
 ----------------------
 
-This Slice Card can be evaluated using XSoftIP library resources
+[Insert link to UART8 SliceCard webpage).
 
- - [XSoftIP logo TBA]
- 
-    XSoftIP logo
+[Insert picture of UART8 slice card here.]
 
- - [Slicekit Core board logo TBA]
+Demonstration Application
+-------------------------
 
-    Slicekit Core board logo
-    
-.. figure:: images/Square-Triangle-Star.png
-    :align: center
-    
-    Slicekit Core board connector compatibilty
+Example usage of this module can be found within the XSoftIP suite as follows:
 
-Pinouts in each slots
----------------------
-
-Pinouts in each slot: [Using a provided template TBA]
+   * Package: sc_multi_uart
+   * Application: app_slicekit_com_demo

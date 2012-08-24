@@ -118,7 +118,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
 .. _sec_initialisation:
 
 Initialisation
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 The initialisation and configuration process for both the RX and TX operations is the same. For configuration the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` is utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the echo test application that is utilised for verification.
 
