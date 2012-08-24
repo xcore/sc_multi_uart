@@ -30,7 +30,6 @@ Build options
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
-
 This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
 
 To build for STAR connector, make the following changes:
@@ -63,7 +62,12 @@ To build for TRIANGLE connector, make the following changes:
       - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
       - ``TARGET = SK_MULTI_UART_SLOT_TRIANGLE``
 
-The module requires 8-bit ports for both UART transmit and UART receive ports.
+The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the multi-uart component are derived automatically from the xn file.
+
+This application contains following *xn* files in ``src`` folder under ``app_slicekit_com_demo`` directory.
+    * SK_MULTI_UART_SLOT_SQUARE.xn file configures 1 bit port *XS1_PORT_1F* for muart external clock, 8 bit port *XS1_PORT_8B* for muart tx and *XS1_PORT_8A* for muart rx on tile 1
+    * SK_MULTI_UART_SLOT_STAR.xn file configures 1 bit port *XS1_PORT_1L* for muart external clock, 8 bit port *XS1_PORT_8D* for muart tx and *XS1_PORT_8C* for muart rx on tile 0
+    * SK_MULTI_UART_SLOT_TRIANGLE.xn file configures 1 bit port *XS1_PORT_1F* for muart external clock, 8 bit port *XS1_PORT_8B* for muart tx and *XS1_PORT_8A* for muart rx on tile 0
 
 Hardware Settings
 -----------------
@@ -84,7 +88,8 @@ When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-
 
 When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 Slice Card is as follows:
 
-[ **ADD a picture of UART8 SliceCard in Square slot, with arrows added pointing to J3 and J4** ]
+.. figure:: images/XA-SK-UART8-SquareConnected.png
+    :align: left
 
 .. _table_connector_breakout:
 
@@ -164,7 +169,7 @@ The application provides the following commands to interact with it:
 CRC Calculation Application
 +++++++++++++++++++++++++++
 
-To upload a file via the UART console, select any file with size < 1024 bytes. If the file size is greater than this size, only the first 1024 bytes are used. This limitation is due to buffer length constraints of the application, in order to store the received file and send it back when requested.
+**FIXME:This application is to be tested and added to test folder, with more usage guidelines** To upload a file via the UART console, select any file with size < 1024 bytes. If the file size is greater than this size, only the first 1024 bytes are used. This limitation is due to buffer length constraints of the application, in order to store the received file and send it back when requested.
 
 An application executable ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. ``app_slicekit_com_demo`` calculates CRC of the received bytes and checks it against the CRC value calculated by ``crc_appender`` application. This ensures all the user uploaded data is integrity checked.
 

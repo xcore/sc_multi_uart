@@ -11,9 +11,10 @@ This component may be evaluated using the Slicekit Modular Development Platform,
 XA-SK-UART8 Slice Card
 ----------------------
 
-[Insert link to UART8 SliceCard webpage).
+**FIXME: Insert link to UART8 SliceCard webpage**
 
-[Insert picture of UART8 slice card here.]
+.. figure:: images/XA-SK-UART8.png
+    :align: left
 
 Demonstration Application
 -------------------------

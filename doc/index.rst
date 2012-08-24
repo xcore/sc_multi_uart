@@ -1,12 +1,12 @@
 Multi-UART Module Usage Manual
-=================================
+==============================
 
 .. toctree::
 
-   Overview
-   Resource Requirements
-   Hardware Requirements
-   Component Description
-   API
-   Programming Guide
-   Example Applications
+   overview
+   resource_requirements
+   hardware_requirements
+   component_description
+   api
+   programming_guide
+   example_applications
