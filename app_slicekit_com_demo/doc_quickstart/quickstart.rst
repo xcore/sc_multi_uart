@@ -23,7 +23,8 @@ The following components are required to build ``app_slicekit_com_demo`` applica
 Set Up The Hardare
 ++++++++++++++++++
 
-[add figure of HW Setup incl. debug adaptor, DB9 cable.]
+.. figure:: images/HardwareSetup.png
+    :align: center
 
    #. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`. For now, use the SQUARE slot as shown in the figure above
    #. Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default
