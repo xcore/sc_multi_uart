@@ -48,16 +48,15 @@ Do the Demo
 +++++++++++
 
    #. Upon any key press on console, a user menu is displayed
-
-.. figure:: images/help_menu.png
-    :align: center
-   
    #. Key in ``e``. Type in any character from the key board and application echoes back pressed keyed. In order to get back to user menu, press ``Esc`` key
    #. Key in ``r``. UART enters into reconfiguration mode and listens for new baud rate. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. Upon successful reconfiguration, terminal console should be opened on the selected baud rate configuration. Press ``h`` to display user menu
    #. Key in ``g`` to upload a file from console. [**FIXME This CRC appender feature is yet to be added:** Before uploading a file, navigate to ``test`` directory and execute crc_appender application as *crc_appender <file_name>* This appends a CRC value calculated for the file contents]. Once a selected file is uploaded, press CTRL+D. Application now listens for any user commands. If any key other than ``p`` is pressed, all the uploaded file contents are lost **[FIXME Sample file, CRC application is yet to be tested and added into the repo]**
    #. Key in ``p`` in order to display the uploaded file contents on the console. [**FIXME CRC feature + error message to be added**] In case of any CRC mismatch, an error message is displayed. If this option is selected prior to using ``g`` option, an error message is displayed
    #. Key in ``h`` in order to display user menu. This help is displayed any time during execution by pressing ``Esc`` key followed by ``h`` 
 
+.. figure:: images/help_menu.png
+    :align: center
+   
 Next Steps
 ++++++++++
 
