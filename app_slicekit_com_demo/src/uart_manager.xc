@@ -161,7 +161,7 @@ static int configure_uart_channel(unsigned int channel_id)
     return chnl_config_status;
 }
 
-static void send_message_to_uart_console(char uart_id, int msg_id)
+static void send_message_to_uart_console(unsigned uart_id, int msg_id)
 {
 	int len = 0;
 	uart_rx_channel_state[uart_id].read_index = 0;
@@ -192,7 +192,7 @@ static void insert_separator(int base, char msg[], int msg_len[], char separator
 	msg_len[0] += 1;
 }
 
-static void append_to_uart_console_message(char uart_id, int mode, int msg_id, char ?msg[], int ?msg_len[])
+static void append_to_uart_console_message(unsigned uart_id, int mode, int msg_id, char ?msg[], int ?msg_len[])
 {
 	int len = 0;
 	int buf_depth = uart_rx_channel_state[uart_id].buf_depth;
@@ -303,7 +303,6 @@ static int re_apply_uart_channel_config(int channel_id,
                                         streaming chanend c_tx_uart,
                                         streaming chanend c_rx_uart)
 {
-    int ret_val = 0;
     int chnl_config_status = 0;
     timer t;
 
@@ -320,6 +319,8 @@ static int re_apply_uart_channel_config(int channel_id,
     }
     */
     //TODO: Send response back on the channel
+
+    return 0;
 }
 
 #pragma unsafe arrays
@@ -358,7 +359,7 @@ static int validate_uart_baud(int baud)
 	return 0;
 }
 
-static int validate_uart_cmd(char uart_cmd, char uart_id)
+static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 {
 	if ((uart_comm_state[uart_id].pending_file_transfer) && ('p' != uart_cmd)) {
 		int len = 0;
@@ -371,12 +372,11 @@ static int validate_uart_cmd(char uart_cmd, char uart_id)
 		return 1;
 }
 
-static void uart_state_hanlder(char uart_id, unsigned uart_char,
+static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
         streaming chanend c_tx_uart,
         streaming chanend c_rx_uart)
 {
 	static int iter_index = 0;
-	static int get_file = 0;
 
 	if (0 == uart_comm_state[uart_id].welcome_msg_sent) {
 		uart_comm_state[uart_id].welcome_msg_sent = 1;
@@ -521,7 +521,7 @@ static void uart_state_hanlder(char uart_id, unsigned uart_char,
 	}
 }
 
-static void uart_tx_hanlder(int uart_id)
+static void uart_tx_hanlder(unsigned uart_id)
 {
 	switch (uart_comm_state[uart_id].uart_usage_mode) {
 	case UART_CMD_INVALID:
@@ -587,10 +587,8 @@ static void uart_tx_hanlder(int uart_id)
  */
 void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 {
-    timer txTimer;
     char rx_channel_id;
-    int write_index;
-    int uart_id = 0;
+    unsigned uart_id = 0;
 
 #if ENABLE_XSCOPE == 1
     xscope_register(0, 0, "", 0, "");

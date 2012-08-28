@@ -16,9 +16,13 @@ The following components are required to build ``app_slicekit_com_demo`` applica
    #. Open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and Choose `File` |submenu| `Import`.
    #. Choose `General` |submenu| `Existing Projects into Workspace` and click **Next**.
    #. Click **Browse** next to `Select archive file` and select the first firmware ZIP file.
-   #. Repeat the import process for the remaining zipfiles. 
    #. Click **Finish**.
-   #. To build, select `app_slicekit_com_demo` in the Project Explorer pane and click the **Build** icon.
+   #. Repeat the import process for the remaining zipfiles. 
+   #. To select application to build, select `Makefile` from `sc_multi_uart` folder in the Project Explorer pane and double click to open it in Editor Window.
+   #. Navigate to **XMOS Project Makefile Editor**, `Build Sub-Directories` option; select `Build applications selected below` radio button; select `app_slicekit_com_demo` folder option
+   #. Choose `File` |submenu| and click **Save**.
+   #. To build the selected application, select `sc_multi_uart` folder in the Project Explorer pane and click the **Build** icon.
+   
 
 Install Demonstration Tools on the Host PC
 ++++++++++++++++++++++++++++++++++++++++++
@@ -39,27 +43,28 @@ Set Up The Hardare
 
    Demonstration Hardware Setup
 
-   #. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
+   #. Connect XA-SK-UART8 Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
    #. Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default
    #. Connect other end of cable to Host (PC) DB-9 connector slot
    #. Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (refer to the Hercules or SecureCRT documentation above) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
    #. Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 can now be connected to your PC or Mac USB port.
+   #. Connect the XTAG-2 to host PC or Mac USB port.
    #. Switch on the power supply to the Slicekit Core board.
    #. Open the XDE
    #. Choose *File* |submenu| *Import* |submenu| *C/XC* |submenu| *C/XC Executable*
-   #. Click **Browse** and select the new firmware (XE) file
+   #. Click **Next** and select the new firmware (XE) file (as built in the above section)
    #. Click **Next** and **Finish**
    #. A Debug Configurations window is displayed. Click **Close**
    #. Choose *Run* |submenu| *Run Configurations*
-   #. Double-click *Flash Programmer* to create a new configuration
+   #. Double-click *XCore Application* to create a new configuration
    #. Browse for the XE file in the *Project* and *C/XC Application* boxes
-   #. Ensure the *XTAG-2* device appears in the adapter list 
+   #. Ensure the *XTAG-2* device appears in the `Target:` adapter list 
    #. Click **Run**
 
 Do the Demo
 +++++++++++
 
+   #. Select and Open the configured terminal client application console
    #. Upon any key press on console, a user menu is displayed
    #. Key in ``e``. Type in any character from the key board and application echoes back pressed keyed. In order to get back to user menu, press ``Esc`` key
    #. Key in ``r``. UART enters into reconfiguration mode and listens for new baud rate. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. Upon successful reconfiguration, terminal console should be opened on the selected baud rate configuration. Press ``h`` to display user menu
