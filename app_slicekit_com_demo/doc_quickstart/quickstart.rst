@@ -23,7 +23,7 @@ The following components are required to build ``app_slicekit_com_demo`` applica
 Set Up The Hardare
 ++++++++++++++++++
 
-.. figure:: images/HardwareSetup.png
+.. figure:: images/hardware_setup.png
     :align: center
 
    #. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`. For now, use the SQUARE slot as shown in the figure above
