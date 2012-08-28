@@ -7,6 +7,6 @@ Multi-UART Module Usage Manual
    resource_requirements
    hardware_requirements
    component_description
-   api
+   API
    programming_guide
    example_applications

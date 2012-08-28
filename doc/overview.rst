@@ -30,7 +30,7 @@ Multi-UART component provides the following functionality. All options are dynam
 Slicekit Compatibility (XA-SK-UART8) 
 ------------------------------------
 
-.. figure:: images/Square-Triangle-Star.png
+.. image:: images/Square-Triangle-Star.png
     :align: left
 
 

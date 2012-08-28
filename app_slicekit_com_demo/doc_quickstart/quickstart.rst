@@ -5,7 +5,7 @@ module_multi_uart Com Port Demo: Quick Start Guide
 This application supports UART reconfiguration for various standard baud rates, processes raw data and bulk upload (file based) data received, integrity checks on data and sends back the data.
 
 Build the Application
-++++++++++++++++++++++++
++++++++++++++++++++++
 
 The following components are required to build ``app_slicekit_com_demo`` application or develop sample Multi-UART applications:
     * sc_multi_uart: git://github.com/xcore/sc_multi_uart.git
@@ -20,16 +20,29 @@ The following components are required to build ``app_slicekit_com_demo`` applica
    #. Click **Finish**.
    #. To build, select `app_slicekit_com_demo` in the Project Explorer pane and click the **Build** icon.
 
+Install Demonstration Tools on the Host PC
+++++++++++++++++++++++++++++++++++++++++++
+
+The following tools should be installed on the host system in order to run this application
+
+    * For Win 7: Hercules Setup Utility by HW-Group
+      http://www.hw-group.com/products/hercules/index_en.html
+    * For MAC users: SecureCRT7.0 
+      http://www.vandyke.com/download/securecrt/
+
+
 Set Up The Hardare
 ++++++++++++++++++
 
 .. figure:: images/hardware_setup.png
-    :align: center
+   :align: center
 
-   #. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board as discussed in :ref:`sec_slice_card_connection`. For now, use the SQUARE slot as shown in the figure above
+   Demonstration Hardware Setup
+
+   #. Connect XA-SK-UART8 Slice Card to the XA-SK-UART8 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
    #. Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default
    #. Connect other end of cable to Host (PC) DB-9 connector slot
-   #. Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (see :ref:`sec_demo_tools`) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
+   #. Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (refer to the Hercules or SecureCRT documentation above) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
    #. Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 can now be connected to your PC or Mac USB port.
    #. Switch on the power supply to the Slicekit Core board.
@@ -55,8 +68,10 @@ Do the Demo
    #. Key in ``h`` in order to display user menu. This help is displayed any time during execution by pressing ``Esc`` key followed by ``h`` 
 
 .. figure:: images/help_menu.png
-    :align: center
-   
+   :align: center
+
+   Screenshot of Hyperterminal window
+    
 Next Steps
 ++++++++++
 

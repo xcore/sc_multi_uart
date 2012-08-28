@@ -13,8 +13,8 @@ XA-SK-UART8 Slice Card
 
 **FIXME: Insert link to UART8 SliceCard webpage**
 
-.. figure:: images/XA-SK-UART8.png
-    :align: left
+.. image:: images/XA-SK-UART8.png
+    :align: centre
 
 Demonstration Application
 -------------------------
