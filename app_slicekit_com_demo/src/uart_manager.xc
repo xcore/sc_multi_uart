@@ -174,6 +174,24 @@ static void send_message_to_uart_console(char uart_id, int msg_id)
 	uart_rx_channel_state[uart_id].write_index += len;
 }
 
+static void insert_separator(int base, char msg[], int msg_len[], char separator)
+{
+	//base: 5 for millisec; 2 for sec etc
+	int i, limit;
+
+	if (msg_len[0] >= base)
+		limit = msg_len[0]-base;
+	else
+		limit = 0;
+
+	for (i=msg_len[0];i>limit;i--) {
+		msg[i+1] = msg[i];
+	}
+
+	msg[i] = separator;
+	msg_len[0] += 1;
+}
+
 static void append_to_uart_console_message(char uart_id, int mode, int msg_id, char ?msg[], int ?msg_len[])
 {
 	int len = 0;
@@ -518,6 +536,8 @@ static void uart_tx_hanlder(int uart_id)
 			unsigned int ts;
 			char msg[50] = "";
 			int msg_len[1];
+			char separator = '.';
+			char sep_text[] = " Vs ";
 
 			tmr :> ts;
 			if (ts >  uart_comm_state[uart_id].put_ts)
@@ -530,14 +550,17 @@ static void uart_tx_hanlder(int uart_id)
 			//uart_comm_state[uart_id].put_ts = uart_comm_state[uart_id].put_ts / (100 * 1000);
 
 			msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts, msg, 10, 0);
+			insert_separator(5, msg, msg_len, separator);
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
-			msg[0] = '#';
-			msg_len[0] = 1;
+			string_copy(msg[0], sep_text[0], 4);
+			msg_len[0] = 4;
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
 			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts, msg, 10, 0);
+			insert_separator(5, msg, msg_len, separator);
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
+
 			uart_comm_state[uart_id].pending_file_transfer = 0;
 			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
