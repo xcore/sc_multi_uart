@@ -8,6 +8,8 @@ char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Enter new baud rate for UART \n", 						//IDX_RECONF_MODE_MSG
 		"Restart serial console with new baud rate setting \n", //IDX_RECONF_SUCCESS_MSG
 		"Specify a valid baud rate \n", 						//IDX_RECONF_FAIL_MSG
+		"CRC mismatch for uploaded file, try again\n",			//IDX_CRC_FOR_GET_FILE_MSG
+		"CRC not found, try again\n",							//IDX_CRC_NA_FOR_GET_FILE_MSG
 		"Press any key to fetch file from UART \n", 			//IDX_PUT_FILE_MSG
 		"Buffered file data is lost \n", 						//IDX_FILE_DATA_LOST_MSG
 		"Invalid request\n Use 'get' option before using 'put' option \n",	//IDX_INVALID_PUT_REQUEST
@@ -48,6 +50,24 @@ int itoa(int n, char buf[], int base, int fill)
   }
   reverse_array(buf, i);
   return i;
+}
+
+void insert_separator(int time_base, char time_in_char[], int time_in_char_len[], char separator)
+{
+	//base: 5 for millisec; 2 for sec etc
+	int i, limit;
+
+	if (time_in_char_len[0] >= time_base)
+		limit = time_in_char_len[0]-time_base;
+	else
+		limit = 0;
+
+	for (i=time_in_char_len[0];i>limit;i--) {
+		time_in_char[i+1] = time_in_char[i];
+	}
+
+	time_in_char[i] = separator;
+	time_in_char_len[0] += 1;
 }
 
 int copy_console_message(char *msg, int index)
