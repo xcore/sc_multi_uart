@@ -27,12 +27,7 @@ XCC_FLAGS_Debug = $(XCC_FLAGS)
 XCC_FLAGS_Release = $(XCC_FLAGS)
 
 # The USED_MODULES variable lists other module used by the application. 
-#USED_MODULES = module_xtcp module_ethernet module_locks module_telnet_console module_multi_uart
 USED_MODULES=module_multi_uart module_xc_ptr
-
-# This uses the tcp mac filtering in module_xtcp
-USE_XTCP_MAC_CUSTOM_FILTER=1
-
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure
