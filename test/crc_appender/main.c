@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 			c = CRC_INDICATOR;
 	        /* Write CRC flag to output file */
 			fputc(c, f_output_file);
-			itoa(checksum, crc_array, 10);
+			snprintf(crc_array, 10, "%d", checksum);
 #ifdef DEBUG
 			printf("String checksum Value: %s\n", crc_array);
 #endif //DEBUG
@@ -131,6 +131,5 @@ int main(int argc, char *argv[])
 		printf("Computed checksum Value '%u' is appended at the end of output file %s\n\n", checksum, out_file_name);
     }
 
-	system("pause");
 	return 0;
 }
