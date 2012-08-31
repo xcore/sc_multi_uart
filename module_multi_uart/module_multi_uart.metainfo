@@ -1,0 +1,163 @@
+-------------------------------------------------------------------------------
+-- Descriptive metadata
+-------------------------------------------------------------------------------
+
+componentName = "xSOFTip Multi-UART"
+componentFullName = ""
+alternativeNames = { MUART }
+componentDescription = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design"
+componentVersion = "1v0"
+
+-------------------------------------------------------------------------------
+-- Parameter descriptions.
+-------------------------------------------------------------------------------
+
+configPoints =
+{
+  ClockSource =
+  {
+    short   = "Enable/disable External Clock Source",
+    long    = "Enable external clocking to use standard baud rates e.g. 115200"
+    help    = "Internal clocking will restrict the uarts to baud rates which are derived directly fomr the 100 MHZ internal reference clock.",
+    units   = "",
+    define  = "UART_TX_USE_EXTERNAL_CLOCK",
+    type    = "bool",
+    default = true
+  },
+  txChannels =
+  {
+    short   = "numUartTxChan",
+    long    = "Number of Active UART TX channels",
+    help    = "Defines number of active UARTs (tx). Select 1,2,4 or 8",
+    units   = "",
+    define  = "UART_TX_CHAN_COUNT",
+    type    = "int",
+    max     = 8,
+    min     = 1,
+    default = 8
+  }
+  txBufferSize =
+  {
+    short   = "TX Buffer size",
+    long    = "Size of the transmit buffer in UART word entries",
+    help    = "Must be a power fo 2",
+    type    = "int",
+    units   = "UART Words",
+    define  = "UART_TX_BUF_SIZE",
+    max     = 256,
+    min     = 1,
+    default = 16
+  }
+  txInterFrameBits = 
+  {
+    short   = "number of interframe bits (tx)",
+    long    = ""
+    help    = "n should not make the total number of bits in a UART word exceed 32. Can be set to zero",
+    units   = "bits",
+    type    = "int",
+    define  = "UART_TX_IFB",
+    max     = 28,
+    min     = 0,
+    default = 0
+  }
+  rxChannels =
+  {
+    short   = "numUartRxChan",
+    long    = "Number of Active UART RX channels",
+    help    = "Defines number of active UARTs (rx). Select 1,2,4 or 8",
+    units   = "",
+    type    = "int",
+    define  = "UART_RX_CHAN_COUNT",
+    max     = 8,
+    min     = 1,
+    default = 8
+  }
+}
+
+ports = {
+  p_uart_ref_ext_clk = {
+    short   = "Ext Clk In",
+    long    = "External Clock Source Input",
+    help    = "",
+    width   = 1,
+    define = "PORT_UART_EXT_CLK"
+  },
+  p_uart_tx = {
+    short   = "Uart8TX ",
+    long    = "8 Uart TX Channels on an 8 bit port "
+    help    = "",
+    width   = 1,
+    define = "PORT_UART_TX"
+  }
+  p_uart_rx = {
+    short   = "Uart8RX ",
+    long    = "8 Uart RX Channels on an 8 bit port "
+    help    = "",
+    width   = 1,
+    define = "PORT_UART_RX"
+  }
+}
+
+channels = {
+  c_tx_uart = {
+    short = "TX channel",
+    type  = "streaming",
+    long  = "Channel for the client to send TX data to the 8 Uart TX channels"
+    help  = "",
+  },
+  c_rx_uart = {
+    short = "RX channel",
+    type  = "streaming",
+    long  = "Channel for the client to receive RX data from the 8 Uart RX channels"    
+    help = "",
+  }
+}        
+
+function getConfigStatus()
+  local status = "Trusted Configuration"
+  local issues = {}
+  if swblock.params.ClockSource then
+    
+  end
+  if swblock.params.txChannels != 1 and swblock.params.txChannels != 2 and swblock.params.txChannels != 4 and swblock.params.txChannels == 8 then
+    status = "Invalid Configuration"
+    issues = "Number of uart channels must be 1,2,4 or 8"
+  else
+  if swblock.params.txChannels != 1 and swblock.params.txChannels != 2 and swblock.params.txChannels != 4 and swblock.params.txChannels == 8 then
+    status = "Invalid Configuration"
+    issues = "Number of uart channels must be 1,2,4 or 8"
+  else
+
+  end
+
+   return "Trusted", {}
+  else
+   return "Valid", {}
+  end
+end
+            
+-------------------------------------------------------------------------------
+-- Source generation functions
+-------------------------------------------------------------------------------
+
+generatedCode = {
+  includes = { 
+    "multi_uart_rxtx.h", 
+    "multi_uart_common.h", 
+    "multi_uart_rx.h", 
+    "multi_uart_tx.h" 
+  },
+  globals = [[
+    s_multi_uart_tx_ports uart${swblock.id}_tx_ports = { ${swblock.ports.p_uart_tx} };
+    s_multi_uart_rx_ports uart${swblock.id}_rx_ports = { ${swblock.ports.p_uart_rx} };
+    in port p_uart${swblock.id}_ref_ext_clk = ${swblock.ports.p_uart_ref_ext_clk}
+    clock clk_uart_rx = ${swblock.clocks[0]}
+    clock clk_uart_tx = ${swblock.clocks[1]}
+  ]],
+  body = [[
+    run_multi_uart_rxtx( ${swblock.c_tx_uart}, ${swblock.p_uart_tx}, ${swblock.c_rx_uart}, ${swblock.p_uart_tx), ${swblock.clocks[0]}, ${swblock.p_uart_ref_ext_clk}, ${swblock.clocks[1]);
+  ]]
+}
+
+
+
