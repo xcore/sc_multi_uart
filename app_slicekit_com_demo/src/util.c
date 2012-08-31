@@ -8,8 +8,8 @@ char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Enter new baud rate for UART \r\n", 						//IDX_RECONF_MODE_MSG
 		"Restart serial console with new baud rate setting \r\n", //IDX_RECONF_SUCCESS_MSG
 		"Specify a valid baud rate \r\n", 						//IDX_RECONF_FAIL_MSG
-		"CRC mismatch for uploaded file, try again\r\n",			//IDX_CRC_FOR_GET_FILE_MSG
-		"CRC not found, try again\r\n",							//IDX_CRC_NA_FOR_GET_FILE_MSG
+		"CRC mismatch for uploaded file. Choose one of the menu options \r\n",	//IDX_CRC_MISMATCH_FOR_GET_FILE_MSG
+		"CRC value not found! Run crc_appeder host application on file before uploading \r\n",	//IDX_CRC_NA_FOR_GET_FILE_MSG
 		"Press any key to fetch file from UART \r\n", 			//IDX_PUT_FILE_MSG
 		"Buffered file data is lost \r\n", 						//IDX_FILE_DATA_LOST_MSG
 		"Invalid request\r\n Use 'get' option before using 'put' option \r\n",	//IDX_INVALID_PUT_REQUEST
