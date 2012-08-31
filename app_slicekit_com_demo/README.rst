@@ -1,9 +1,9 @@
-<Add title here>
-================
+Multi-UART PC Com Port Demo Application
+=======================================
 
-:scope: <Put one of Roadmap, Experimental, Early Development or General Use>
-:description: <Add one line here>
-:keywords: <Add comma separated list of keywords>
-:boards: <Add comma separated list of supported boards>
+:scope: General Use
+:description: Usage Example for xSOFTip Multi-UART Module
+:keywords: Multi-UART, UART, demo
+:boards: XA-SK-UART-8
 
-<Add description of software block>
+Demonstration application showing usage of MultiUart module to implement a serial communications with a PC.

@@ -1,7 +1,12 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "&lt;Add one line here&gt;" scope = "&lt;Put one of Roadmap, Experimental, Early Development or General Use&gt;" path = "app_slicekit_com_demo" type = "demoCode" id = "app_slicekit_com_demo" name = "&lt;Add title here&gt;"></component>
+        <component description = "Usage Example for xSOFTip Multi-UART Module" scope = "General Use" path = "app_slicekit_com_demo" type = "demoCode" id = "app_slicekit_com_demo" name = "Multi-UART PC Com Port Demo Application">
+            <board>XA-SK-UART-8</board>
+            <keyword>Multi-UART</keyword>
+            <keyword>UART</keyword>
+            <keyword>demo</keyword>
+        </component>
         <component description = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design" scope = "General Use" path = "module_multi_uart" type = "demoCode" id = "module_multi_uart" name = "XSoftIP Multi-UART Module">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
@@ -12,15 +17,8 @@
         <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
-    <dependency repo = "sc_xtcp">
-        <githash>e3d4fb2dee68bed425ee52da8c64e334d63b9f75</githash>
-        <uri>git://github.com/xcore/sc_xtcp.git</uri>
-    </dependency>
-    <dependency repo = "sc_ethernet">
-        <githash>0ab30f395c48e657d12f96659029661f6c5d8797</githash>
-        <uri>git://github.com/xcore/sc_ethernet.git</uri>
-    </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
+    <exclude_dir>app_multi_uart_demo</exclude_dir>
     <location>https://github.com/xcore/sc_multi_uart.git</location>
     <name>sc_multi_uart</name>
     <maintainer>Srinivas-E</maintainer>
