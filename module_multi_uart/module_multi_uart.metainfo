@@ -34,8 +34,7 @@ configPoints =
     define  = "UART_TX_CHAN_COUNT",
     type    = "int",
     resourceUsageFlags = {"orthogonal"},
-    max     = 8,
-    min     = 1,
+    options = {1,2,4,8}, 
     default = 8
   },
   txBufferSize =
@@ -73,8 +72,7 @@ configPoints =
     type    = "int",
     resourceUsageFlags = {"orthogonal"},
     define  = "UART_RX_CHAN_COUNT",
-    max     = 8,
-    min     = 1,
+    options = {1,2,4,8}, 
     default = 8
   }
 }
@@ -126,18 +124,6 @@ function getConfigStatus()
   if not swblock.params.ClockSource then
     status = "Valid Configuration"  
   end
-  if swblock.params.txChannels ~= 1 and swblock.params.txChannels ~= 2 and swblock.params.txChannels ~= 4 and swblock.params.txChannels == 8 then
-    status = "Invalid Configuration"
-    table.insert(issues, { issue = "Number of uart tx channels must be 1,2,4 or 8", suggestion = "Set txChannels to 1,2,4 or 8"})
-  end
-  if swblock.params.rxChannels ~= 1 and swblock.params.rxChannels ~= 2 and swblock.params.rxChannels ~= 4 and swblock.params.rxChannels == 8 then
-    status = "Invalid Configuration"
-    table.insert(issues, { issues = "Number of uart rx channels must be 1,2,4 or 8", suggestion = "Set txChannels to 1,2,4 or 8"})
-  end
-  if swblock.params.txBufferSize < 1 or swblock.params.txBufferSize > 256 then
-    status = "Invalid Configuration"
-    table.insert(issues, { issues = "TX Buffer size must be between 1 and 256", suggestion = "A typical txBufferSize is about 16 to 64"})
-  end
   if swblock.params.txInterFrameBits > 27 then
     status = "Invalid Configuration"
     table.insert(issues, { issues = "Interframe bits for TX must not exceed: 32 minus character size", suggestion = "For most simple applications this can be left as zero"}) 
@@ -164,7 +150,7 @@ generatedCode = {
     clock clk_uart_tx = ${swblock.clocks[1]}
   ]],
   body = [[
-    run_multi_uart_rxtx( ${swblock.c_tx_uart}, ${swblock.p_uart_tx}, ${swblock.c_rx_uart}, ${swblock.p_uart_tx), ${swblock.clocks[0]}, ${swblock.p_uart_ref_ext_clk}, ${swblock.clocks[1]);
+    run_multi_uart_rxtx( ${swblock.chanends.c_tx_uart}, ${swblock.ports.p_uart_tx}, ${swblock.chanends.c_rx_uart}, ${swblock.ports.p_uart_rx), ${swblock.clocks[0]}, ${swblock.ports.p_uart_ref_ext_clk}, ${swblock.clocks[1]);
   ]]
 }
 

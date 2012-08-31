@@ -11,7 +11,6 @@
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>
-        <component description = "&lt;Add one line here&gt;" scope = "&lt;Put one of Roadmap, Experimental, Early Development or General Use&gt;" path = "app_multi_uart_demo" type = "demoCode" id = "app_multi_uart_demo" name = "&lt;Add title here&gt;"></component>
     </components>
     <dependency repo = "sc_util">
         <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
