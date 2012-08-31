@@ -44,6 +44,8 @@
 	/* Default length of a uart character in bits */
 #define	DEF_CHAR_LEN					8
 #define MAX_BAUD_RATE_INDEX				7
+#define CRC_INDICATOR					'#'
+#define CRC_CHAR_LIMIT					5
 
 /*---------------------------------------------------------------------------
  ports and clocks
@@ -141,23 +143,23 @@ static void init_uart_parameters(void)
  *  \return		0 		on success
  *
  **/
-static int configure_uart_channel(unsigned int channel_id)
+static int configure_uart_channel(unsigned uart_id)
 {
     int chnl_config_status = ERR_CHANNEL_CONFIG;
 
-    chnl_config_status = uart_tx_initialise_channel(uart_channel_config[channel_id].channel_id,
-                                                    uart_channel_config[channel_id].parity,
-                                                    uart_channel_config[channel_id].stop_bits,
-                                                    uart_channel_config[channel_id].polarity,
-                                                    uart_channel_config[channel_id].baud,
-                                                    uart_channel_config[channel_id].char_len);
+    chnl_config_status = uart_tx_initialise_channel(uart_channel_config[uart_id].channel_id,
+                                                    uart_channel_config[uart_id].parity,
+                                                    uart_channel_config[uart_id].stop_bits,
+                                                    uart_channel_config[uart_id].polarity,
+                                                    uart_channel_config[uart_id].baud,
+                                                    uart_channel_config[uart_id].char_len);
 
-    chnl_config_status |= uart_rx_initialise_channel(uart_channel_config[channel_id].channel_id,
-                                                     uart_channel_config[channel_id].parity,
-                                                     uart_channel_config[channel_id].stop_bits,
-                                                     uart_channel_config[channel_id].polarity,
-                                                     uart_channel_config[channel_id].baud,
-                                                     uart_channel_config[channel_id].char_len);
+    chnl_config_status |= uart_rx_initialise_channel(uart_channel_config[uart_id].channel_id,
+                                                     uart_channel_config[uart_id].parity,
+                                                     uart_channel_config[uart_id].stop_bits,
+                                                     uart_channel_config[uart_id].polarity,
+                                                     uart_channel_config[uart_id].baud,
+                                                     uart_channel_config[uart_id].char_len);
     return chnl_config_status;
 }
 
@@ -172,24 +174,6 @@ static void send_message_to_uart_console(unsigned uart_id, int msg_id)
 
 	uart_rx_channel_state[uart_id].buf_depth += len;
 	uart_rx_channel_state[uart_id].write_index += len;
-}
-
-static void insert_separator(int base, char msg[], int msg_len[], char separator)
-{
-	//base: 5 for millisec; 2 for sec etc
-	int i, limit;
-
-	if (msg_len[0] >= base)
-		limit = msg_len[0]-base;
-	else
-		limit = 0;
-
-	for (i=msg_len[0];i>limit;i--) {
-		msg[i+1] = msg[i];
-	}
-
-	msg[i] = separator;
-	msg_len[0] += 1;
 }
 
 static void append_to_uart_console_message(unsigned uart_id, int mode, int msg_id, char ?msg[], int ?msg_len[])
@@ -299,7 +283,7 @@ void send_byte_to_uart_tx(s_uart_rx_channel_fifo &st)
  *
  **/
 #pragma unsafe arrays
-static int re_apply_uart_channel_config(int channel_id,
+static int re_apply_uart_channel_config(unsigned channel_id,
                                         streaming chanend c_tx_uart,
                                         streaming chanend c_rx_uart)
 {
@@ -311,16 +295,8 @@ static int re_apply_uart_channel_config(int channel_id,
     chnl_config_status = configure_uart_channel(channel_id);
     uart_tx_reconf_enable(c_tx_uart);
     uart_rx_reconf_enable(c_rx_uart);
-    /*
-    if(0 != chnl_config_status)
-    {
-        printint(channel_id);
-        printstrln(": Channel reconfig failed");
-    }
-    */
-    //TODO: Send response back on the channel
 
-    return 0;
+    return chnl_config_status;
 }
 
 #pragma unsafe arrays
@@ -359,6 +335,66 @@ static int validate_uart_baud(int baud)
 	return 0;
 }
 
+static int check_crc(s_uart_rx_channel_fifo &uart_state)
+{
+	unsigned crc_val = 0;
+	int iter = 0;
+	int buf_depth = 0;
+	int file_depth = 0;
+	char file_crc_array[CRC_CHAR_LIMIT];
+	int file_crc = 0;
+	int crc_found = 0;
+	int i;
+
+	buf_depth = uart_state.buf_depth;
+	/* Look for CRC Indicator */
+	while ((buf_depth !=0) && (!crc_found) && (iter<CRC_CHAR_LIMIT)) {
+		buf_depth--;
+		iter++;
+		if (uart_state.channel_data[buf_depth] == CRC_INDICATOR) {
+			crc_found = 1;
+			file_depth = buf_depth;
+		}
+	}
+
+	if (crc_found) {
+		//for (int i = 0; i<uart_state.buf_depth;i++) {
+		for (i = 0; i<file_depth;i++) {
+			crc32(crc_val, (unsigned)uart_state.channel_data[uart_state.read_index+i], 0xf);
+			//printintln(uart_state.channel_data[uart_state.read_index+i]);
+		}
+
+		for (i=0;i<uart_state.buf_depth-file_depth+1;i++) { //ignoring CRC flag indiactor
+			file_crc_array[i] = uart_state.channel_data[i+file_depth+1];
+		}
+		file_crc_array[i] = '\0';
+		file_crc = atoi(file_crc_array);
+
+		if (file_crc == crc_val) {
+#ifdef DEBUG
+			printstr("CRC Val: ");
+			printintln(crc_val);
+#endif //DEBUG
+			return 1;
+		}
+		else {
+#ifdef DEBUG
+			printstr("CRC Mismatch: Computed CRC: ");
+			printintln(crc_val);
+			printstr("File CRC: ");
+			printintln(file_crc);
+#endif //DEBUG
+			return 2;
+		}
+	}
+	else {
+#ifdef DEBUG
+		printstrln("CRC Not found!!!");
+#endif	//DEBUG
+		return 3;
+	}
+}
+
 static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 {
 	if ((uart_comm_state[uart_id].pending_file_transfer) && ('p' != uart_cmd)) {
@@ -367,6 +403,12 @@ static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 		send_message_to_uart_console(uart_id, IDX_FILE_DATA_LOST_MSG);
 		uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
 		return 0;
+	}
+	else if ('p' != uart_cmd) {
+		uart_rx_channel_state[uart_id].buf_depth = 0;
+		uart_rx_channel_state[uart_id].read_index = 0;
+		uart_rx_channel_state[uart_id].write_index = 0;
+		return 1;
 	}
 	else
 		return 1;
@@ -456,16 +498,16 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 			baud[iter_index] = uart_char;
 			iter_index++;
 		}
-		else if (0xd == uart_char) { //'Carriage Return' is received
+		else if ((iter_index < 10) && (0xd == uart_char)) { //'Carriage Return' is received
 			int user_baud = 0;
 
 			baud[iter_index] = '\0';
 			user_baud = atoi(baud);
 
 			if (validate_uart_baud(user_baud)) {
-				uart_channel_config[(int)uart_id].baud = user_baud;
+				uart_channel_config[uart_id].baud = user_baud;
 				//send_message_to_uart_console(uart_id, IDX_RECONF_SUCCESS_MSG);
-				re_apply_uart_channel_config((int)uart_id, c_tx_uart, c_rx_uart);
+				re_apply_uart_channel_config(uart_id, c_tx_uart, c_rx_uart);
 				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			}
 			else {
@@ -495,7 +537,8 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 			push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
 		}
 		else {
-			if (1) { //TODO:(check_crc(uart_rx_channel_state[uart_id])) {
+			int ret_value = check_crc(uart_rx_channel_state[uart_id]);
+			if (1 == ret_value) {
 				timer tmr;
 				unsigned int ts;
 
@@ -506,6 +549,16 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 					uart_comm_state[uart_id].get_ts = uart_comm_state[uart_id].get_ts - ts;
 
 				uart_comm_state[uart_id].pending_file_transfer = 1;
+				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+			}
+			else {
+				if (2 == ret_value)
+					send_message_to_uart_console(uart_id, IDX_CRC_MISMATCH_FOR_GET_FILE_MSG);
+				else
+					send_message_to_uart_console(uart_id, IDX_CRC_NA_FOR_GET_FILE_MSG);
+
+				/* Change usage_mode in order to enable tx_handler to send error message to console */
+				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
 				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			}
 		}
