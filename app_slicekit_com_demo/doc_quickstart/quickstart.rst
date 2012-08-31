@@ -1,8 +1,7 @@
 module_multi_uart Com Port Demo: Quick Start Guide
 --------------------------------------------------
 
-``app_slicekit_com_demo`` is intended to showcase module_multi_uart key features and its API usage. 
-This application supports UART reconfiguration for various standard baud rates, processes raw data and bulk upload (file based) data received, integrity checks on data and sends back the data.
+We use the XA-SK-UART8 Multi UART Slice Card together with the xSOFTip multi UART software to create a UART, and send data to and from a PC COM port. This application showcases some of the software key features and serves as an example on how to use its API. This demo features UART reconfiguration for various standard baud rates, receives bulk data via file uploads, and perform integrity checks on data before sending it back to COM port.
 
 Build the Application
 +++++++++++++++++++++
@@ -12,17 +11,13 @@ The following components are required to build ``app_slicekit_com_demo`` applica
     * sc_util: git://github.com/xcore/sc_util.git
     * xcommon: git://github.com/xcore/xcommon.git (Optional)
 
-   #. Download the zipfile packages above.
+   #. Clone the above repositroes or download them as zipfile packages.
    #. Open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and Choose `File` |submenu| `Import`.
    #. Choose `General` |submenu| `Existing Projects into Workspace` and click **Next**.
    #. Click **Browse** next to `Select archive file` and select the first firmware ZIP file.
    #. Click **Finish**.
-   #. Repeat the import process for the remaining zipfiles. 
-   #. To select application to build, select `Makefile` from `sc_multi_uart` folder in the Project Explorer pane and double click to open it in Editor Window.
-   #. Navigate to **XMOS Project Makefile Editor**, `Build Sub-Directories` option; select `Build applications selected below` radio button; select `app_slicekit_com_demo` folder option
-   #. Choose `File` |submenu| and click **Save**.
-   #. To build the selected application, select `sc_multi_uart` folder in the Project Explorer pane and click the **Build** icon.
-   
+   #. Repeat the import process for the remaining zipfiles.
+   #. To build, select `app_slicekit_com_demo` from `sc_multi_uart` folder in the Project Explorer pane and click the **Build** icon.   
 
 Install Demonstration Tools on the Host PC
 ++++++++++++++++++++++++++++++++++++++++++
@@ -38,6 +33,8 @@ The following tools should be installed on the host system in order to run this 
 Set Up The Hardare
 ++++++++++++++++++
 
+   [**FIXME: To add a subsection listing the hardware required, with links to their product pages on XMOS.com]
+
 .. figure:: images/hardware_setup.png
    :align: center
 
@@ -50,15 +47,16 @@ Set Up The Hardare
    #. Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC or Mac USB port.
    #. Switch on the power supply to the Slicekit Core board.
+
+Use the Software
+++++++++++++++++
+
    #. Open the XDE
-   #. Choose *File* |submenu| *Import* |submenu| *C/XC* |submenu| *C/XC Executable*
-   #. Click **Next** and select the new firmware (XE) file (as built in the above section)
-   #. Click **Next** and **Finish**
-   #. A Debug Configurations window is displayed. Click **Close**
    #. Choose *Run* |submenu| *Run Configurations*
    #. Double-click *XCore Application* to create a new configuration
-   #. Browse for the XE file in the *Project* and *C/XC Application* boxes
-   #. Ensure the *XTAG-2* device appears in the `Target:` adapter list 
+   #. In the *Project* field, browse for `app_slicekit_com_demo`
+   #. In the *C/C++ Application* field, browse for the compiled XE file
+   #. Ensure the *XTAG-2* device is selected in the `Target:` adapter list
    #. Click **Run**
 
 Do the Demo

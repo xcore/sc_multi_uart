@@ -31,6 +31,7 @@ constants
 #define RX_CHANNEL_FIFO_LEN			1024
 //:
 #define CONSOLE_MSGS_MAX_MEN		200
+#define	CRC_POLYNOMIAL				0xf
 
 /*---------------------------------------------------------------------------
 typedefs
