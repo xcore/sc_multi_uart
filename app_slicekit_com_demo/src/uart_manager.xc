@@ -45,7 +45,7 @@
 #define	DEF_CHAR_LEN					8
 #define MAX_BAUD_RATE_INDEX				7
 #define CRC_INDICATOR					'#'
-#define CRC_CHAR_LIMIT					5
+#define CRC_CHAR_LIMIT					10
 
 /*---------------------------------------------------------------------------
  ports and clocks
@@ -360,7 +360,7 @@ static int check_crc(s_uart_rx_channel_fifo &uart_state)
 	if (crc_found) {
 		//for (int i = 0; i<uart_state.buf_depth;i++) {
 		for (i = 0; i<file_depth;i++) {
-			crc32(crc_val, (unsigned)uart_state.channel_data[uart_state.read_index+i], 0xf);
+			crc32(crc_val, (unsigned)uart_state.channel_data[uart_state.read_index+i], CRC_POLYNOMIAL);
 			//printintln(uart_state.channel_data[uart_state.read_index+i]);
 		}
 
