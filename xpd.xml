@@ -7,7 +7,7 @@
             <keyword>UART</keyword>
             <keyword>demo</keyword>
         </component>
-        <component description = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design" scope = "General Use" path = "module_multi_uart" type = "demoCode" id = "module_multi_uart" name = "XSoftIP Multi-UART Module">
+        <component name = "XSoftIP Multi-UART Module" buildresults_path = "module_multi_uart/.module_multi_uart.buildresults.xml" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" type = "component" id = "module_multi_uart" description = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>

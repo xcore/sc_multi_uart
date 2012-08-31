@@ -50,93 +50,43 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1/xcore-xmos-elf&quot;' />
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <inputType id = "com.xmos.cdt.xc.compiler.input.27067964" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
                                 <option id = "gnu.c.compiler.option.include.paths.10504706" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.xc.compiler.base.68652290" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.10361820" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.91706312" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.c.compiler.base.30305288" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.30201947" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.49661213" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.cpp.compiler.base.2514630" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.24331509" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.92860620" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.core.assembler.base.47919925" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.81503516" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.16798517" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
 
@@ -279,93 +229,43 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1/xcore-xmos-elf&quot;' />
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <inputType id = "com.xmos.cdt.xc.compiler.input.72156442" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
                                 <option id = "gnu.c.compiler.option.include.paths.154116" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.xc.compiler.base.58944172" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.98698219" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.22475012" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.c.compiler.base.35464463" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.3217463" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.25060318" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.cpp.compiler.base.57562185" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.57490580" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.93974239" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
                             <tool id = "com.xmos.cdt.core.assembler.base.83815607" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
                                 <option id = "gnu.c.compiler.option.include.paths.2624976" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                                 <option id = "com.xmos.c.compiler.option.include.paths.68541735" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-
+                                    
                                 </option>
                             </tool>
 
