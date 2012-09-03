@@ -12,6 +12,8 @@
             <keyword>UART</keyword>
         </component>
     </components>
+    <doc_dir>module_multi_uart/doc</doc_dir>
+    <doc_dir>app_slicekit_com_demo/doc_quickstart</doc_dir>
     <dependency repo = "sc_util">
         <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
         <uri>git@github.com:xcore/sc_util</uri>
