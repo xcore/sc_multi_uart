@@ -12,7 +12,7 @@
             <keyword>UART</keyword>
         </component>
     </components>
-    <docdir>module_multi_uart/doc</docdir>
+    <docdir>doc</docdir>
     <docdir>app_slicekit_com_demo/doc_quickstart</docdir>
     <dependency repo = "sc_util">
         <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
