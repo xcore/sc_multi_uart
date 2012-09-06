@@ -4,7 +4,7 @@ Evaluation Platforms
 Recommended Hardware
 --------------------
 
-This component may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
+This module may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
 
    * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-UART8 plus XA-SK-ATAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor), OR
 
