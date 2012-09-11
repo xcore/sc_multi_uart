@@ -91,14 +91,14 @@ ports = {
     short   = "Uart8TX ",
     long    = "8 Uart TX Channels on an 8 bit port ",
     help    = "",
-    width   = 1,
+    width   = 8,
     define = "PORT_UART_TX"
   },
   p_uart_rx = {
     short   = "Uart8RX ",
     long    = "8 Uart RX Channels on an 8 bit port ",
     help    = "",
-    width   = 1,
+    width   = 8,
     define = "PORT_UART_RX"
   }
 }
@@ -145,14 +145,17 @@ generatedCode = {
   globals = [[
     s_multi_uart_tx_ports uart${swblock.id}_tx_ports = { ${swblock.ports.p_uart_tx} };
     s_multi_uart_rx_ports uart${swblock.id}_rx_ports = { ${swblock.ports.p_uart_rx} };
-    in port p_uart${swblock.id}_ref_ext_clk = ${swblock.ports.p_uart_ref_ext_clk}
-    clock clk_uart_rx = ${swblock.clocks[0]}
-    clock clk_uart_tx = ${swblock.clocks[1]}
+    in port p_uart${swblock.id}_ref_ext_clk = ${swblock.ports.p_uart_ref_ext_clk};
+    clock clk_uart_rx = ${swblock.clocks[0]};
+    clock clk_uart_tx = ${swblock.clocks[1]};
   ]],
   body = [[
-    run_multi_uart_rxtx( ${swblock.chanends.c_tx_uart}, ${swblock.ports.p_uart_tx}, ${swblock.chanends.c_rx_uart}, ${swblock.ports.p_uart_rx), ${swblock.clocks[0]}, ${swblock.ports.p_uart_ref_ext_clk}, ${swblock.clocks[1]);
+    run_multi_uart_rxtx( ${swblock.chanends.c_tx_uart}, uart${swblock.id}_tx_ports, ${swblock.chanends.c_rx_uart}, uart${swblock.id}_rx_ports, clk_uart_rx,  p_uart${swblock.id}_ref_ext_clk, clk_uart_tx);
   ]]
 }
 
-
+files = {
+  ["module_multi_uart/multi_uart_rx_conf_example.h"] = "src/multi_uart_rx_conf.h",
+  ["module_multi_uart/multi_uart_tx_conf_example.h"] = "src/multi_uart_tx_conf.h"
+}
 
