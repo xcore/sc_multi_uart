@@ -2,7 +2,7 @@
 -- Descriptive metadata
 -------------------------------------------------------------------------------
 
-componentName = "xSOFTip Multi-UART"
+componentName = "Multi-UART"
 componentFullName = ""
 alternativeNames = { }
 componentDescription = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design"
