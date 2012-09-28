@@ -4,7 +4,7 @@
     <storageModule moduleId="org.eclipse.cdt.core.settings">
               
         <cconfiguration id="com.xmos.cdt.toolchain.90765143">
-            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.90765143" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.90765143" moduleId="org.eclipse.cdt.core.settings" name="Default">
                 <externalSettings />
                 <extensions>
                     <extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser" />
@@ -17,7 +17,7 @@
                     <target name="all" path=""
 targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                         <buildCommand>xmake</buildCommand>
-                        <buildArguments>CONFIG=Debug</buildArguments>
+                        <buildArguments></buildArguments>
                         <buildTarget>all</buildTarget>
                         <stopOnError>true</stopOnError>
                         <useDefaultCommand>true</useDefaultCommand>
@@ -26,7 +26,7 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                     <target name="clean" path=""
 targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                         <buildCommand>xmake</buildCommand>
-                        <buildArguments>CONFIG=Debug</buildArguments>
+                        <buildArguments></buildArguments>
                         <buildTarget>clean</buildTarget>
                         <stopOnError>true</stopOnError>
                         <useDefaultCommand>true</useDefaultCommand>
@@ -35,133 +35,488 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                 </buildTargets>
             </storageModule>
             <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-                <configuration buildProperties="" description="" id="com.xmos.cdt.toolchain.90765143" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+                <configuration buildProperties="" description="" id="com.xmos.cdt.toolchain.90765143" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
                     <folderInfo id="com.xmos.cdt.toolchain.90765143.1127281840" name="/" resourcePath="">
                         <toolChain id = "com.xmos.cdt.toolchain.80794557" name="com.xmos.cdt.toolchain" superClass="com.xmos.cdt.toolchain">
                             <targetPlatform archList="all" binaryParser="com.xmos.cdt.core.XEBinaryParser" id = "com.xmos.cdt.core.platform.37202454" isAbstract="false" osList="linux,win32,macosx" superClass="com.xmos.cdt.core.platform" />
-                            <builder arguments="CONFIG=Debug" id = "com.xmos.cdt.builder.base.8361777" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
+                            <builder arguments="" id = "com.xmos.cdt.builder.base.8361777" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
                                 <outputEntries>
-                                    <entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="bin/Debug" />
+                                    <entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="bin" />
                                 </outputEntries>
                             </builder>
                             <tool id = "com.xmos.cdt.xc.compiler.66159867" name="com.xmos.cdt.xc.compiler" superClass="com.xmos.cdt.xc.compiler">
-                                <option id = "com.xmos.c.compiler.option.include.paths.77485525" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+	<option id = "com.xmos.c.compiler.option.defined.symbols.77485525" name="com.xmos.c.compiler.option.defined.symbols" superClass="com.xmos.c.compiler.option.defined.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__SHRT_MAX__=32767"/>
+									<listOptionValue builtIn="false" value="__SCHAR_MAX__=127"/>
+									<listOptionValue builtIn="false" value="__SIZE_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__WCHAR_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__STDC_HOSTED__=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_YEAR=11"/>
+									<listOptionValue builtIn="false" value="__PTRDIFF_TYPE__=int"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MAJOR=1111"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MINOR=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MONTH=11"/>
+									<listOptionValue builtIn="false" value="__CHAR_UNSIGNED__=1"/>
+									<listOptionValue builtIn="false" value="__MCPP=2"/>
+									<listOptionValue builtIn="false" value="__XC__=1"/>
+									<listOptionValue builtIn="false" value="__XS1B__=1"/>
+									<listOptionValue builtIn="false" value="__INT_MAX__=2147483647"/>
+									<listOptionValue builtIn="false" value="__LONG_MAX__=2147483647L"/>
+									<listOptionValue builtIn="false" value="__STDC__=1"/>
+									<listOptionValue builtIn="false" value="__GNUC__=4"/>
+									<listOptionValue builtIn="false" value="__GNUC_MINOR__=2"/>
+									<listOptionValue builtIn="false" value="__GNUC_PATCHLEVEL__=1"/>
+									<listOptionValue builtIn="false" value="__llvm__=1"/>
+									<listOptionValue builtIn="false" value="__WINT_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__INTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__UINTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__GXX_ABI_VERSION=1002"/>
+									<listOptionValue builtIn="false" value="__LONG_LONG_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__WCHAR_MAX__=255U"/>
+									<listOptionValue builtIn="false" value="__CHAR_BIT__=8"/>
+									<listOptionValue builtIn="false" value="__INTMAX_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__FLT_EVAL_METHOD__=0"/>
+									<listOptionValue builtIn="false" value="__DEC_EVAL_METHOD__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_RADIX__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_MANT_DIG__=24"/>
+									<listOptionValue builtIn="false" value="__FLT_DIG__=6"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_EXP__=(-125)"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_10_EXP__=(-37)"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_EXP__=128"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_10_EXP__=38"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX__=3.40282347e+38F"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN__=1.17549435e-38F"/>
+									<listOptionValue builtIn="false" value="__FLT_EPSILON__=1.19209290e-7F"/>
+									<listOptionValue builtIn="false" value="__FLT_DENORM_MIN__=1.40129846e-45F"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__DBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX__=1.7976931348623157e+308"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN__=2.2250738585072014e-308"/>
+									<listOptionValue builtIn="false" value="__DBL_EPSILON__=2.2204460492503131e-16"/>
+									<listOptionValue builtIn="false" value="__DBL_DENORM_MIN__=4.9406564584124654e-324"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__LDBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DECIMAL_DIG__=17"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX__=1.7976931348623157e+308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN__=2.2250738585072014e-308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_EPSILON__=2.2204460492503131e-16L"/>
+									<listOptionValue builtIn="false" value="__LDBL_DENORM_MIN__=4.9406564584124654e-324L"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DEC32_MANT_DIG__=7"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN_EXP__=(-95)"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX_EXP__=96"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN__=1E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX__=9.999999E96DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_EPSILON__=1E-6DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_DEN__=0.000001E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC64_MANT_DIG__=16"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN_EXP__=(-383)"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX_EXP__=384"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN__=1E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX__=9.999999999999999E384DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_EPSILON__=1E-15DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_DEN__=0.000000000000001E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC128_MANT_DIG__=34"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN_EXP__=(-6143)"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX_EXP__=6144"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN__=1E-6143DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX__=9.999999999999999999999999999999999E6144DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_EPSILON__=1E-33DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_DEN__=0.000000000000000000000000000000001E-6143DL"/>
+									<listOptionValue builtIn="false" value="__REGISTER_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__USER_LABEL_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__VERSION__=&quot;4.2.1"/>
+									<listOptionValue builtIn="false" value="__GNUC_GNU_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__BLOCKS__=1"/>
+									<listOptionValue builtIn="false" value="__NO_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__FINITE_MATH_ONLY__=0"/>
+									<listOptionValue builtIn="false" value="__ELF__=1"/>
+									<listOptionValue builtIn="false" value="__XCC_HAVE_FLOAT__=1"/>
+									<listOptionValue builtIn="false" value="__cplusplus=1"/>
+									<listOptionValue builtIn="false" value="__GNUG__=4"/>
+									<listOptionValue builtIn="false" value="__GXX_WEAK__=1"/>
+									<listOptionValue builtIn="false" value="__DEPRECATED=1"/>
+									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
+									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
+								</option>
+
+                                <option id = "com.xmos.c.compiler.option.include.paths.89381831" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1/xcore-xmos-elf&quot;' />
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
-                                <inputType id = "com.xmos.cdt.xc.compiler.input.89381831" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
-                                <option id = "gnu.c.compiler.option.include.paths.14342673" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                <inputType id = "com.xmos.cdt.xc.compiler.input.14342673" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
+                                <option id = "gnu.c.compiler.option.include.paths.70418141" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.xc.compiler.base.70418141" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.11933789" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.99254010" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.c.compiler.base.15904382" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.75454809" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.183256" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.cpp.compiler.base.39738808" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.98261801" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.95415987" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
 
                                 </option>
                             </tool>
-                            <tool id = "com.xmos.cdt.core.assembler.base.88184093" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.91052713" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                            <tool id = "com.xmos.cdt.xc.compiler.base.11933789" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.99254010" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.32335790" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                <option id = "com.xmos.c.compiler.option.include.paths.15904382" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.c.compiler.base.75454809" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.183256" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.39738808" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.cpp.compiler.base.98261801" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.95415987" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.88184093" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.core.assembler.base.91052713" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.32335790" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.77988867" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
                             </tool>
 
                         </toolChain>
                     </folderInfo>
+                    <sourceEntries>
+                        <entry excluding=".build_*" flags="VALUE_WORKSPACE_PATH|RESOLVED"
+                    kind="sourcePath" name="" />
+                    </sourceEntries>
                 </configuration>
             </storageModule>
             <storageModule moduleId="scannerConfiguration">
@@ -252,8 +607,612 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
             <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings" />
         </cconfiguration>
 
-        <cconfiguration id="com.xmos.cdt.toolchain.77988867">
-            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.77988867" moduleId="org.eclipse.cdt.core.settings" name="Release">
+        <cconfiguration id="com.xmos.cdt.toolchain.17736666">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.17736666" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+                <externalSettings />
+                <extensions>
+                    <extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser" />
+                    <extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+                </extensions>
+            </storageModule>
+            <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+                <buildTargets>
+                    <target name="all" path=""
+targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+                        <buildCommand>xmake</buildCommand>
+                        <buildArguments>CONFIG=Debug</buildArguments>
+                        <buildTarget>all</buildTarget>
+                        <stopOnError>true</stopOnError>
+                        <useDefaultCommand>true</useDefaultCommand>
+                        <runAllBuilders>true</runAllBuilders>
+                    </target>
+                    <target name="clean" path=""
+targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+                        <buildCommand>xmake</buildCommand>
+                        <buildArguments>CONFIG=Debug</buildArguments>
+                        <buildTarget>clean</buildTarget>
+                        <stopOnError>true</stopOnError>
+                        <useDefaultCommand>true</useDefaultCommand>
+                        <runAllBuilders>true</runAllBuilders>
+                    </target>
+                </buildTargets>
+            </storageModule>
+            <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+                <configuration buildProperties="" description="" id="com.xmos.cdt.toolchain.17736666" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+                    <folderInfo id="com.xmos.cdt.toolchain.17736666.1127281840" name="/" resourcePath="">
+                        <toolChain id = "com.xmos.cdt.toolchain.86507549" name="com.xmos.cdt.toolchain" superClass="com.xmos.cdt.toolchain">
+                            <targetPlatform archList="all" binaryParser="com.xmos.cdt.core.XEBinaryParser" id = "com.xmos.cdt.core.platform.38653870" isAbstract="false" osList="linux,win32,macosx" superClass="com.xmos.cdt.core.platform" />
+                            <builder arguments="CONFIG=Debug" id = "com.xmos.cdt.builder.base.63483259" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
+                                <outputEntries>
+                                    <entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="bin/Debug" />
+                                </outputEntries>
+                            </builder>
+                            <tool id = "com.xmos.cdt.xc.compiler.31276485" name="com.xmos.cdt.xc.compiler" superClass="com.xmos.cdt.xc.compiler">
+	<option id = "com.xmos.c.compiler.option.defined.symbols.28801889" name="com.xmos.c.compiler.option.defined.symbols" superClass="com.xmos.c.compiler.option.defined.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__SHRT_MAX__=32767"/>
+									<listOptionValue builtIn="false" value="__SCHAR_MAX__=127"/>
+									<listOptionValue builtIn="false" value="__SIZE_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__WCHAR_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__STDC_HOSTED__=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_YEAR=11"/>
+									<listOptionValue builtIn="false" value="__PTRDIFF_TYPE__=int"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MAJOR=1111"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MINOR=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MONTH=11"/>
+									<listOptionValue builtIn="false" value="__CHAR_UNSIGNED__=1"/>
+									<listOptionValue builtIn="false" value="__MCPP=2"/>
+									<listOptionValue builtIn="false" value="__XC__=1"/>
+									<listOptionValue builtIn="false" value="__XS1B__=1"/>
+									<listOptionValue builtIn="false" value="__INT_MAX__=2147483647"/>
+									<listOptionValue builtIn="false" value="__LONG_MAX__=2147483647L"/>
+									<listOptionValue builtIn="false" value="__STDC__=1"/>
+									<listOptionValue builtIn="false" value="__GNUC__=4"/>
+									<listOptionValue builtIn="false" value="__GNUC_MINOR__=2"/>
+									<listOptionValue builtIn="false" value="__GNUC_PATCHLEVEL__=1"/>
+									<listOptionValue builtIn="false" value="__llvm__=1"/>
+									<listOptionValue builtIn="false" value="__WINT_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__INTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__UINTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__GXX_ABI_VERSION=1002"/>
+									<listOptionValue builtIn="false" value="__LONG_LONG_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__WCHAR_MAX__=255U"/>
+									<listOptionValue builtIn="false" value="__CHAR_BIT__=8"/>
+									<listOptionValue builtIn="false" value="__INTMAX_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__FLT_EVAL_METHOD__=0"/>
+									<listOptionValue builtIn="false" value="__DEC_EVAL_METHOD__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_RADIX__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_MANT_DIG__=24"/>
+									<listOptionValue builtIn="false" value="__FLT_DIG__=6"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_EXP__=(-125)"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_10_EXP__=(-37)"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_EXP__=128"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_10_EXP__=38"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX__=3.40282347e+38F"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN__=1.17549435e-38F"/>
+									<listOptionValue builtIn="false" value="__FLT_EPSILON__=1.19209290e-7F"/>
+									<listOptionValue builtIn="false" value="__FLT_DENORM_MIN__=1.40129846e-45F"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__DBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX__=1.7976931348623157e+308"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN__=2.2250738585072014e-308"/>
+									<listOptionValue builtIn="false" value="__DBL_EPSILON__=2.2204460492503131e-16"/>
+									<listOptionValue builtIn="false" value="__DBL_DENORM_MIN__=4.9406564584124654e-324"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__LDBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DECIMAL_DIG__=17"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX__=1.7976931348623157e+308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN__=2.2250738585072014e-308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_EPSILON__=2.2204460492503131e-16L"/>
+									<listOptionValue builtIn="false" value="__LDBL_DENORM_MIN__=4.9406564584124654e-324L"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DEC32_MANT_DIG__=7"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN_EXP__=(-95)"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX_EXP__=96"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN__=1E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX__=9.999999E96DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_EPSILON__=1E-6DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_DEN__=0.000001E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC64_MANT_DIG__=16"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN_EXP__=(-383)"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX_EXP__=384"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN__=1E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX__=9.999999999999999E384DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_EPSILON__=1E-15DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_DEN__=0.000000000000001E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC128_MANT_DIG__=34"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN_EXP__=(-6143)"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX_EXP__=6144"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN__=1E-6143DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX__=9.999999999999999999999999999999999E6144DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_EPSILON__=1E-33DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_DEN__=0.000000000000000000000000000000001E-6143DL"/>
+									<listOptionValue builtIn="false" value="__REGISTER_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__USER_LABEL_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__VERSION__=&quot;4.2.1"/>
+									<listOptionValue builtIn="false" value="__GNUC_GNU_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__BLOCKS__=1"/>
+									<listOptionValue builtIn="false" value="__NO_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__FINITE_MATH_ONLY__=0"/>
+									<listOptionValue builtIn="false" value="__ELF__=1"/>
+									<listOptionValue builtIn="false" value="__XCC_HAVE_FLOAT__=1"/>
+									<listOptionValue builtIn="false" value="__cplusplus=1"/>
+									<listOptionValue builtIn="false" value="__GNUG__=4"/>
+									<listOptionValue builtIn="false" value="__GXX_WEAK__=1"/>
+									<listOptionValue builtIn="false" value="__DEPRECATED=1"/>
+									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
+									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
+								</option>
+
+                                <option id = "com.xmos.c.compiler.option.include.paths.47244694" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1/xcore-xmos-elf&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <inputType id = "com.xmos.cdt.xc.compiler.input.28256341" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
+                                <option id = "gnu.c.compiler.option.include.paths.86173675" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.xc.compiler.base.82956869" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.54680095" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.14757905" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.c.compiler.base.50807504" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.77826246" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.81761470" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.cpp.compiler.base.43191956" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.47818613" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.17864395" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.core.assembler.base.25571171" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.20173531" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.44009663" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+
+                        </toolChain>
+                    </folderInfo>
+                    <sourceEntries>
+                        <entry excluding=".build_*" flags="VALUE_WORKSPACE_PATH|RESOLVED"
+                    kind="sourcePath" name="" />
+                    </sourceEntries>
+                </configuration>
+            </storageModule>
+            <storageModule moduleId="scannerConfiguration">
+                <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="" />
+                <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="makefileGenerator">
+                        <runAction arguments="-E -P -v -dD" command="" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments='-c &apos;gcc -E -P -v -dD &quot;${plugin_state_location}/${specs_file}&quot;&apos;' command="sh" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments='-c &apos;g++ -E -P -v -dD &quot;${plugin_state_location}/specs.cpp&quot;&apos;' command="sh" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+                <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+                    <buildOutputProvider>
+                        <openAction enabled="true" filePath="" />
+                        <parser enabled="true" />
+                    </buildOutputProvider>
+                    <scannerInfoProvider id="specsFile">
+                        <runAction arguments='-c &apos;gcc -E -P -v -dD &quot;${plugin_state_location}/specs.c&quot;&apos;' command="sh" useDefault="true" />
+                        <parser enabled="true" />
+                    </scannerInfoProvider>
+                </profile>
+            </storageModule>
+            <storageModule moduleId="org.eclipse.cdt.core.externalSettings" />
+            <storageModule moduleId="org.eclipse.cdt.core.language.mapping" />
+            <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings" />
+        </cconfiguration>
+
+        <cconfiguration id="com.xmos.cdt.toolchain.27249686">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.27249686" moduleId="org.eclipse.cdt.core.settings" name="Release">
                 <externalSettings />
                 <extensions>
                     <extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser" />
@@ -284,133 +1243,488 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
                 </buildTargets>
             </storageModule>
             <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-                <configuration buildProperties="" description="" id="com.xmos.cdt.toolchain.77988867" name="Release" parent="org.eclipse.cdt.build.core.emptycfg">
-                    <folderInfo id="com.xmos.cdt.toolchain.77988867.1127281840" name="/" resourcePath="">
-                        <toolChain id = "com.xmos.cdt.toolchain.17736665" name="com.xmos.cdt.toolchain" superClass="com.xmos.cdt.toolchain">
-                            <targetPlatform archList="all" binaryParser="com.xmos.cdt.core.XEBinaryParser" id = "com.xmos.cdt.core.platform.86507549" isAbstract="false" osList="linux,win32,macosx" superClass="com.xmos.cdt.core.platform" />
-                            <builder arguments="CONFIG=Release" id = "com.xmos.cdt.builder.base.38653870" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
+                <configuration buildProperties="" description="" id="com.xmos.cdt.toolchain.27249686" name="Release" parent="org.eclipse.cdt.build.core.emptycfg">
+                    <folderInfo id="com.xmos.cdt.toolchain.27249686.1127281840" name="/" resourcePath="">
+                        <toolChain id = "com.xmos.cdt.toolchain.79047742" name="com.xmos.cdt.toolchain" superClass="com.xmos.cdt.toolchain">
+                            <targetPlatform archList="all" binaryParser="com.xmos.cdt.core.XEBinaryParser" id = "com.xmos.cdt.core.platform.32891213" isAbstract="false" osList="linux,win32,macosx" superClass="com.xmos.cdt.core.platform" />
+                            <builder arguments="CONFIG=Release" id = "com.xmos.cdt.builder.base.93113661" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
                                 <outputEntries>
                                     <entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="bin/Release" />
                                 </outputEntries>
                             </builder>
-                            <tool id = "com.xmos.cdt.xc.compiler.63483259" name="com.xmos.cdt.xc.compiler" superClass="com.xmos.cdt.xc.compiler">
-                                <option id = "com.xmos.c.compiler.option.include.paths.31276485" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+                            <tool id = "com.xmos.cdt.xc.compiler.38332382" name="com.xmos.cdt.xc.compiler" superClass="com.xmos.cdt.xc.compiler">
+	<option id = "com.xmos.c.compiler.option.defined.symbols.8526172" name="com.xmos.c.compiler.option.defined.symbols" superClass="com.xmos.c.compiler.option.defined.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__SHRT_MAX__=32767"/>
+									<listOptionValue builtIn="false" value="__SCHAR_MAX__=127"/>
+									<listOptionValue builtIn="false" value="__SIZE_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__WCHAR_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__STDC_HOSTED__=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_YEAR=11"/>
+									<listOptionValue builtIn="false" value="__PTRDIFF_TYPE__=int"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MAJOR=1111"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MINOR=1"/>
+									<listOptionValue builtIn="false" value="XCC_VERSION_MONTH=11"/>
+									<listOptionValue builtIn="false" value="__CHAR_UNSIGNED__=1"/>
+									<listOptionValue builtIn="false" value="__MCPP=2"/>
+									<listOptionValue builtIn="false" value="__XC__=1"/>
+									<listOptionValue builtIn="false" value="__XS1B__=1"/>
+									<listOptionValue builtIn="false" value="__INT_MAX__=2147483647"/>
+									<listOptionValue builtIn="false" value="__LONG_MAX__=2147483647L"/>
+									<listOptionValue builtIn="false" value="__STDC__=1"/>
+									<listOptionValue builtIn="false" value="__GNUC__=4"/>
+									<listOptionValue builtIn="false" value="__GNUC_MINOR__=2"/>
+									<listOptionValue builtIn="false" value="__GNUC_PATCHLEVEL__=1"/>
+									<listOptionValue builtIn="false" value="__llvm__=1"/>
+									<listOptionValue builtIn="false" value="__WINT_TYPE__=unsigned"/>
+									<listOptionValue builtIn="false" value="__INTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__UINTMAX_TYPE__=long"/>
+									<listOptionValue builtIn="false" value="__GXX_ABI_VERSION=1002"/>
+									<listOptionValue builtIn="false" value="__LONG_LONG_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__WCHAR_MAX__=255U"/>
+									<listOptionValue builtIn="false" value="__CHAR_BIT__=8"/>
+									<listOptionValue builtIn="false" value="__INTMAX_MAX__=9223372036854775807LL"/>
+									<listOptionValue builtIn="false" value="__FLT_EVAL_METHOD__=0"/>
+									<listOptionValue builtIn="false" value="__DEC_EVAL_METHOD__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_RADIX__=2"/>
+									<listOptionValue builtIn="false" value="__FLT_MANT_DIG__=24"/>
+									<listOptionValue builtIn="false" value="__FLT_DIG__=6"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_EXP__=(-125)"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN_10_EXP__=(-37)"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_EXP__=128"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX_10_EXP__=38"/>
+									<listOptionValue builtIn="false" value="__FLT_MAX__=3.40282347e+38F"/>
+									<listOptionValue builtIn="false" value="__FLT_MIN__=1.17549435e-38F"/>
+									<listOptionValue builtIn="false" value="__FLT_EPSILON__=1.19209290e-7F"/>
+									<listOptionValue builtIn="false" value="__FLT_DENORM_MIN__=1.40129846e-45F"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__FLT_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__DBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DBL_MAX__=1.7976931348623157e+308"/>
+									<listOptionValue builtIn="false" value="__DBL_MIN__=2.2250738585072014e-308"/>
+									<listOptionValue builtIn="false" value="__DBL_EPSILON__=2.2204460492503131e-16"/>
+									<listOptionValue builtIn="false" value="__DBL_DENORM_MIN__=4.9406564584124654e-324"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_MANT_DIG__=53"/>
+									<listOptionValue builtIn="false" value="__LDBL_DIG__=15"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_EXP__=(-1021)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN_10_EXP__=(-307)"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_EXP__=1024"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX_10_EXP__=308"/>
+									<listOptionValue builtIn="false" value="__DECIMAL_DIG__=17"/>
+									<listOptionValue builtIn="false" value="__LDBL_MAX__=1.7976931348623157e+308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_MIN__=2.2250738585072014e-308L"/>
+									<listOptionValue builtIn="false" value="__LDBL_EPSILON__=2.2204460492503131e-16L"/>
+									<listOptionValue builtIn="false" value="__LDBL_DENORM_MIN__=4.9406564584124654e-324L"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_DENORM__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_INFINITY__=1"/>
+									<listOptionValue builtIn="false" value="__LDBL_HAS_QUIET_NAN__=1"/>
+									<listOptionValue builtIn="false" value="__DEC32_MANT_DIG__=7"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN_EXP__=(-95)"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX_EXP__=96"/>
+									<listOptionValue builtIn="false" value="__DEC32_MIN__=1E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_MAX__=9.999999E96DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_EPSILON__=1E-6DF"/>
+									<listOptionValue builtIn="false" value="__DEC32_DEN__=0.000001E-95DF"/>
+									<listOptionValue builtIn="false" value="__DEC64_MANT_DIG__=16"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN_EXP__=(-383)"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX_EXP__=384"/>
+									<listOptionValue builtIn="false" value="__DEC64_MIN__=1E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_MAX__=9.999999999999999E384DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_EPSILON__=1E-15DD"/>
+									<listOptionValue builtIn="false" value="__DEC64_DEN__=0.000000000000001E-383DD"/>
+									<listOptionValue builtIn="false" value="__DEC128_MANT_DIG__=34"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN_EXP__=(-6143)"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX_EXP__=6144"/>
+									<listOptionValue builtIn="false" value="__DEC128_MIN__=1E-6143DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_MAX__=9.999999999999999999999999999999999E6144DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_EPSILON__=1E-33DL"/>
+									<listOptionValue builtIn="false" value="__DEC128_DEN__=0.000000000000000000000000000000001E-6143DL"/>
+									<listOptionValue builtIn="false" value="__REGISTER_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__USER_LABEL_PREFIX__"/>
+									<listOptionValue builtIn="false" value="__VERSION__=&quot;4.2.1"/>
+									<listOptionValue builtIn="false" value="__GNUC_GNU_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__BLOCKS__=1"/>
+									<listOptionValue builtIn="false" value="__NO_INLINE__=1"/>
+									<listOptionValue builtIn="false" value="__FINITE_MATH_ONLY__=0"/>
+									<listOptionValue builtIn="false" value="__ELF__=1"/>
+									<listOptionValue builtIn="false" value="__XCC_HAVE_FLOAT__=1"/>
+									<listOptionValue builtIn="false" value="__cplusplus=1"/>
+									<listOptionValue builtIn="false" value="__GNUG__=4"/>
+									<listOptionValue builtIn="false" value="__GXX_WEAK__=1"/>
+									<listOptionValue builtIn="false" value="__DEPRECATED=1"/>
+									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
+									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
+								</option>
+
+                                <option id = "com.xmos.c.compiler.option.include.paths.62146329" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include/c++/4.2.1/xcore-xmos-elf&quot;' />
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
-                                <inputType id = "com.xmos.cdt.xc.compiler.input.28801889" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
-                                <option id = "gnu.c.compiler.option.include.paths.47244694" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                <inputType id = "com.xmos.cdt.xc.compiler.input.36584642" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
+                                <option id = "gnu.c.compiler.option.include.paths.63500915" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.xc.compiler.base.28256341" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.86173675" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.82956869" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.c.compiler.base.54680095" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.14757905" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.50807504" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                            </tool>
-                            <tool id = "com.xmos.cdt.cpp.compiler.base.77826246" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.81761470" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
-
-                                </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.43191956" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
 
                                 </option>
                             </tool>
-                            <tool id = "com.xmos.cdt.core.assembler.base.47818613" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
-                                <option id = "gnu.c.compiler.option.include.paths.17864395" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                            <tool id = "com.xmos.cdt.xc.compiler.base.89350376" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.70901690" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
-                                <option id = "com.xmos.c.compiler.option.include.paths.25571171" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+                                <option id = "com.xmos.c.compiler.option.include.paths.21188341" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.c.compiler.base.36757710" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.32899222" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.73347099" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.cpp.compiler.base.16990948" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.25004007" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.30678285" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                            </tool>
+                            <tool id = "com.xmos.cdt.core.assembler.base.63464954" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
+                                <option id = "gnu.c.compiler.option.include.paths.86105699" valueType="includePath" superClass="gnu.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
+
+                                </option>
+                                <option id = "com.xmos.c.compiler.option.include.paths.9164217" valueType="includePath" superClass="com.xmos.c.compiler.option.include.paths">
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.settings}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src/rx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin/Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/bin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Release/fake_inc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xc_ptr/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_multi_uart}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_slicekit_com_demo/.build_Debug/m_xc_ptr}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/tx}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_multi_uart/src/rx}&quot;' />
 
                                 </option>
                             </tool>
 
                         </toolChain>
                     </folderInfo>
+                    <sourceEntries>
+                        <entry excluding=".build_*" flags="VALUE_WORKSPACE_PATH|RESOLVED"
+                    kind="sourcePath" name="" />
+                    </sourceEntries>
                 </configuration>
             </storageModule>
             <storageModule moduleId="scannerConfiguration">
@@ -503,6 +1817,6 @@ targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 
     </storageModule>
     <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-        <project id = "app_slicekit_com_demo.null.20173531" name="app_slicekit_com_demo" />
+        <project id = "app_slicekit_com_demo.null.26368643" name="app_slicekit_com_demo" />
     </storageModule>
 </cproject>

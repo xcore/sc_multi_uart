@@ -1,24 +1,26 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "Usage Example for xSOFTip Multi-UART Module" scope = "General Use" path = "app_slicekit_com_demo" type = "demoCode" id = "app_slicekit_com_demo" name = "Multi-UART PC Com Port Demo Application">
+        <component description = "Usage Example for xSOFTip Multi-UART Module" type = "demoCode" scope = "Example" path = "app_slicekit_com_demo" local = "false" id = "app_slicekit_com_demo" name = "Multi-UART PC Com Port Demo Application">
             <board>XA-SK-UART-8</board>
+            <componentDependency>module_multi_uart</componentDependency>
+            <componentDependency>module_xc_ptr</componentDependency>
             <keyword>Multi-UART</keyword>
             <keyword>UART</keyword>
             <keyword>demo</keyword>
         </component>
-        <component name = "XSoftIP Multi-UART Module" buildresults_path = "module_multi_uart/.module_multi_uart.buildresults.xml" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" type = "component" id = "module_multi_uart" description = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design">
+        <component name = "Multi-UART Module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in Two Logical Cores, based on Serial2Ethernet reference design">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>
     </components>
-    <docdir>doc</docdir>
-    <docdir>app_slicekit_com_demo/doc_quickstart</docdir>
     <dependency repo = "sc_util">
         <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
+    <docdir>doc</docdir>
+    <docdir>app_slicekit_com_demo/doc_quickstart</docdir>
     <exclude_dir>app_multi_uart_demo</exclude_dir>
     <location>https://github.com/xcore/sc_multi_uart.git</location>
     <name>sc_multi_uart</name>
@@ -27,6 +29,7 @@
     <release parenthash = "1b7eba1c0d8b620956f7e80bee7e3d7783892766" version = "1.0.0rc0" githash = "fa29fd8fccc7ad3353a22248ccc57e6e5e84cd9f"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
+    <xcore_repo>sc_multi_uart.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
     <version>1.0.0rc0</version>
 </xpd>
