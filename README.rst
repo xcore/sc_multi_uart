@@ -1,9 +1,12 @@
 Multi-UART Component
 ......................
 
+:Latest release: 1.0.0rc0
+:Maintainer: Srinivas-E
+:Description: Multiple UART to Ethernet (TELNET) bridge, plus web server controller
+
 :Version: 1.0.0rc0
 :Vendor: XMOS
-:Description: Multiple UART to Ethernet (TELNET) bridge, plus web server controller
 
 Key Features
 ============
@@ -31,13 +34,6 @@ Known Issues
 
 * None
 
-Required software (dependencies)
-================================
-
-  * sc_xtcp
-  * xcommon (if using develpoment tools earlier than 11.11.0)
-  * sc_ethernet
-
 Support
 =======
 
@@ -45,4 +41,9 @@ Support
   at:
 
       http://www.xmos.com/support
+
+Required software (dependencies)
+================================
+
+  * sc_util (git@github.com:xcore/sc_util)
 
