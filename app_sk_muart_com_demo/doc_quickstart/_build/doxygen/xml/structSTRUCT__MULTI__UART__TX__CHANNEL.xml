@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.8">
+  <compounddef id="structSTRUCT__MULTI__UART__TX__CHANNEL" kind="struct" prot="public">
+    <compoundname>STRUCT_MULTI_UART_TX_CHANNEL</compoundname>
+    <includes refid="multi__uart__tx_8h" local="no">multi_uart_tx.h</includes>
+      <sectiondef kind="user-defined">
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_197855ae9337574681ef639b0bb9d9f81" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::uart_char_len</definition>
+        <argsstring></argsstring>
+        <name>uart_char_len</name>
+        <briefdescription>
+<para>Configuration constants. </para>        </briefdescription>
+        <detaileddescription>
+<para>length of the UART char </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="42" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1a59bf25f0c6138c2908a02c566eeef1c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::uart_word_len</definition>
+        <argsstring></argsstring>
+        <name>uart_word_len</name>
+        <briefdescription>
+<para>number of bits in UART word e.g. </para>        </briefdescription>
+        <detaileddescription>
+<para>Start bit + 8 bit data + parity + 2 stop bits is 12 bit UART word </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="43" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1a3ecebb2c3f4708eb6460361dcda904c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::clocks_per_bit</definition>
+        <argsstring></argsstring>
+        <name>clocks_per_bit</name>
+        <briefdescription>
+<para>define baud rate in relation to max baud rate </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="44" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1d65ed608b5e749a9f458448acfca7f87" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::invert_output</definition>
+        <argsstring></argsstring>
+        <name>invert_output</name>
+        <briefdescription>
+<para>define if output is inverted (set to 1) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="45" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1953945bff6900eb27b489760bd069c0c" prot="public" static="no" mutable="no">
+        <type><ref refid="multi__uart__common_8h_173324082c0fcf4aaa64b4d73190e9964" kindref="member">e_uart_config_stop_bits</ref></type>
+        <definition>e_uart_config_stop_bits STRUCT_MULTI_UART_TX_CHANNEL::sb_mode</definition>
+        <argsstring></argsstring>
+        <name>sb_mode</name>
+        <briefdescription>
+<para>Mode definition. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="50" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_13085aa6bca4db90500042109a7902ced" prot="public" static="no" mutable="no">
+        <type><ref refid="multi__uart__common_8h_152ca99b1d550bc4e113c5b8f283d9257" kindref="member">e_uart_config_parity</ref></type>
+        <definition>e_uart_config_parity STRUCT_MULTI_UART_TX_CHANNEL::parity_mode</definition>
+        <argsstring></argsstring>
+        <name>parity_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="51" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1e4e9fb34515a730c2ac01ddb724a1565" prot="public" static="no" mutable="no">
+        <type><ref refid="multi__uart__common_8h_1458b8ab09135fdc3c3997a3f7a67ff41" kindref="member">e_uart_config_polarity</ref></type>
+        <definition>e_uart_config_polarity STRUCT_MULTI_UART_TX_CHANNEL::polarity_mode</definition>
+        <argsstring></argsstring>
+        <name>polarity_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="52" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1755c0ee1e6363cffeec0f655b5a26a14" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::wr_ptr</definition>
+        <argsstring></argsstring>
+        <name>wr_ptr</name>
+        <briefdescription>
+<para>Buffering variables. </para>        </briefdescription>
+        <detaileddescription>
+<para>Write pointer </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="57" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1222d26ceeba6b8939da18db7a08fcf5e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int STRUCT_MULTI_UART_TX_CHANNEL::rd_ptr</definition>
+        <argsstring></argsstring>
+        <name>rd_ptr</name>
+        <briefdescription>
+<para>Read pointer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="58" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1dea9d1b712bfc6fb636e16a3af2e0fcf" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned STRUCT_MULTI_UART_TX_CHANNEL::nelements</definition>
+        <argsstring></argsstring>
+        <name>nelements</name>
+        <briefdescription>
+<para>Number of valid entries in the buffer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="59" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__CHANNEL_1393fd2b23065013d20794980dc697d05" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned STRUCT_MULTI_UART_TX_CHANNEL::buf[UART_TX_BUF_SIZE]</definition>
+        <argsstring>[UART_TX_BUF_SIZE]</argsstring>
+        <name>buf</name>
+        <briefdescription>
+<para>Buffer array. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="60" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Structure to hold configuration information and data for the UART channel TX side - this should only be interacted with via the API and not accessed directly. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="39" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="38" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1393fd2b23065013d20794980dc697d05" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>buf</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1a3ecebb2c3f4708eb6460361dcda904c" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>clocks_per_bit</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1d65ed608b5e749a9f458448acfca7f87" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>invert_output</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1dea9d1b712bfc6fb636e16a3af2e0fcf" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>nelements</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_13085aa6bca4db90500042109a7902ced" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>parity_mode</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1e4e9fb34515a730c2ac01ddb724a1565" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>polarity_mode</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1222d26ceeba6b8939da18db7a08fcf5e" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>rd_ptr</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1953945bff6900eb27b489760bd069c0c" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>sb_mode</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_197855ae9337574681ef639b0bb9d9f81" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>uart_char_len</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1a59bf25f0c6138c2908a02c566eeef1c" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>uart_word_len</name></member>
+      <member refid="structSTRUCT__MULTI__UART__TX__CHANNEL_1755c0ee1e6363cffeec0f655b5a26a14" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_CHANNEL</scope><name>wr_ptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

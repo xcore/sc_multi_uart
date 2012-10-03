@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.8">
+  <compounddef id="dir_bb5e6024f6f3ff36fc46321a260fd720" kind="dir">
+    <compoundname>.doxygen/module_multi_uart/src/tx/</compoundname>
+    <innerfile refid="multi__uart__tx_8h">multi_uart_tx.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/"/>
+  </compounddef>
+</doxygen>

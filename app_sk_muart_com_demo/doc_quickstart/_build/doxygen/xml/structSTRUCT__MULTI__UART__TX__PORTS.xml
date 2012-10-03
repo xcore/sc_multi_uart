@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.8">
+  <compounddef id="structSTRUCT__MULTI__UART__TX__PORTS" kind="struct" prot="public">
+    <compoundname>STRUCT_MULTI_UART_TX_PORTS</compoundname>
+    <includes refid="multi__uart__tx_8h" local="no">multi_uart_tx.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structSTRUCT__MULTI__UART__TX__PORTS_1bdeb9efaf5ccf64c3475168f9fcb890c" prot="public" static="no" mutable="no">
+        <type>buffered out</type>
+        <definition>buffered out STRUCT_MULTI_UART_TX_PORTS::port</definition>
+        <argsstring></argsstring>
+        <name>port</name>
+        <bitfield>8 pUart</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="25" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Structure used to hold ports - used to enable extensibility in the future. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" line="24" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/tx/multi_uart_tx.h" bodystart="23" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structSTRUCT__MULTI__UART__TX__PORTS_1bdeb9efaf5ccf64c3475168f9fcb890c" prot="public" virt="non-virtual"><scope>STRUCT_MULTI_UART_TX_PORTS</scope><name>port</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

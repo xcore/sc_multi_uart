@@ -1,0 +1,23 @@
+Running Sphinx v1.0.7
+Cannot find xmosconf
+loading pickled environment... not yet created
+building [html]: targets for 2 source files that are out of date
+updating environment: 2 added, 0 changed, 0 removed
+reading sources... [ 50%] index
+reading sources... [100%] quickstart
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 50%] index
+writing output... [100%] quickstart
+
+writing additional files... genindex search
+copying images... [ 50%] images/hardware_setup.png
+copying images... [100%] images/help_menu.png
+
+copying static files... done
+dumping search index... done
+dumping object inventory... done
+build succeeded.

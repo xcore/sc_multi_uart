@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>module_multi_uart Com Port Demo: Quick Start Guide &mdash; Multi-Uart Com Port Demo Quickstart Guide v documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Multi-Uart Com Port Demo Quickstart Guide v documentation" href="index.html" />
+    <link rel="prev" title="Multi-Uart Com Port Demo Quickstart Guide" href="index.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="index.html"
+                        title="previous chapter"> &lt&lt </a>
+</div>
+
+            
+  <div class="section" id="module-multi-uart-com-port-demo-quick-start-guide">
+<h1>module_multi_uart Com Port Demo: Quick Start Guide<a class="headerlink" href="#module-multi-uart-com-port-demo-quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> is intended to showcase module_multi_uart key features and its API usage.
+This application supports UART reconfiguration for various standard baud rates, processes raw data and bulk upload (file based) data received, integrity checks on data and sends back the data.</p>
+<div class="section" id="build-the-application">
+<h2>Build the Application<a class="headerlink" href="#build-the-application" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>The following components are required to build <tt class="docutils literal"><span class="pre">app_slicekit_com_demo</span></tt> application or develop sample Multi-UART applications:</dt>
+<dd><blockquote class="first">
+<div><ul class="simple">
+<li>sc_multi_uart: git://github.com/xcore/sc_multi_uart.git</li>
+<li>sc_util: git://github.com/xcore/sc_util.git</li>
+<li>xcommon: git://github.com/xcore/xcommon.git (Optional)</li>
+</ul>
+</div></blockquote>
+<ol class="last arabic simple">
+<li>Download the zipfile packages above.</li>
+<li>Open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and Choose <cite>File</cite> <strong>&gt;</strong> <cite>Import</cite>.</li>
+<li>Choose <cite>General</cite> <strong>&gt;</strong> <cite>Existing Projects into Workspace</cite> and click <strong>Next</strong>.</li>
+<li>Click <strong>Browse</strong> next to <cite>Select archive file</cite> and select the first firmware ZIP file.</li>
+<li>Click <strong>Finish</strong>.</li>
+<li>Repeat the import process for the remaining zipfiles.</li>
+<li>To select application to build, select <cite>Makefile</cite> from <cite>sc_multi_uart</cite> folder in the Project Explorer pane and double click to open it in Editor Window.</li>
+<li>Navigate to <strong>XMOS Project Makefile Editor</strong>, <cite>Build Sub-Directories</cite> option; select <cite>Build applications selected below</cite> radio button; select <cite>app_slicekit_com_demo</cite> folder option</li>
+<li>Choose <cite>File</cite> <strong>&gt;</strong> and click <strong>Save</strong>.</li>
+<li>To build the selected application, select <cite>sc_multi_uart</cite> folder in the Project Explorer pane and click the <strong>Build</strong> icon.</li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="install-demonstration-tools-on-the-host-pc">
+<h2>Install Demonstration Tools on the Host PC<a class="headerlink" href="#install-demonstration-tools-on-the-host-pc" title="Permalink to this headline">¶</a></h2>
+<p>The following tools should be installed on the host system in order to run this application</p>
+<blockquote>
+<div><ul class="simple">
+<li>For Win 7: Hercules Setup Utility by HW-Group
+<a class="reference external" href="http://www.hw-group.com/products/hercules/index_en.html"><span>http://www.hw-group.com/products/hercules/index_en.html</span></a></li>
+<li>For MAC users: SecureCRT7.0
+<a class="reference external" href="http://www.vandyke.com/download/securecrt/"><span>http://www.vandyke.com/download/securecrt/</span></a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="set-up-the-hardare">
+<h2>Set Up The Hardare<a class="headerlink" href="#set-up-the-hardare" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="_images/hardware_setup.png" src="_images/hardware_setup.png" />
+<p class="caption">Demonstration Hardware Setup</p>
+<div class="legend">
+<ol class="arabic simple">
+<li>Connect XA-SK-UART8 Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either <tt class="docutils literal"><span class="pre">Square</span></tt>, <tt class="docutils literal"><span class="pre">Tringle</span></tt> or <tt class="docutils literal"><span class="pre">Star</span></tt> connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above</li>
+<li>Connect COM port cable (provided with XA-SK-UART8 Slice Card package) to DB-9 connector on XA-SK-UART8 Slice Card. This enables UART 0 by default</li>
+<li>Connect other end of cable to Host (PC) DB-9 connector slot</li>
+<li>Identify COM port number provided by the Host and open a suitable terminal software for the selected COM port (refer to the Hercules or SecureCRT documentation above) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control</li>
+<li>Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter.</li>
+<li>Connect the XTAG-2 to host PC or Mac USB port.</li>
+<li>Switch on the power supply to the Slicekit Core board.</li>
+<li>Open the XDE</li>
+<li>Choose <em>File</em> <strong>&gt;</strong> <em>Import</em> <strong>&gt;</strong> <em>C/XC</em> <strong>&gt;</strong> <em>C/XC Executable</em></li>
+<li>Click <strong>Next</strong> and select the new firmware (XE) file (as built in the above section)</li>
+<li>Click <strong>Next</strong> and <strong>Finish</strong></li>
+<li>A Debug Configurations window is displayed. Click <strong>Close</strong></li>
+<li>Choose <em>Run</em> <strong>&gt;</strong> <em>Run Configurations</em></li>
+<li>Double-click <em>XCore Application</em> to create a new configuration</li>
+<li>Browse for the XE file in the <em>Project</em> and <em>C/XC Application</em> boxes</li>
+<li>Ensure the <em>XTAG-2</em> device appears in the <cite>Target:</cite> adapter list</li>
+<li>Click <strong>Run</strong></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="do-the-demo">
+<h2>Do the Demo<a class="headerlink" href="#do-the-demo" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Select and Open the configured terminal client application console</li>
+<li>Upon any key press on console, a user menu is displayed</li>
+<li>Key in <tt class="docutils literal"><span class="pre">e</span></tt>. Type in any character from the key board and application echoes back pressed keyed. In order to get back to user menu, press <tt class="docutils literal"><span class="pre">Esc</span></tt> key</li>
+<li>Key in <tt class="docutils literal"><span class="pre">r</span></tt>. UART enters into reconfiguration mode and listens for new baud rate. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. Upon successful reconfiguration, terminal console should be opened on the selected baud rate configuration. Press <tt class="docutils literal"><span class="pre">h</span></tt> to display user menu</li>
+<li>Key in <tt class="docutils literal"><span class="pre">g</span></tt> to upload a file from console. [<strong>FIXME This CRC appender feature is yet to be added:</strong> Before uploading a file, navigate to <tt class="docutils literal"><span class="pre">test</span></tt> directory and execute crc_appender application as <em>crc_appender &lt;file_name&gt;</em> This appends a CRC value calculated for the file contents]. Once a selected file is uploaded, press CTRL+D. Application now listens for any user commands. If any key other than <tt class="docutils literal"><span class="pre">p</span></tt> is pressed, all the uploaded file contents are lost <strong>[FIXME Sample file, CRC application is yet to be tested and added into the repo]</strong></li>
+<li>Key in <tt class="docutils literal"><span class="pre">p</span></tt> in order to display the uploaded file contents on the console. [<strong>FIXME CRC feature + error message to be added</strong>] In case of any CRC mismatch, an error message is displayed. If this option is selected prior to using <tt class="docutils literal"><span class="pre">g</span></tt> option, an error message is displayed</li>
+<li>Key in <tt class="docutils literal"><span class="pre">h</span></tt> in order to display user menu. This help is displayed any time during execution by pressing <tt class="docutils literal"><span class="pre">Esc</span></tt> key followed by <tt class="docutils literal"><span class="pre">h</span></tt></li>
+</ol>
+</div></blockquote>
+<div class="figure align-center">
+<img alt="_images/help_menu.png" src="_images/help_menu.png" />
+<p class="caption">Screenshot of Hyperterminal window</p>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Refer to the module_multi_uart documentation for implementation details of this application and information on further things to try.</li>
+<li>Evaluate the full Ethernet to Serial (8 Uart) reference product which can be found at <a class="reference external" href="https://github.com/xcore/sw_serial_to_ethernet"><span>https://github.com/xcore/sw_serial_to_ethernet</span></a>. This is a fully featured reference product including an embedded webserver, multicast configuration via UDP and a host of other features.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Multi-Uart Com Port Demo Quickstart Guide</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">module_multi_uart Com Port Demo: Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-application">Build the Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-demonstration-tools-on-the-host-pc">Install Demonstration Tools on the Host PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-hardare">Set Up The Hardare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#do-the-demo">Do the Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+

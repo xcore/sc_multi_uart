@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.8">
+  <compounddef id="multi__uart__helper_8h" kind="file">
+    <compoundname>multi_uart_helper.h</compoundname>
+    <includes local="no">xccompat.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>.doxygen/module_multi_uart/src/multi_uart_helper.h</label>
+        <link refid="multi_uart_helper.h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>xccompat.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" prot="public" static="no">
+        <name>streaming_chanend</name>
+        <initializer>streaming chanend</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="7" bodyfile="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="multi__uart__helper_8h_19e97e7ed172f35f4a4f5605f605fefca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned get_time</definition>
+        <argsstring>(timer t)</argsstring>
+        <name>get_time</name>
+        <param>
+          <type>timer</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Get time from timer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>timer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>timestamp from timer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="17"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_16149e6c1b41c7f7705cf2c1055240bf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned wait_for</definition>
+        <argsstring>(timer t, unsigned delta)</argsstring>
+        <name>wait_for</name>
+        <param>
+          <type>timer</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+<para>Wait for a time period defined by delta. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>timer to use </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time period to wait </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>timestamp on completion of pause </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="25"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_171dd8edf3a5788a9cae4aeb02d4e191d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned wait_until</definition>
+        <argsstring>(timer t, unsigned ts)</argsstring>
+        <name>wait_until</name>
+        <param>
+          <type>timer</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>ts</declname>
+        </param>
+        <briefdescription>
+<para>Wait until a specific time stamp. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>timer to use </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time stamp to wait until </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>timestamp on completion of pause </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="33"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_1b898cffcb645e539ce0ae0f769e8202d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void send_streaming_int</definition>
+        <argsstring>(streaming_chanend c, int i)</argsstring>
+        <name>send_streaming_int</name>
+        <param>
+          <type>streaming_chanend</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Send integer value across a streaming channel end. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>chanend to use </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>integer to send </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="40"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_10a9f60a48d6209bba7b4013b10437e8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned get_streaming_uint</definition>
+        <argsstring>(streaming_chanend c)</argsstring>
+        <name>get_streaming_uint</name>
+        <param>
+          <type>streaming_chanend</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Get unsigned integer from streaming chanend. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>chanend to use </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value received over the channel </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="47"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_197a590f652490f82fd574ab35e124d36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void send_streaming_token</definition>
+        <argsstring>(streaming_chanend c, char i)</argsstring>
+        <name>send_streaming_token</name>
+        <param>
+          <type>streaming_chanend</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Send token value across a streaming channel end. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>chanend to use </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>token to send </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="54"/>
+      </memberdef>
+      <memberdef kind="function" id="multi__uart__helper_8h_14ea81404c134f66bb520d713e69fdcf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char get_streaming_token</definition>
+        <argsstring>(streaming_chanend c)</argsstring>
+        <name>get_streaming_token</name>
+        <param>
+          <type>streaming_chanend</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Get token from streaming chanend. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>chanend to use </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>token received over channel </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h" line="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__MULTI_UART_HELPER_H__</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__MULTI_UART_HELPER_H__</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;xccompat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__XC__</highlight></codeline>
+<codeline lineno="7" refid="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>streaming_chanend<sp/>streaming<sp/>chanend</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>streaming_chanend<sp/>chanend</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="17"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_19e97e7ed172f35f4a4f5605f605fefca" kindref="member" tooltip="Get time from timer.">get_time</ref>(<sp/>timer<sp/>t<sp/>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_16149e6c1b41c7f7705cf2c1055240bf3" kindref="member" tooltip="Wait for a time period defined by delta.">wait_for</ref>(<sp/>timer<sp/>t,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>delta<sp/>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_171dd8edf3a5788a9cae4aeb02d4e191d" kindref="member" tooltip="Wait until a specific time stamp.">wait_until</ref>(<sp/>timer<sp/>t,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>ts<sp/>);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_1b898cffcb645e539ce0ae0f769e8202d" kindref="member" tooltip="Send integer value across a streaming channel end.">send_streaming_int</ref>(<sp/><ref refid="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" kindref="member">streaming_chanend</ref><sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_10a9f60a48d6209bba7b4013b10437e8d" kindref="member" tooltip="Get unsigned integer from streaming chanend.">get_streaming_uint</ref>(<sp/><ref refid="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" kindref="member">streaming_chanend</ref><sp/>c<sp/>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_197a590f652490f82fd574ab35e124d36" kindref="member" tooltip="Send token value across a streaming channel end.">send_streaming_token</ref>(<sp/><ref refid="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" kindref="member">streaming_chanend</ref><sp/>c,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>i<sp/>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="multi__uart__helper_8h_14ea81404c134f66bb520d713e69fdcf7" kindref="member" tooltip="Get token from streaming chanend.">get_streaming_token</ref>(<sp/><ref refid="multi__uart__helper_8h_182d5d9322666df6bc7dd244b2d5619a8" kindref="member">streaming_chanend</ref><sp/>c<sp/>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__MULTI_UART_HELPER_H__<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/scratch/dan/OSS/sc_multi_uart/doc/.doxygen/module_multi_uart/src/multi_uart_helper.h"/>
+  </compounddef>
+</doxygen>
