@@ -2,10 +2,10 @@
 #include "common.h"
 
 char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
-		"Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n h - usage help\r\n",			//IDX_USAGE_HELP
+		"Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n h - usage help\r\n b - pipe file on all uart channels\r\n",			//IDX_USAGE_HELP
 		"Welcome to MUART Slice Card demo\r\n Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n h - usage help\r\n",  //IDX_WELCOME_USAGE
 		"UART now echoes back the data entered\r\n", 				//IDX_ECHO_MODE_MSG
-		"Enter new baud rate for UART \r\n", 						//IDX_RECONF_MODE_MSG
+		"Enter new baud rate and Restart serial console with new baud rate setting \r\n", 						//IDX_RECONF_MODE_MSG
 		"Restart serial console with new baud rate setting \r\n", //IDX_RECONF_SUCCESS_MSG
 		"Specify a valid baud rate \r\n", 						//IDX_RECONF_FAIL_MSG
 		"CRC mismatch for uploaded file. Choose one of the menu options \r\n",	//IDX_CRC_MISMATCH_FOR_GET_FILE_MSG
@@ -13,7 +13,7 @@ char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Press any key to fetch file from UART \r\n", 			//IDX_PUT_FILE_MSG
 		"Buffered file data is lost \r\n", 						//IDX_FILE_DATA_LOST_MSG
 		"Invalid request\r\n Use 'get' option before using 'put' option \r\n",	//IDX_INVALID_PUT_REQUEST
-		"\r\nFile Received Vs File Transferred Timing (in millisec): \r\n",		//IDX_FILE_STATS
+		"\r\nFile Received Time Vs File Transferred Time (in millisec): \r\n",		//IDX_FILE_STATS
 		"UART is in Command mode. Press 'h' for help\r\n",		//IDX_CMD_MODE_MSG
 		"UART is in Data mode\r\n",								//IDX_DATA_MODE_MSG
 		"Invalid choice. Press 'h' for help\r\n",					//IDX_INVALID_USAGE

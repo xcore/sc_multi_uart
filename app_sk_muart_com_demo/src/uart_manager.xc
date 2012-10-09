@@ -5,7 +5,7 @@
 
 /*===========================================================================
  Filename: uart_manager.xc
- Project : app_serial_to_ethernet_demo
+ Project : app_sk_muart_com_demo
  Author  : XMOS Ltd
  Version : 1v0
  Purpose : This file implements state machine to handle http requests and
@@ -40,7 +40,7 @@
 /*---------------------------------------------------------------------------
  constants
  ---------------------------------------------------------------------------*/
-#define	MAX_BIT_RATE					115200      //100000    //bits per sec
+#define	MAX_BIT_RATE					115200      //bits per sec
 	/* Default length of a uart character in bits */
 #define	DEF_CHAR_LEN					8
 #define MAX_BAUD_RATE_INDEX				7
@@ -66,6 +66,8 @@ typedef enum {
   UART_CMD_PUT_FILE='p',
   UART_CMD_GET_FILE='g',
   UART_CMD_PIPE_FILE='b',
+  UART_CMD_PIPE_FILE_RCV='c',
+  UART_CMD_PIPE_FILE_IDLE='k',
   UART_CMD_INVALID = 'i',
 } uart_usage_mode_t;
 
@@ -86,6 +88,7 @@ s_uart_channel_config uart_channel_config[NUM_ACTIVE_UARTS];
 s_uart_rx_channel_fifo uart_rx_channel_state[NUM_ACTIVE_UARTS];
 uart_comm_state_t uart_comm_state[NUM_ACTIVE_UARTS];
 int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 4800, 600};
+unsigned length=1,length1=1,first=1;
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
@@ -131,7 +134,7 @@ static void init_uart_parameters(void)
         uart_comm_state[i].put_ts = 0;
         uart_comm_state[i].uart_usage_mode = UART_CMD_ECHO_HELP;
         uart_comm_state[i].uart_mode = UART_MODE_CMD;
-    } //for (i=0;i<NUM_ACTIVE_UARTS;i++)
+    }
 }
 
 /** =========================================================================
@@ -181,12 +184,14 @@ static void append_to_uart_console_message(unsigned uart_id, int mode, int msg_i
 	int len = 0;
 	int buf_depth = uart_rx_channel_state[uart_id].buf_depth;
 
-	if (0 == mode) {	//Copy message from message buffers
+	if (0 == mode) 	//Copy message from message buffers
+	{
 		len = copy_console_message(uart_rx_channel_state[uart_id].channel_data[buf_depth], msg_id);
 		uart_rx_channel_state[uart_id].buf_depth += len;
 		uart_rx_channel_state[uart_id].write_index += len;
 	}
-	else if (1 == mode) {	//Append parameter data
+	else if (1 == mode) 	//Append parameter data
+	{
 		string_copy(uart_rx_channel_state[uart_id].channel_data[buf_depth], msg[0], msg_len[0]);
 		uart_rx_channel_state[uart_id].buf_depth += msg_len[0];
 		uart_rx_channel_state[uart_id].write_index += msg_len[0];
@@ -264,8 +269,9 @@ void send_byte_to_uart_tx(s_uart_rx_channel_fifo &st)
             	st.read_index = 0;
             }
             st.buf_depth--;
-        } // if(-1 != buffer_space)
-    } // if ((st.buf_depth > 0) && (st.buf_depth <= RX_CHANNEL_FIFO_LEN))
+        }
+
+    }
 }
 
 /** =========================================================================
@@ -300,19 +306,16 @@ static int re_apply_uart_channel_config(unsigned channel_id,
 }
 
 #pragma unsafe arrays
-static void push_byte_to_uart_rx_buffer(s_uart_rx_channel_fifo &st,
-                                   unsigned uart_char)
+static void push_byte_to_uart_rx_buffer(s_uart_rx_channel_fifo &st, unsigned uart_char)
 {
     if(st.buf_depth < RX_CHANNEL_FIFO_LEN)
     {
-        write_byte_via_xc_ptr_indexed(st.channel_data,
-        		                      st.write_index,
-                                      uart_char);
+        write_byte_via_xc_ptr_indexed(st.channel_data, st.write_index, uart_char);
         st.write_index++;
-        if(st.write_index >= RX_CHANNEL_FIFO_LEN) {
+        if(st.write_index >= RX_CHANNEL_FIFO_LEN)
+        {
         	st.write_index = 0;
         }
-
         st.buf_depth++;
     }
     else
@@ -327,7 +330,8 @@ static void push_byte_to_uart_rx_buffer(s_uart_rx_channel_fifo &st,
 
 static int validate_uart_baud(int baud)
 {
-	for (int i=0; i<MAX_BAUD_RATE_INDEX; i++) {
+	for (int i=0; i<MAX_BAUD_RATE_INDEX; i++)
+	{
 		if (baud == valid_baud_rate[i])
 			return 1;
 	}
@@ -348,36 +352,40 @@ static int check_crc(s_uart_rx_channel_fifo &uart_state)
 
 	buf_depth = uart_state.buf_depth;
 	/* Look for CRC Indicator */
-	while ((buf_depth !=0) && (!crc_found) && (iter<CRC_CHAR_LIMIT)) {
+	while ((buf_depth !=0) && (!crc_found) && (iter<CRC_CHAR_LIMIT))
+	{
 		buf_depth--;
 		iter++;
-		if (uart_state.channel_data[buf_depth] == CRC_INDICATOR) {
+		if (uart_state.channel_data[buf_depth] == CRC_INDICATOR)
+		{
 			crc_found = 1;
 			file_depth = buf_depth;
 		}
 	}
 
-	if (crc_found) {
-		//for (int i = 0; i<uart_state.buf_depth;i++) {
-		for (i = 0; i<file_depth;i++) {
+	if (crc_found)
+	{
+		for (i = 0; i<file_depth;i++)
+		{
 			crc32(crc_val, (unsigned)uart_state.channel_data[uart_state.read_index+i], CRC_POLYNOMIAL);
-			//printintln(uart_state.channel_data[uart_state.read_index+i]);
 		}
-
-		for (i=0;i<uart_state.buf_depth-file_depth+1;i++) { //ignoring CRC flag indiactor
+		for (i=0;i<uart_state.buf_depth-file_depth+1;i++)//ignoring CRC flag indiactor
+		{
 			file_crc_array[i] = uart_state.channel_data[i+file_depth+1];
 		}
 		file_crc_array[i] = '\0';
 		file_crc = atoi(file_crc_array);
 
-		if (file_crc == crc_val) {
+		if (file_crc == crc_val)
+		{
 #ifdef DEBUG
 			printstr("CRC Val: ");
 			printintln(crc_val);
 #endif //DEBUG
 			return 1;
 		}
-		else {
+		else
+		{
 #ifdef DEBUG
 			printstr("CRC Mismatch: Computed CRC: ");
 			printintln(crc_val);
@@ -387,7 +395,8 @@ static int check_crc(s_uart_rx_channel_fifo &uart_state)
 			return 2;
 		}
 	}
-	else {
+	else
+	{
 #ifdef DEBUG
 		printstrln("CRC Not found!!!");
 #endif	//DEBUG
@@ -397,14 +406,16 @@ static int check_crc(s_uart_rx_channel_fifo &uart_state)
 
 static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 {
-	if ((uart_comm_state[uart_id].pending_file_transfer) && ('p' != uart_cmd)) {
+	if ((uart_comm_state[uart_id].pending_file_transfer) && ('p' != uart_cmd))
+	{
 		int len = 0;
 		uart_comm_state[uart_id].pending_file_transfer = 0;
 		send_message_to_uart_console(uart_id, IDX_FILE_DATA_LOST_MSG);
 		uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
 		return 0;
 	}
-	else if ('p' != uart_cmd) {
+	else if ('p' != uart_cmd)
+	{
 		uart_rx_channel_state[uart_id].buf_depth = 0;
 		uart_rx_channel_state[uart_id].read_index = 0;
 		uart_rx_channel_state[uart_id].write_index = 0;
@@ -420,157 +431,234 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 {
 	static int iter_index = 0;
 
-	if (0 == uart_comm_state[uart_id].welcome_msg_sent) {
+	if (0 == uart_comm_state[0].welcome_msg_sent)
+	{
 		uart_comm_state[uart_id].welcome_msg_sent = 1;
 		send_message_to_uart_console(uart_id, IDX_WELCOME_USAGE);
 		return;
 	}
 
-	if (0x1b == uart_char) { //'ESC' char is received
-		//uart_comm_state[uart_id].uart_mode = 1 - uart_comm_state[uart_id].uart_mode; //Toggle between command and data mode
+	if (0x1b == uart_char) //'ESC' char is received
+	{
 		uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
-
 		if (UART_MODE_CMD == uart_comm_state[uart_id].uart_mode)
-			send_message_to_uart_console(uart_id, IDX_CMD_MODE_MSG);
+			send_message_to_uart_console(uart_id, IDX_CMD_MODE_MSG); //Command Mode
 		else
-			send_message_to_uart_console(uart_id, IDX_DATA_MODE_MSG);
-
+			send_message_to_uart_console(uart_id, IDX_DATA_MODE_MSG); //Data Mode
 		return;
 	}
-
-	if (UART_MODE_CMD == uart_comm_state[uart_id].uart_mode) {
-		if (validate_uart_cmd(uart_char, uart_id)) {
-			switch (uart_char) {
-			case 'e':
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_DATA;
-				send_message_to_uart_console(uart_id, IDX_ECHO_MODE_MSG);
-				uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
-				break;
-			case 'h':
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
-				send_message_to_uart_console(uart_id, IDX_USAGE_HELP);
-				break;
-			case 'r':
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_UART_RECONF;
-				send_message_to_uart_console(uart_id, IDX_RECONF_MODE_MSG);
-				uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
-				break;
-			case 'p':
-				if (uart_comm_state[uart_id].pending_file_transfer) {
-					timer tmr;
-					tmr :> uart_comm_state[uart_id].put_ts;
-
-					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_PUT_FILE;
-					//send_message_to_uart_console(uart_id, IDX_PUT_FILE_MSG);
+	if (UART_MODE_CMD == uart_comm_state[uart_id].uart_mode) //Command Mode Selected
+	{
+		if (validate_uart_cmd(uart_char, uart_id))
+		{
+			switch (uart_char)
+			{
+				case 'e':
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_DATA;
+					send_message_to_uart_console(uart_id, IDX_ECHO_MODE_MSG);
 					uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
+					break;
+
+				case 'h':
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
+					send_message_to_uart_console(uart_id, IDX_USAGE_HELP);
+					break;
+
+				case 'r':
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_UART_RECONF;
+					send_message_to_uart_console(uart_id, IDX_RECONF_MODE_MSG);
+					uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
+					break;
+
+				case 'p':
+					if (uart_comm_state[uart_id].pending_file_transfer) {
+						timer tmr;
+						tmr :> uart_comm_state[uart_id].put_ts;
+
+						uart_comm_state[uart_id].uart_usage_mode = UART_CMD_PUT_FILE;
+						uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
+					}
+					else
+					{
+						send_message_to_uart_console(uart_id, IDX_INVALID_PUT_REQUEST);
+					}
+					break;
+
+				case 'g':
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_GET_FILE;
+					uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
+					break;
+
+				case 'b':
+				{
+					timer tmr;
+
+					for(int i=0; i<NUM_ACTIVE_UARTS;i++)
+					{
+						if(i == 0)
+							uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE_RCV;
+						else
+							uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE_IDLE;
+						uart_comm_state[i].uart_mode = UART_MODE_DATA;
+					}
+					tmr :> uart_comm_state[0].get_ts;
 				}
-				else {
-					send_message_to_uart_console(uart_id, IDX_INVALID_PUT_REQUEST);
-				}
-				break;
-			case 'g':
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_GET_FILE;
-				uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
-				break;
-			case 'b':
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_PIPE_FILE;
-				uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
-				break;
-			default:
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_INVALID;
-				send_message_to_uart_console(uart_id, IDX_INVALID_USAGE);
-				break;
-			}
+					break;
+
+				default:
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_INVALID;
+					send_message_to_uart_console(uart_id, IDX_INVALID_USAGE);
+					break;
+			} //End of Switch
 			iter_index = 0;
 		}
 		return;
-	}
+	} //Command Mode end
 
-	switch (uart_comm_state[uart_id].uart_usage_mode) {
-	case UART_CMD_ECHO_DATA:
-	    push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
-		break;
-	case UART_CMD_UART_RECONF:
+	switch (uart_comm_state[uart_id].uart_usage_mode) //Uart Usage Modes
 	{
-		static char baud[10] = "";
+		case UART_CMD_ECHO_DATA: //Data received is sent back on same channel
+			push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
+			break;
+		case UART_CMD_UART_RECONF: //Change Baud Rate settings
+		{
+			static char baud[10] = "";
 
-		if ((iter_index < 10) && (0xd != uart_char)) {
-			baud[iter_index] = uart_char;
-			iter_index++;
+			if ((iter_index < 10) && (0xd != uart_char))
+			{
+				baud[iter_index] = uart_char; //Moves the input Baud Rate value to buffer
+				iter_index++;
+			}
+			else if ((iter_index < 10) && (0xd == uart_char))  //'Carriage Return' is received
+			{
+				int user_baud = 0;
+
+				baud[iter_index] = '\0';
+				user_baud = atoi(baud);
+
+				if (validate_uart_baud(user_baud)) //Checks if Input baud rate is supported or not
+				{
+					uart_channel_config[uart_id].baud = user_baud; //Changes the New Baud Rate
+					re_apply_uart_channel_config(uart_id, c_tx_uart, c_rx_uart);
+					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+				}
+				else
+				{
+					//Send message to console to set Valid Baud Rate
+					send_message_to_uart_console(uart_id, IDX_RECONF_FAIL_MSG);
+				}
+				iter_index = 0;
+			}
+			else
+				iter_index = 0;
 		}
-		else if ((iter_index < 10) && (0xd == uart_char)) { //'Carriage Return' is received
-			int user_baud = 0;
+			break;
 
-			baud[iter_index] = '\0';
-			user_baud = atoi(baud);
-
-			if (validate_uart_baud(user_baud)) {
-				uart_channel_config[uart_id].baud = user_baud;
-				//send_message_to_uart_console(uart_id, IDX_RECONF_SUCCESS_MSG);
-				re_apply_uart_channel_config(uart_id, c_tx_uart, c_rx_uart);
+		case UART_CMD_PUT_FILE: //Sends file with timing information
+			if (0 == uart_rx_channel_state[uart_id].buf_depth)
+			{
+				uart_comm_state[uart_id].pending_file_transfer = 0;
 				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			}
-			else {
-				send_message_to_uart_console(uart_id, IDX_RECONF_FAIL_MSG);
-			}
-			iter_index = 0;
-		}
-		else
-			iter_index = 0;
+			break;
 
-	}
-		break;
-	case UART_CMD_PUT_FILE:
-		if (0 == uart_rx_channel_state[uart_id].buf_depth) {
-			uart_comm_state[uart_id].pending_file_transfer = 0;
-			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
-		}
-		break;
-	case UART_CMD_GET_FILE:
-		/* Copy the file contents into buffer */
-		if (0 == uart_rx_channel_state[uart_id].buf_depth) {
-			timer tmr;
-			tmr :> uart_comm_state[uart_id].get_ts;
-		}
-
-		if (0x04 != uart_char) { //EOT character
-			push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
-		}
-		else {
-			int ret_value = check_crc(uart_rx_channel_state[uart_id]);
-			if (1 == ret_value) {
+		case UART_CMD_GET_FILE: //Receives file and checks the CRC value
+			/* Copy the file contents into buffer */
+			if (0 == uart_rx_channel_state[uart_id].buf_depth) //Initialise timers
+			{
 				timer tmr;
-				unsigned int ts;
+				tmr :> uart_comm_state[uart_id].get_ts;
+			}
 
+			if (0x04 != uart_char) //EOT character
+			{
+
+				//Inputs all data to buffers until 'CTRL+D' is pressed
+				push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
+			}
+			else
+			{
+				int ret_value = check_crc(uart_rx_channel_state[uart_id]); //Checks the CRC value for the data
+				if (1 == ret_value)
+				{
+					timer tmr;
+					unsigned int ts;
+
+					tmr :> ts;
+					if (ts >  uart_comm_state[uart_id].get_ts)
+						uart_comm_state[uart_id].get_ts = ts - uart_comm_state[uart_id].get_ts;
+					else
+						uart_comm_state[uart_id].get_ts = uart_comm_state[uart_id].get_ts - ts;
+
+					uart_comm_state[uart_id].pending_file_transfer = 1;
+					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+				}
+				else {
+					if (2 == ret_value)
+						send_message_to_uart_console(uart_id, IDX_CRC_MISMATCH_FOR_GET_FILE_MSG);
+					else
+						send_message_to_uart_console(uart_id, IDX_CRC_NA_FOR_GET_FILE_MSG);
+
+					/* Change usage_mode in order to enable tx_handler to send error message to console */
+					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
+					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+				}
+			}
+			/* validate crc and mark validity of the file */
+			break;
+		case UART_CMD_PIPE_FILE_RCV:
+		{
+			timer tmr;
+			unsigned ts;
+			if(uart_char == 4)
+			{
+				length=-1;
+				first=1;
+				length1=1;
+				for(int i=0; i<NUM_ACTIVE_UARTS;i++)
+				{
+
+					if(i == 0)
+					{
+
+						uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE_IDLE;
+					}
+					else
+						uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE;
+					uart_comm_state[i].uart_mode = UART_MODE_DATA;
+				}
 				tmr :> ts;
 				if (ts >  uart_comm_state[uart_id].get_ts)
 					uart_comm_state[uart_id].get_ts = ts - uart_comm_state[uart_id].get_ts;
 				else
 					uart_comm_state[uart_id].get_ts = uart_comm_state[uart_id].get_ts - ts;
-
-				uart_comm_state[uart_id].pending_file_transfer = 1;
-				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+				tmr :> uart_comm_state[uart_id].put_ts;
 			}
-			else {
-				if (2 == ret_value)
-					send_message_to_uart_console(uart_id, IDX_CRC_MISMATCH_FOR_GET_FILE_MSG);
-				else
-					send_message_to_uart_console(uart_id, IDX_CRC_NA_FOR_GET_FILE_MSG);
+			length++;
+			push_byte_to_uart_rx_buffer(uart_rx_channel_state[1], uart_char);
 
-				/* Change usage_mode in order to enable tx_handler to send error message to console */
-				uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
-				uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
-			}
+							/* Receive file, pipe it to all channels and validate it */
+				/* time the transfer */
 		}
-		/* validate crc and mark validity of the file */
-		break;
-	case UART_CMD_PIPE_FILE:
-		/* Receive file, pipe it to all channels and validate it */
-		/* time the transfer */
-		break;
-	default:
-		/* Ignore the received data */
-		break;
+				break;
+		case UART_CMD_PIPE_FILE:
+			if((uart_id != NUM_ACTIVE_UARTS-1 ) && (uart_id != 0))
+				push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id+1], uart_char);
+			else if((uart_id == 7))
+			{
+				if(first)
+				{
+					uart_rx_channel_state[0].buf_depth=0;
+					uart_rx_channel_state[0].read_index=0;
+					uart_rx_channel_state[0].write_index=0;
+					first=0;
+				}
+				push_byte_to_uart_rx_buffer(uart_rx_channel_state[0], uart_char);
+			}
+			break;
+		default:
+			/* Ignore the received data */
+			break;
 	}
 }
 
@@ -583,8 +671,36 @@ static void uart_tx_hanlder(unsigned uart_id)
 	case UART_CMD_ECHO_HELP:
 		send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
 		break;
+
+	case UART_CMD_PIPE_FILE:
+	{
+		timer tmr;
+		unsigned int ts;
+		if(length1 == uart_id)
+		{
+			send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
+			if(uart_rx_channel_state[uart_id].buf_depth == 0)
+				length1++;
+			if(length1 == 8)
+			{
+				length1=0;
+				uart_comm_state[0].uart_usage_mode = UART_CMD_PUT_FILE;
+			}
+			if(uart_id == 0)
+			{
+				if(uart_rx_channel_state[uart_id].buf_depth == 0)
+				{
+						uart_comm_state[0].uart_usage_mode = UART_CMD_PUT_FILE;
+
+				}
+			}
+		}
+	}
+		break;
+
 	case UART_CMD_PUT_FILE:
-		if (0 == uart_rx_channel_state[uart_id].buf_depth) {
+		if (0 == uart_rx_channel_state[uart_id].buf_depth)
+		{
 			timer tmr;
 			unsigned int ts;
 			char msg[50] = "";
@@ -599,8 +715,6 @@ static void uart_tx_hanlder(unsigned uart_id)
 				uart_comm_state[uart_id].put_ts = uart_comm_state[uart_id].put_ts - ts;
 
 			send_message_to_uart_console(uart_id, IDX_FILE_STATS);
-			//uart_comm_state[uart_id].put_ts = uart_comm_state[uart_id].get_ts / (100 * 1000);
-			//uart_comm_state[uart_id].put_ts = uart_comm_state[uart_id].put_ts / (100 * 1000);
 
 			msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts, msg, 10, 0);
 			insert_separator(5, msg, msg_len, separator);
@@ -618,11 +732,9 @@ static void uart_tx_hanlder(unsigned uart_id)
 			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
 		}
-
 		send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
 		break;
 	}
-
 }
 
 /** 
@@ -641,7 +753,7 @@ static void uart_tx_hanlder(unsigned uart_id)
 void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 {
     char rx_channel_id;
-    unsigned uart_id = 0;
+    unsigned int uart_id = 0;
 
 #if ENABLE_XSCOPE == 1
     xscope_register(0, 0, "", 0, "");
@@ -662,7 +774,8 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
                 unsigned uart_char;
 
                 uart_char = (unsigned)uart_rx_grab_char(rx_channel_id);
-                if(uart_rx_validate_char(rx_channel_id, uart_char) == 0) {
+                if(uart_rx_validate_char(rx_channel_id, uart_char) == 0)
+                {
                 	uart_state_hanlder(rx_channel_id, uart_char, c_tx_uart, c_rx_uart);
                 }
                 break;
@@ -670,7 +783,6 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 
             default:
             	uart_tx_hanlder(uart_id);
-
             	uart_id++;
                 if (uart_id >= NUM_ACTIVE_UARTS)
                 	uart_id = 0;
