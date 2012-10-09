@@ -651,7 +651,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 					uart_rx_channel_state[0].buf_depth=0;
 					uart_rx_channel_state[0].read_index=0;
 					uart_rx_channel_state[0].write_index=0;
-					INITIAL=0;
+					first=0;
 				}
 				push_byte_to_uart_rx_buffer(uart_rx_channel_state[0], uart_char);
 			}
@@ -676,14 +676,14 @@ static void uart_tx_hanlder(unsigned uart_id)
 	{
 		timer tmr;
 		unsigned int ts;
-		if(Channel_ID == uart_id)
+		if(length1 == uart_id)
 		{
 			send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
 			if(uart_rx_channel_state[uart_id].buf_depth == 0)
-				Channel_ID++;
-			if(Channel_ID == NUM_ACTIVE_UARTS)
+				length1++;
+			if(length1 == 8)
 			{
-				Channel_ID=0;
+				length1=0;
 				uart_comm_state[0].uart_usage_mode = UART_CMD_PUT_FILE;
 			}
 			if(uart_id == 0)
@@ -754,8 +754,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 {
     char rx_channel_id;
     unsigned int uart_id = 0;
-    timer timer_event;
-    unsigned time;
+
 #if ENABLE_XSCOPE == 1
     xscope_register(0, 0, "", 0, "");
     xscope_config_io(XSCOPE_IO_BASIC);
@@ -763,7 +762,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 
     init_uart_parameters();
     init_muart_server( c_tx_uart, c_rx_uart);
-    timer_event:>time;
+
     // Loop forever processing Tx and Rx UART data
     while(1)
     {
@@ -782,7 +781,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
                 break;
             }
 
-            case timer_event when timerafter (time+1500):> time:
+            default:
             	uart_tx_hanlder(uart_id);
             	uart_id++;
                 if (uart_id >= NUM_ACTIVE_UARTS)
