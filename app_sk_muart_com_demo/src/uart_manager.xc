@@ -88,7 +88,7 @@ s_uart_channel_config uart_channel_config[NUM_ACTIVE_UARTS];
 s_uart_rx_channel_fifo uart_rx_channel_state[NUM_ACTIVE_UARTS];
 uart_comm_state_t uart_comm_state[NUM_ACTIVE_UARTS];
 int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 4800, 600};
-unsigned Char_length=1,Channel_ID=1,INITAL=1;
+unsigned Char_length=1,Channel_ID=1,INITIAL=1;
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/

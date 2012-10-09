@@ -20,6 +20,7 @@ The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``
 To setup up the system refer to the figure and instructions below 
 
    #. Connect XA-SK-MUART Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
+   #. To change it to slot ``STAR`` simply define in main.xc file ``#define SK_MULTI_UART_SLOT_STAR 1`` and connect to appropriate slot in the Slice kit core Board Hardware. 
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
    #. Switch on the power supply to the Slicekit Core board.
@@ -80,7 +81,7 @@ Demo Application
    
    Hardware setup for Pipe option
 
-Short the following Pins in CMOS section of the  Muart Slice Card (XA-SK-MUART Slice Card)
+Short the following Pins in CMOS section or in RS-232 section of the  Muart Slice Card (XA-SK-MUART Slice Card). [Header-J3 (or) Header-J4 respectively]
 
 .. list-table::
     :header-rows: 27
