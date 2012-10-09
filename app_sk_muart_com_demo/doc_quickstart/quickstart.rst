@@ -76,7 +76,7 @@ Demo Application
    Screenshot of Hyperterminal window
    
    #. Key in ``b`` in order to pipe data to all uart channels. Hardware setup for Pipe option should be shown as below, loop all the Uart channels(like Channel 7 Shown in the figure) except channel 0. Send data from the terminal and you will see data received back passing through all channels. If the connection to any of the channel is disconnected you will not see data received back. Send a file and press ``CTRL+D``, sent data is received back by passing through all channels with timing information.   
-.. figure:: images/pipe_hardware.jpg
+.. figure:: images/pipe_hardware.png
    :align: center
    
    Hardware setup for Pipe option

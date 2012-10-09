@@ -2,9 +2,8 @@
 # compiled for. It either refers to an XN file in the source directories
 # or a valid argument for the --target option when compiling.
 
-TARGET ?= SK_MULTI_UART_SLOT_SQUARE
-#TARGET ?= SK_MULTI_UART_SLOT_STAR
-#TARGET ?= SK_MULTI_UART_SLOT_TRIANGLE
+TARGET ?= XK-SK-L2
+
 
 # The APP_NAME variable determines the name of the final .xe file. It should
 # not include the .xe postfix. If left blank the name will default to 

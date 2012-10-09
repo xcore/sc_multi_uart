@@ -3,7 +3,7 @@
 
 char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n h - usage help\r\n b - pipe file on all uart channels\r\n",			//IDX_USAGE_HELP
-		"Welcome to MUART Slice Card demo\r\n Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n h - usage help\r\n",  //IDX_WELCOME_USAGE
+		"Welcome to MUART Slice Card demo\r\n Choose one of the following options \r\n e - echo data \r\n r - UART reconfiguration \r\n g - get file \r\n p - put file \r\n b - pipe file on all uart channels\r\n h - usage help\r\n",  //IDX_WELCOME_USAGE
 		"UART now echoes back the data entered\r\n", 				//IDX_ECHO_MODE_MSG
 		"Enter new baud rate and Restart serial console with new baud rate setting \r\n", 						//IDX_RECONF_MODE_MSG
 		"Restart serial console with new baud rate setting \r\n", //IDX_RECONF_SUCCESS_MSG
