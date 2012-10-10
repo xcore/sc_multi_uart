@@ -3,10 +3,10 @@ Example Applications
 
 This section discusses the demonstration application that uses multi-uart module.
 
-**app_slicekit_com_demo** Application
+**app_sk_muart_com_demo** Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This application is available as ``app_slicekit_com_demo`` under ``sc_multi_uart`` component directory. See the evaluation platforms section of this document for required hardware.
+This application is available as ``app_sk_muart_com_demo`` under ``sc_multi_uart`` component directory. See the evaluation platforms section of this document for required hardware.
     
 .. _sec_demo_tools:
 
@@ -25,49 +25,23 @@ The following tools should be installed on the host system in order to run this 
 Build options
 --------------
 
-``app_slicekit_com_demo`` application use the following modules in order to achive its desired functionality.
+``app_sk_muart_com_demo`` application use the following modules in order to achive its desired functionality.
 
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
 This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
 
-To build for STAR connector, make the following changes:
+To build for STAR connector, make the following changes in ``src\main.xc`` file:
 
-.. list-table::
-    :header-rows: 1
+    * ``#define SK_MULTI_UART_SLOT_STAR 1``
+
+To build for TRIANGLE connector, make the following changes in ``src\main.xc`` file:
+
+    * ``#define SK_MULTI_UART_SLOT_TRIANGLE 1``
+
+The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the multi-uart component are derived automatically.
     
-    * - File
-      - Original Value
-      - New Value
-    * - ``src/main.xc``
-      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
-      - ``#define SK_MULTI_UART_SLOT_STAR 1``
-    * - ``Makefile``
-      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
-      - ``TARGET = SK_MULTI_UART_SLOT_STAR``
-
-To build for TRIANGLE connector, make the following changes:
-
-.. list-table::
-    :header-rows: 1
-    
-    * - File
-      - Original Value
-      - New Value
-    * - ``src/main.xc``
-      - ``#define SK_MULTI_UART_SLOT_SQUARE 1``
-      - ``#define SK_MULTI_UART_SLOT_TRIANGLE 1``
-    * - ``Makefile``
-      - ``TARGET = SK_MULTI_UART_SLOT_SQUARE``
-      - ``TARGET = SK_MULTI_UART_SLOT_TRIANGLE``
-
-The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the multi-uart component are derived automatically from the xn file.
-
-This application contains following *xn* files in ``src`` folder under ``app_slicekit_com_demo`` directory.
-    * SK_MULTI_UART_SLOT_SQUARE.xn file configures 1 bit port *XS1_PORT_1F* for muart external clock, 8 bit port *XS1_PORT_8B* for muart tx and *XS1_PORT_8A* for muart rx on tile 1
-    * SK_MULTI_UART_SLOT_STAR.xn file configures 1 bit port *XS1_PORT_1L* for muart external clock, 8 bit port *XS1_PORT_8D* for muart tx and *XS1_PORT_8C* for muart rx on tile 0
-    * SK_MULTI_UART_SLOT_TRIANGLE.xn file configures 1 bit port *XS1_PORT_1F* for muart external clock, 8 bit port *XS1_PORT_8B* for muart tx and *XS1_PORT_8A* for muart rx on tile 0
 
 Hardware Settings
 -----------------
@@ -110,15 +84,6 @@ XA-SK-UART8 Slice Card for Demo Applications
 
 Optionally, Uart #0 may be accessed via the DB9 connector on the end of the Slice Card and thus connected directly to a PC COM port.
 
-Application Configuration
--------------------------
-
-``app_slicekit_com_demo`` application configuration is done utilising the defines listed out below:
-
-.. literalinclude:: app_slicekit_com_demo/src/common.h
-    :start-after: //:demo_app_config
-    :end-before:  //:
-    
     
 Application Description
 -----------------------
@@ -143,7 +108,7 @@ The channel for the TX thread is primarily used for reconfiguration. This is dis
 Quick Start Guide
 -----------------
 
-**FIXME: add link for quickstart guide**
+Quick starter guide and applicatioj usage is available in ``doc_quickstart`` of the application.
 
 .. _sec_demo_features:
 
@@ -159,6 +124,7 @@ The application provides the following commands to interact with it:
     * r - reconfigure UART for a different baud rate
     * g - upload a file via console option; the uploaded file should be of size < 1024 characters and crc_appender application should be run on the file prior to file upload (see :ref:`sec_crc_appender_usage`)
     * p - this option prints previously uploaded file via get option on to the console; at the end, it displays timing consumed (in milliseconds) to upload a file and transmit back the same file to console
+    * b - pipe file on all uart channels.
     * h - displays user menu
     
     At any instance ``Esc`` key can be pressed to revert back to user menu.
@@ -169,9 +135,9 @@ The application provides the following commands to interact with it:
 CRC Calculation Application
 +++++++++++++++++++++++++++
 
-**FIXME:This application is to be tested and added to test folder, with more usage guidelines** To upload a file via the UART console, select any file with size < 1024 bytes. If the file size is greater than this size, only the first 1024 bytes are used. This limitation is due to buffer length constraints of the application, in order to store the received file and send it back when requested.
+The CRC appender application is available in this location ``sc_multi_uart\test\crc_appender``, select any file with size less than 1024 bytes as the buffer size is limkited to 1024 for thje demo application. If the file size is greater than this size, only the first 1024 bytes are used. 
 
-An application executable ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. ``app_slicekit_com_demo`` calculates CRC of the received bytes and checks it against the CRC value calculated by ``crc_appender`` application. This ensures all the user uploaded data is integrity checked.
+An application source ``main.c`` file in ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. ``app_sk_muart_com_demo`` application calculates CRC of the received bytes and checks it against the CRC value calculated by ``crc_appender`` application. This ensures all the user uploaded data is integrity checked.
 
 Sample Usage:
 

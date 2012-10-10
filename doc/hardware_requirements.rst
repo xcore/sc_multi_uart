@@ -11,8 +11,6 @@ This module may be evaluated using the Slicekit Modular Development Platform, av
 XA-SK-UART8 Slice Card
 ----------------------
 
-**FIXME: Insert link to UART8 SliceCard webpage**
-
 .. image:: images/XA-SK-UART8.png
     :align: centre
 
@@ -22,4 +20,4 @@ Demonstration Application
 Example usage of this module can be found within the XSoftIP suite as follows:
 
    * Package: sc_multi_uart
-   * Application: app_slicekit_com_demo
+   * Application: app_sk_muart_com_demo

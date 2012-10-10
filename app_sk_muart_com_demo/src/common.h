@@ -30,7 +30,7 @@ constants
 /* Define length of application buffer (in bytes) to hold received UART data */
 #define RX_CHANNEL_FIFO_LEN			1024
 //:
-#define CONSOLE_MSGS_MAX_MEN		200
+#define CONSOLE_MSGS_MAX_MEN		250
 #define	CRC_POLYNOMIAL				0xf
 
 /*---------------------------------------------------------------------------

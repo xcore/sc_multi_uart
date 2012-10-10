@@ -130,24 +130,17 @@ The initialisation and configuration process for both the RX and TX operations i
     
     UART Initialisation Flow
 
-The following working example is taken from `echo_test.c` and shows a typical initial configuration.
+The following working example is taken from `uart_manager.xc` and shows a typical initial configuration.
 
-.. literalinclude:: app_multi_uart_demo/src/echo_test.c
-    :start-after: //:config_example
-    :end-before:  //:
+.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+    :start-after: //::Init Start
+    :end-before:  //::Init End
 
 The next stage of initialisation is to release the server threads from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.
 
-.. literalinclude:: app_multi_uart_demo/src/echo_test.c
-    :start-after: //:thread_start_helper_funcs
-    :end-before:  //:
-    
-The above examples use the helper functions that are described in Multi-UART Helper API :ref:`sec_helper_api`. However, if operating within the XC language normal channel interaction can be utilised such as the example below (from the simple test program).
-
-.. literalinclude:: app_multi_uart_demo/src/main.xc
-    :start-after: //:xc_release_uart
-    :end-before:  //:
-
+.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+    :start-after: //::Muart Server
+    :end-before:  //::Muart End
     
     
 .. _sec_interfacing_tx:
@@ -155,11 +148,11 @@ The above examples use the helper functions that are described in Multi-UART Hel
 Interfacing to the TX Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the simple demo application configuration simply takes a string in the form of a character array and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the loop moves onto the next channel. 
+To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the demo application configuration simply takes a string in the form of a character array and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the loop moves onto the next channel. 
 
-.. literalinclude:: app_multi_uart_demo/src/main.xc
-    :start-after: //:example_tx_buf_fill
-    :end-before:  //:
+.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+    :start-after: //::Send Byte
+    :end-before:  //::Send Byte End
 
 This operation must be completed on the same core as the TX server thread as the communication module utilises shared memory.
 
@@ -170,11 +163,11 @@ Interfacing to the RX Server
 
 To receive data from the RX server the application should make use of the channel that is provided. The channel provides notification to the application of which UART channel has data ready. The data itself is stored in a single storage slot with no buffering. This means that if the application layer fails to meet the timing requirements (as discussed in Client Timing :ref:`sec_client_timing`) data may be lost and/or duplicated.
 
-The echo test example implements an application level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.
+The application implements an level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.
 
-.. literalinclude:: app_multi_uart_demo/src/echo_test.c
-    :start-after: //:rx_echo_example
-    :end-before:  //:
+.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+    :start-after: //::Receive Data
+    :end-before:  //:: Receive Data End
 
 Once the token is received over the channel informing the application of the UART channel which has data ready the application uses the :c:func:`uart_rx_grab_char` function to collect the data from the receive slot. This provides an unvalidated word. The application then utilises the :c:func:`uart_rx_validate_char` to ensure that the UART word fits the requirements of the configuration (parity, stop bits etc) and provides the data upon return in the ``uart_char`` variable. This data is then inserted into a buffer.
 
@@ -191,7 +184,7 @@ Following the reconfiguration the application must then call :c:func:`uart_tx_re
 
 The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.
 
-.. literalinclude:: app_multi_uart_demo/src/echo_test.c
-    :start-after: //:reconf_example
-    :end-before:  //:
+.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+    :start-after: //::Reconfig Start
+    :end-before:  //::Reconfig End
     

@@ -107,6 +107,7 @@ unsigned Char_length=1,Channel_ID=1,INITIAL=1;
  *  \return			None
  *
  **/
+//::Init Start
 static void init_uart_parameters(void)
 {
     int i;
@@ -136,6 +137,7 @@ static void init_uart_parameters(void)
         uart_comm_state[i].uart_mode = UART_MODE_CMD;
     }
 }
+//::Init End
 
 /** =========================================================================
  *  configure_uart_channel
@@ -146,6 +148,7 @@ static void init_uart_parameters(void)
  *  \return		0 		on success
  *
  **/
+ 
 static int configure_uart_channel(unsigned uart_id)
 {
     int chnl_config_status = ERR_CHANNEL_CONFIG;
@@ -166,6 +169,18 @@ static int configure_uart_channel(unsigned uart_id)
     return chnl_config_status;
 }
 
+/** =========================================================================
+ *  send_message_to_uart_console
+ *
+ *  Sends messages to Uart TX pins based on message state and channel ID
+ *
+ *  \param			uart_id		Uart Channel ID
+ *  \param			message_id	Message to be displayed on Uart Channel
+ *
+ *  \return			None
+ *
+ **/
+
 static void send_message_to_uart_console(unsigned uart_id, int msg_id)
 {
 	int len = 0;
@@ -178,6 +193,25 @@ static void send_message_to_uart_console(unsigned uart_id, int msg_id)
 	uart_rx_channel_state[uart_id].buf_depth += len;
 	uart_rx_channel_state[uart_id].write_index += len;
 }
+
+/** =========================================================================
+ *  append_to_uart_console_message
+ *
+ *  Appends messages to Uart buffer based on message mode and channel ID
+ *
+ *  \param			uart_id		Uart Channel ID
+ *
+ *  \param			mode		checks for parameter data or not
+ *
+ *  \param			mesage_id	append string to the uart channel buffer 
+ *
+ *  \param			msg		append character to the uart channel buffer
+ *
+ *  \param			msg_len		Message length
+ *
+ *  \return			None
+ *
+ **/
 
 static void append_to_uart_console_message(unsigned uart_id, int mode, int msg_id, char ?msg[], int ?msg_len[])
 {
@@ -211,6 +245,8 @@ static void append_to_uart_console_message(unsigned uart_id, int mode, int msg_i
  *  \return			None
  *
  **/
+
+//::Muart server
 static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
 {
     int channel_id;
@@ -236,7 +272,7 @@ static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_r
     /* Release UART tx thread */
     do { c_tx_uart :> temp;} while (temp != MULTI_UART_GO); c_tx_uart <: 1;
 }
-
+//::Muart end
 
 /** =========================================================================
  *  send_byte_to_uart_tx
@@ -251,6 +287,7 @@ static void init_muart_server(streaming chanend c_tx_uart, streaming chanend c_r
  *  \return			None
  *
  **/
+//::Send Byte
 void send_byte_to_uart_tx(s_uart_rx_channel_fifo &st)
 {
     int buffer_space = 0;
@@ -270,9 +307,9 @@ void send_byte_to_uart_tx(s_uart_rx_channel_fifo &st)
             }
             st.buf_depth--;
         }
-
     }
 }
+//::Send Byte End
 
 /** =========================================================================
  *  re_apply_uart_channel_config
@@ -288,6 +325,7 @@ void send_byte_to_uart_tx(s_uart_rx_channel_fifo &st)
  *  \return			None
  *
  **/
+//::Reconfig Start
 #pragma unsafe arrays
 static int re_apply_uart_channel_config(unsigned channel_id,
                                         streaming chanend c_tx_uart,
@@ -304,6 +342,20 @@ static int re_apply_uart_channel_config(unsigned channel_id,
 
     return chnl_config_status;
 }
+//::Reconfig End
+
+/** =========================================================================
+ *  push_byte_to_uart_rx_buffer
+ *
+ *  Pushes a byte to buffers based on channel ID
+ *
+ *  \param	s_uart_channel_config s		UartChannelConfig Reference to UART conf
+ *
+ *  \param	uart_char			Character to be pushed to the buffers
+ *
+ *  \return			None
+ *
+ **/
 
 #pragma unsafe arrays
 static void push_byte_to_uart_rx_buffer(s_uart_rx_channel_fifo &st, unsigned uart_char)
@@ -328,6 +380,17 @@ static void push_byte_to_uart_rx_buffer(s_uart_rx_channel_fifo &st, unsigned uar
   return;
 }
 
+/** =========================================================================
+ *  validate_uart_baud
+ *
+ *  Checks if the baud rate is valid or not
+ *
+ *  \param	baud	Baud rate value
+ *
+ *  \return	1 	on success
+ *
+ **/
+
 static int validate_uart_baud(int baud)
 {
 	for (int i=0; i<MAX_BAUD_RATE_INDEX; i++)
@@ -338,6 +401,17 @@ static int validate_uart_baud(int baud)
 
 	return 0;
 }
+
+/** =========================================================================
+ *  check_crc
+ *
+ *  calculates the CRC value of input data buffer
+ *
+ *  \param	s_uart_rx_channel_fifo	buffer data
+ *
+ *  \return	1 	on success
+ *
+ **/
 
 static int check_crc(s_uart_rx_channel_fifo &uart_state)
 {
@@ -404,6 +478,19 @@ static int check_crc(s_uart_rx_channel_fifo &uart_state)
 	}
 }
 
+/** =========================================================================
+ *  validate_uart_cmd
+ *
+ *  Checks if file trannsfer is pending or not
+ *
+ *  \param	uart_cmd	uart pending file command
+ *
+ *  \param	uart_id		uart channel ID
+ *
+ *  \return	1 	on success
+ *
+ **/
+
 static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 {
 	if ((uart_comm_state[uart_id].pending_file_transfer) && ('p' != uart_cmd))
@@ -424,6 +511,24 @@ static int validate_uart_cmd(char uart_cmd, unsigned uart_id)
 	else
 		return 1;
 }
+
+/** =========================================================================
+ *  uart_state_handler
+ *
+ *  receives data from the uart channel based on channel ID and 
+ *  does the operaion based on input command
+ *
+ *  \param	uart_id		uart channel ID
+ *
+ *  \param	uart_char	received character from Uart pins
+ *
+ *  \param	c_tx_uart	channel to send uart data
+ *
+ *  \param	c_rx_uart	channel to receive uart data
+ *
+ *  \return	1 	on success
+ *
+ **/
 
 static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
         streaming chanend c_tx_uart,
@@ -662,6 +767,18 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 	}
 }
 
+/** =========================================================================
+ *  uart_tx_handler
+ *
+ *  Transmit buffer data on to uart tx pins
+ *  
+ *
+ *  \param	uart_id		uart channel ID
+ *
+ *  \return	none
+ *
+ **/
+
 static void uart_tx_hanlder(unsigned uart_id)
 {
 	switch (uart_comm_state[uart_id].uart_usage_mode) {
@@ -765,6 +882,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
     init_muart_server( c_tx_uart, c_rx_uart);
     timer_event:>time;
     // Loop forever processing Tx and Rx UART data
+//::Receive Data
     while(1)
     {
         select
@@ -781,7 +899,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
                 }
                 break;
             }
-
+//::Receive Data End
             case timer_event when timerafter (time+1500):> time:
             	uart_tx_hanlder(uart_id);
             	uart_id++;
