@@ -88,7 +88,7 @@ s_uart_channel_config uart_channel_config[NUM_ACTIVE_UARTS];
 s_uart_rx_channel_fifo uart_rx_channel_state[NUM_ACTIVE_UARTS];
 uart_comm_state_t uart_comm_state[NUM_ACTIVE_UARTS];
 int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 4800, 600};
-unsigned Char_length=1,Channel_ID=1,INITIAL=1;
+unsigned Char_length=1,Channel_ID=1,INITIAL=1,num_chr_received=0;
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
@@ -575,20 +575,6 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 					uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
 					break;
 
-				case 'p':
-					if (uart_comm_state[uart_id].pending_file_transfer) {
-						timer tmr;
-						tmr :> uart_comm_state[uart_id].put_ts;
-
-						uart_comm_state[uart_id].uart_usage_mode = UART_CMD_PUT_FILE;
-						uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
-					}
-					else
-					{
-						send_message_to_uart_console(uart_id, IDX_INVALID_PUT_REQUEST);
-					}
-					break;
-
 				case 'g':
 					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_GET_FILE;
 					uart_comm_state[uart_id].uart_mode = UART_MODE_DATA;
@@ -597,7 +583,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 				case 'b':
 				{
 					timer tmr;
-
+					num_chr_received=0;
 					for(int i=0; i<NUM_ACTIVE_UARTS;i++)
 					{
 						if(i == 0)
@@ -641,15 +627,18 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 
 				baud[iter_index] = '\0';
 				user_baud = atoi(baud);
-
+				printstr("Input Baud Rate is :");
+				printintln(user_baud);
 				if (validate_uart_baud(user_baud)) //Checks if Input baud rate is supported or not
 				{
+					printstrln("Baud Rate setting Succesful !!");
 					uart_channel_config[uart_id].baud = user_baud; //Changes the New Baud Rate
 					re_apply_uart_channel_config(uart_id, c_tx_uart, c_rx_uart);
 					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 				}
 				else
 				{
+					printstrln("Invalid Baud Rate");
 					//Send message to console to set Valid Baud Rate
 					send_message_to_uart_console(uart_id, IDX_RECONF_FAIL_MSG);
 				}
@@ -668,50 +657,6 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 			}
 			break;
 
-		case UART_CMD_GET_FILE: //Receives file and checks the CRC value
-			/* Copy the file contents into buffer */
-			if (0 == uart_rx_channel_state[uart_id].buf_depth) //Initialise timers
-			{
-				timer tmr;
-				tmr :> uart_comm_state[uart_id].get_ts;
-			}
-
-			if (0x04 != uart_char) //EOT character
-			{
-
-				//Inputs all data to buffers until 'CTRL+D' is pressed
-				push_byte_to_uart_rx_buffer(uart_rx_channel_state[uart_id], uart_char);
-			}
-			else
-			{
-				int ret_value = check_crc(uart_rx_channel_state[uart_id]); //Checks the CRC value for the data
-				if (1 == ret_value)
-				{
-					timer tmr;
-					unsigned int ts;
-
-					tmr :> ts;
-					if (ts >  uart_comm_state[uart_id].get_ts)
-						uart_comm_state[uart_id].get_ts = ts - uart_comm_state[uart_id].get_ts;
-					else
-						uart_comm_state[uart_id].get_ts = uart_comm_state[uart_id].get_ts - ts;
-
-					uart_comm_state[uart_id].pending_file_transfer = 1;
-					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
-				}
-				else {
-					if (2 == ret_value)
-						send_message_to_uart_console(uart_id, IDX_CRC_MISMATCH_FOR_GET_FILE_MSG);
-					else
-						send_message_to_uart_console(uart_id, IDX_CRC_NA_FOR_GET_FILE_MSG);
-
-					/* Change usage_mode in order to enable tx_handler to send error message to console */
-					uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
-					uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
-				}
-			}
-			/* validate crc and mark validity of the file */
-			break;
 		case UART_CMD_PIPE_FILE_RCV:
 		{
 			timer tmr;
@@ -741,6 +686,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 			}
 			Char_length++;
 			push_byte_to_uart_rx_buffer(uart_rx_channel_state[1], uart_char);
+			num_chr_received++;
 
 							/* Receive file, pipe it to all channels and validate it */
 				/* time the transfer */
@@ -808,7 +754,6 @@ static void uart_tx_hanlder(unsigned uart_id)
 				if(uart_rx_channel_state[uart_id].buf_depth == 0)
 				{
 						uart_comm_state[0].uart_usage_mode = UART_CMD_PUT_FILE;
-
 				}
 			}
 		}
@@ -816,6 +761,12 @@ static void uart_tx_hanlder(unsigned uart_id)
 		break;
 
 	case UART_CMD_PUT_FILE:
+		if(0 != uart_rx_channel_state[uart_id].buf_depth)
+		{
+			while(0 != uart_rx_channel_state[uart_id].buf_depth)
+			{
+				send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
+			}
 		if (0 == uart_rx_channel_state[uart_id].buf_depth)
 		{
 			timer tmr;
@@ -833,7 +784,7 @@ static void uart_tx_hanlder(unsigned uart_id)
 
 			send_message_to_uart_console(uart_id, IDX_FILE_STATS);
 
-			msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts, msg, 10, 0);
+				msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts/num_chr_received, msg, 10, 0);
 			insert_separator(5, msg, msg_len, separator);
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
@@ -841,7 +792,7 @@ static void uart_tx_hanlder(unsigned uart_id)
 			msg_len[0] = 4;
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
-			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts, msg, 10, 0);
+				msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/num_chr_received, msg, 10, 0);
 			insert_separator(5, msg, msg_len, separator);
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
@@ -849,7 +800,13 @@ static void uart_tx_hanlder(unsigned uart_id)
 			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
 		}
-		send_byte_to_uart_tx(uart_rx_channel_state[uart_id]);
+		}
+		else
+		{
+			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
+			uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;
+			send_message_to_uart_console(uart_id, IDX_PIPE_BROKEN);
+		}
 		break;
 	}
 }
