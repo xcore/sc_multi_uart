@@ -59,6 +59,7 @@ Use of Software
    #. In the *C/C++ Application* field, browse for the compiled XE file
    #. Ensure the *XTAG-2* device is selected in the `Target:` adapter list
    #. Click **Run**
+   # Wait for the configuration completion messages in XDE console for all UART's before proceeding with the Demo.
 
 Demo Application
 ++++++++++++++++
@@ -80,7 +81,7 @@ Demo Application
    
    Hardware setup for Pipe option
 
-Short the following Pins in CMOS section or in RS-232 section of the  Muart Slice Card (XA-SK-MUART Slice Card). [Header-J3 (or) Header-J4 respectively]
+Short the following Pins in RS-232 section (Header J4) of the  Muart Slice Card (XA-SK-MUART Slice Card).
 
 .. list-table::
     :header-rows: 27
