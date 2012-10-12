@@ -122,29 +122,10 @@ The application provides the following commands to interact with it:
 
     * e - in this mode, an entered character is echoed back on the console. In order to come out of this mode, press the ``Esc`` key
     * r - reconfigure UART for a different baud rate
-    * g - upload a file via console option; the uploaded file should be of size < 1024 characters and crc_appender application should be run on the file prior to file upload (see :ref:`sec_crc_appender_usage`)
-    * p - this option prints previously uploaded file via get option on to the console; at the end, it displays timing consumed (in milliseconds) to upload a file and transmit back the same file to console
-    * b - pipe file on all uart channels.
+    * b - pipe file through all uart channels.
     * h - displays user menu
     
     At any instance ``Esc`` key can be pressed to revert back to user menu.
-
-
-.. _sec_crc_appender_usage:
-
-CRC Calculation Application
-+++++++++++++++++++++++++++
-
-The CRC appender application is available in this location ``sc_multi_uart\test\crc_appender``, select any file with size less than 1024 bytes as the buffer size is limkited to 1024 for thje demo application. If the file size is greater than this size, only the first 1024 bytes are used. 
-
-An application source ``main.c`` file in ``crc_appender`` which is available in ``test`` folder should be executed in order to calculate CRC of the selected file. This application appends calculated crc at the end of the file. ``app_sk_muart_com_demo`` application calculates CRC of the received bytes and checks it against the CRC value calculated by ``crc_appender`` application. This ensures all the user uploaded data is integrity checked.
-
-Sample Usage:
-
-   ::
-
-       crc_appender <file_name>
-
 
 
 Makefiles
