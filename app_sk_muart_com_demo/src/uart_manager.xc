@@ -661,7 +661,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 		{
 			timer tmr;
 			unsigned ts;
-			if(uart_char == 4)
+			if(uart_char == 0x04)
 			{
 				Char_length=-1;
 				INITIAL=1;
@@ -688,7 +688,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 			push_byte_to_uart_rx_buffer(uart_rx_channel_state[1], uart_char);
 			num_chr_received++;
 
-							/* Receive file, pipe it to all channels and validate it */
+				/* Receive file, pipe it to all channels and validate it */
 				/* time the transfer */
 		}
 				break;
@@ -786,13 +786,11 @@ static void uart_tx_hanlder(unsigned uart_id)
 
 				msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts/num_chr_received, msg, 10, 0);
 			insert_separator(5, msg, msg_len, separator);
-			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
 			string_copy(msg[0], sep_text[0], 4);
 			msg_len[0] = 4;
-			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
-				msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/num_chr_received, msg, 10, 0);
+			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/num_chr_received, msg, 10, 0);
 			insert_separator(5, msg, msg_len, separator);
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 

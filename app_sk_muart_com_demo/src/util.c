@@ -13,7 +13,7 @@ char console_messages[NUM_CONSOLE_MSGS][CONSOLE_MSGS_MAX_MEN] = {
 		"Press any key to fetch file from UART \r\n", 			//IDX_PUT_FILE_MSG
 		"Buffered file data is lost \r\n", 						//IDX_FILE_DATA_LOST_MSG
 		"Invalid request\r\n Use 'get' option before using 'put' option \r\n",	//IDX_INVALID_PUT_REQUEST
-		"\r\nData Received Time Vs Data Transferred Time per byte(in millisec): \r\n",		//IDX_FILE_STATS
+		"\r\nTotal Data Transfer Time per byte(in millisec): \r\n",		//IDX_FILE_STATS
 		"UART is in Command mode. Press 'h' for help\r\n",		//IDX_CMD_MODE_MSG
 		"UART is in Data mode\r\n",								//IDX_DATA_MODE_MSG
 		"Invalid choice. Press 'h' for help\r\n",					//IDX_INVALID_USAGE

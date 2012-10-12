@@ -37,6 +37,32 @@ To setup up the system refer to the figure and instructions below
 .. figure:: images/hardware_setup.png
    :align: center
 
+.. figure:: images/pipe_hardware.png
+   :align: center
+   
+   Hardware setup for Pipe option
+
+Short the following Pins in RS-232 section (Header J4) of the  Muart Slice Card (XA-SK-MUART Slice Card).
+
+.. list-table::
+    :header-rows: 1 
+    
+    * - TX
+      - RX
+    * - 5 
+      - 6 
+    * - 7 
+      - 8
+    * - 11 
+      - 12
+    * - 13
+      - 14
+    * - 17
+      - 18
+    * - 19
+      - 20
+    * - 23
+      - 24
 
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
@@ -59,7 +85,8 @@ Use of Software
    #. In the *C/C++ Application* field, browse for the compiled XE file
    #. Ensure the *XTAG-2* device is selected in the `Target:` adapter list
    #. Click **Run**
-   # Wait for the configuration completion messages in XDE console for all UART's before proceeding with the Demo.
+
+   #. Wait for the configuration completion messages in XDE console for all UART's before proceeding with the Demo.
 
 Demo Application
 ++++++++++++++++
@@ -67,46 +94,20 @@ Demo Application
    #. Select and Open the configured terminal client application console
    #. Press any key on console. A user menu will be displayed
    #. Key in ``e`` to enter echo mode. Type in any character from the key board and application echoes the key pressed. In order to get back to user menu, press ``Esc`` key.
-   #. Key in ``r`` to enter reconfiguration mode. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. The UART will be reconfigured. The terminal console should be reopened with the new selected baud rate. Press ``h`` to display user menu.
-   #. Key in ``g`` to  upload a file from console. Select the ``File Send`` option in Console SW (Right click in Hercules) and select the file. Then press CTRL+D followed by ``p`` to send file from console and receive it with CRC check. In case of CRC mismatch, error message is displayed. Timing information is also displayed.A file with CRC appended at the end is required. A sample file ``output_file.txt`` is avalable in ``test\crc_appender`` directory. A utility to append CRC to any file is provied in ``test`` direcotry. Run crc_appender application  with filename as agrument  *crc_appender <file_name>*. This appends a CRC value calculated for the file contents. 
+   #. Key in ``r`` to enter reconfiguration mode. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. The UART will be reconfigured (XDE console will display the value entered). The terminal console should be reopened with the new selected baud rate. Press ``h`` to display user menu.
+   #. Key in ``b`` in order to pipe data trough UART channels 1-7. Type in the Console widow and then press Ctrl+D to send the data through 7 channels and recive it for display. To send a file, select the ``File Send`` option in Console SW (Right click in Hercules) and select the file. Then press CTRL+D from console to send file through channels 1-7 and receive it. Timing information is also displayed. Hardware setup for Pipe option should be as shown in the diagram, loop all the Uart channels(like Channel 7 Shown in the figure) except channel 0. If the connection to any of the channel is disconnected you will not see data received back and messge will be displayed on the terminal thaty the pipe is broken.
    #. Key in ``h`` in order to display user menu. This help is displayed any time during execution by pressing ``Esc`` key followed by ``h`` 
+
 .. figure:: images/help_menu.png
    :align: center
 
    Screenshot of Hyperterminal window
    
-   #. Key in ``b`` in order to pipe data trough UART channels 1-7. Type in the Console widow and then press Ctrl+D to send the data through 7 channels and recive it for display. To send a file, select the ``File Send`` option in Console SW (Right click in Hercules) and select the file. Then press CTRL+D from console to send file through channels 1-7 and receive it with CRC check. In case of CRC mismatch, error message is displayed. Timing information is also displayed. Hardware setup for Pipe option should be shown as below, loop all the Uart channels(like Channel 7 Shown in the figure) except channel 0. If the connection to any of the channel is disconnected you will not see data received back.
-.. figure:: images/pipe_hardware.png
-   :align: center
-   
-   Hardware setup for Pipe option
-
-Short the following Pins in RS-232 section (Header J4) of the  Muart Slice Card (XA-SK-MUART Slice Card).
-
-.. list-table::
-    :header-rows: 27
-    
-    * - TX
-      - RX
-    * - 5 
-      - 6 
-    * - 7 
-      - 8
-    * - 11 
-      - 12
-    * - 13
-      - 14
-    * - 17
-      - 18
-    * - 19
-      - 20
-    * - 23
-      - 24
       
 Next Steps
 ++++++++++
 
-   #. Refer to the module_multi_uart documentation for implementation details of this application and information on further things to try.
+   #. Refer to the module_multi_uart documentation for implementation details of this application and information on further things to try.:wq!
    #. Evaluate the full Ethernet to Serial (8 Uart) reference product which can be found at https://github.com/xcore/sw_serial_to_ethernet. This is a fully featured reference product including an embedded webserver, multicast configuration via UDP and a host of other features. 
 
 Look at the Code
