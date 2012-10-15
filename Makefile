@@ -5,7 +5,7 @@
 # If the variable is set to "all" then all directories that start with app_
 # are built.
 #BUILD_SUBDIRS = all
-BUILD_SUBDIRS = app_slicekit_com_demo
+BUILD_SUBDIRS = app_sk_muart_com_demo
 
 XMOS_MAKE_PATH ?= ..
 include $(XMOS_MAKE_PATH)/xcommon/module_xcommon/build/Makefile.toplevel
