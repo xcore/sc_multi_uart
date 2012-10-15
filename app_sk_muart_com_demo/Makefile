@@ -19,7 +19,7 @@ APP_NAME =
 # If the variable XCC_MAP_FLAGS is set it overrides the flags passed to 
 # xcc for the final link (mapping) stage.
 
-XCC_FLAGS = -g -O3 -lflash -lxscope
+XCC_FLAGS = -g -O3 -lflash -fxscope
 #XCC_FLAGS = -g -O3 -lflash
 
 XCC_FLAGS_Debug = $(XCC_FLAGS)
