@@ -71,7 +71,7 @@ int uart_rx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
  * character
  * @param[in]           chan_id     UART channel ID from which the char came from
  * @param[in,out]   uart_word   UART char in the format DATA_BITS|PARITY|STOP BITS (parity optional
- *                              according to config), modified to clean UART charcater on successful *                              return
+ *                              according to config), modified to clean UART character on successful *                              return
  * @return              Return 0 on valid data, -1 on validation fail 
  */
 int uart_rx_validate_char( int chan_id, REFERENCE_PARAM(unsigned,uart_word) );

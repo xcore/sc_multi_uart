@@ -11,7 +11,7 @@ This is an overview of the key header files that are required, as well as the lo
 Source Code
 ++++++++++++
 
-All of the files required for operation are located in the ``module_multi_uart`` directory. The files that are need to be included for use of this component in an application are:
+All of the files required for operation are located in the ``module_multi_uart`` directory. The files that need to be included for use of this component in an application are:
 
 .. list-table::
     :header-rows: 1
@@ -30,7 +30,7 @@ All of the files required for operation are located in the ``module_multi_uart``
 Configuration of Multi-UART component
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Multi-UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`. 
+Multi-UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`). 
 
 Static configuration is done by the application providing configuration header files ``multi_uart_tx_conf.h`` and ``multi_uart_rx_conf.h``. 
 
@@ -59,11 +59,11 @@ Below is a summary of the configuration options that are in the ``multi_uart_tx_
     * - UART_TX_MAX_BAUD_RATE
       - 115200
       - less than or equal to 115200
-      - Define the max baud rate the API will allow configuration. Validated to 115200
+      - Defines the max baud rate the API will allow configuration of. Validated to 115200
     * - UART_TX_CLOCK_DIVIDER
       - (UART_TX_CLOCK_RATE_HZ / UART_TX_MAX_BAUD_RATE)
       - Any appropriate divider
-      - It is recommended to leave this at the default. Is used to set the clock divider when configuring clocking from the internal reference clock
+      - It is recommended to leave this at the default. It is used to set the clock divider when configuring clocking from the internal reference clock
     * - UART_TX_OVERSAMPLE
       - 2
       - {1|2}
@@ -105,7 +105,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
     * - UART_RX_MAX_BAUD
       - 115200
       - less than or equal to 115200
-      - Define the max baud rate the API will allow configuration. Validated to 115200.
+      - Defines the max baud rate the API will allow configuration of. Validated to 115200.
     * - UART_RX_CLOCK_DIVIDER
       - (UART_RX_CLOCK_RATE_HZ / UART_RX_MAX_BAUD)
       - Any appropriate divider
@@ -113,14 +113,14 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
     * - UART_RX_OVERSAMPLE
       - 4
       - Should remain at 4
-      - Oversample count for the max baud rate. It is recommended to leave this value as it is unless it is understood the effects that changing this value will have.
+      - Oversample count for the max baud rate. It is recommended that this value is left as it is unless the effects of changing it are well understood.
       
 .. _sec_initialisation:
 
 Initialisation
 ~~~~~~~~~~~~~~
 
-The initialisation and configuration process for both the RX and TX operations is the same. For configuration the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` is utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the echo test application that is utilised for verification.
+The initialisation and configuration process for both the RX and TX operations is the same. For configuration, the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` are utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the echo test application that is used for verification.
 
 .. _fig_uart_init_flow:
 

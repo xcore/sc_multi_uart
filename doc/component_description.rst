@@ -1,7 +1,7 @@
 Module Description
 ==================
 
-The Multi-UART module consists of Transmit and Receive servers. These can be employed independently or togeather based on the application needs.
+The Multi-UART module consists of Transmit and Receive servers. These can be employed independently or together based on the application needs.
 
 Cores
 -----

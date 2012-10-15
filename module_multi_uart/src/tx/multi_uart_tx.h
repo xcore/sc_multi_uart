@@ -92,12 +92,12 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char );
 int uart_tx_put_char( int channel_id, unsigned int uart_char );
 
 /**
- * Multi UART Transmit Thread
+ * Multi UART Transmit function
  */
 void run_multi_uart_tx( streaming chanend cUART, REFERENCE_PARAM(s_multi_uart_tx_ports, tx_ports), clock uart_clock);
 
 /**
- * Pause the Multi-UART TX thread for reconfiguration
+ * Pause the Multi-UART TX task for reconfiguration
  * @param cUART     chanend to UART TX thread
  * @param t         timer for running buffer clearance pause
  */

@@ -25,12 +25,12 @@ The following tools should be installed on the host system in order to run this 
 Build options
 --------------
 
-``app_sk_muart_com_demo`` application use the following modules in order to achive its desired functionality.
+``app_sk_muart_com_demo`` application uses the following modules in order to achieve its desired functionality.
 
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
-This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQAURE connector type. This application can also be built for other compatible connectors as follows:
+This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQUARE connector type. This application can also be built for other compatible connectors as follows:
 
 To build for STAR connector, make the following changes in ``src\main.xc`` file:
 
@@ -98,7 +98,7 @@ The application operates a state machine to differentiate between user commands 
 
 Generally, the data token received by RX buffering logical core tells which UART channel a character has been received on. The logical core then extracts this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. The TX logical core already provides some buffering supported at the component level. 
 
-The TX handler operates by polling the buffer which is filled by the Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform an action based on current state of the handler.
+The TX handler operates by polling the buffer which is filled by the Rx handler. When an entry is seen, the Tx handler pulls it from the buffer and performs an action based on the current state of the handler.
 
 The channel for the TX logical core is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
 
@@ -108,7 +108,7 @@ The channel for the TX logical core is primarily used for reconfiguration. This 
 Quick Start Guide
 -----------------
 
-Quick starter guide and applicatioj usage is available in ``doc_quickstart`` of the application.
+Quick starter guide and application usage is available in ``doc_quickstart`` of the application.
 
 .. _sec_demo_features:
 
