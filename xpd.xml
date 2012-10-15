@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "Usage Example for xSOFTip Multi-UART Module" type = "demoCode" scope = "Example" path = "app_slicekit_com_demo" local = "false" id = "app_slicekit_com_demo" name = "Multi-UART PC Com Port Demo Application">
+        <component description = "Usage Example for xSOFTip Multi-UART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "Multi-UART PC Com Port Demo Application">
             <board>XA-SK-UART-8</board>
             <componentDependency>module_multi_uart</componentDependency>
             <componentDependency>module_xc_ptr</componentDependency>
@@ -15,7 +15,7 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
+        <githash>afbba103d8b5ed3378eaa3832b8f694dec2844bc</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
@@ -26,7 +26,7 @@
     <name>sc_multi_uart</name>
     <maintainer>Srinivas-E</maintainer>
     <partnumber>XM-001810-DH</partnumber>
-    <release parenthash = "ced19a3dce38ea90ec845d3f7606f41fb8cc0717" version = "1.0.0alpha0"></release>
+    <release parenthash = "ced19a3dce38ea90ec845d3f7606f41fb8cc0717" version = "1.0.0alpha0" githash = "b09b04265918fb4abc913265fe33104e446d09d8"></release>
     <release parenthash = "1b7eba1c0d8b620956f7e80bee7e3d7783892766" version = "1.0.0rc0" githash = "fa29fd8fccc7ad3353a22248ccc57e6e5e84cd9f"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
