@@ -20,7 +20,7 @@
     </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
     <docdir>doc</docdir>
-    <docdir>app_sk_com_demo/doc_quickstart</docdir>
+    <docdir>app_sk_muart_com_demo/doc_quickstart</docdir>
     <exclude_dir>app_multi_uart_demo</exclude_dir>
     <location>https://github.com/xcore/sc_multi_uart.git</location>
     <name>sc_multi_uart</name>
