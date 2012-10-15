@@ -32,21 +32,21 @@ The following ports are required for each of the receive and transmit functions 
       - Input
       - Data Receive
 
-Threads
+Logical Cores
 ++++++++++
 
 .. list-table::
     :header-rows: 1
     
     * - Operation
-      - Thread Count
+      - Logical Core Count
       - Notes
     * - Receive
       - 1
-      - Single thread server, may require application defined buffering thread - requires 62.5MIPS per thread
+      - Single logical core server, may require application defined buffering logical core - requires 62.5MIPS per logical core
     * - Transmit
       - 1
-      - Single thread server - requires 62.5MIPS per thread
+      - Single logical core server - requires 62.5MIPS per logical core
 
 Memory
 ++++++++++
@@ -62,7 +62,7 @@ Stack usage is estimated at 460 bytes.
       - Code (bytes)
       - Data (bytes)
       - Total Usage (bytes)
-    * - Receive Thread
+    * - Receive Logical Core
       - 316
       - 424
       - 740
@@ -70,7 +70,7 @@ Stack usage is estimated at 460 bytes.
       - 410
       - 0
       - 410
-    * - Transmit Thread
+    * - Transmit Logical Core
       - 1322
       - 940
       - 2262
@@ -83,8 +83,6 @@ Stack usage is estimated at 460 bytes.
       - **1364**
       - **3523**
 
-**Note** These values are meant as a guide and are correct as of Jan 24. 2012 - they may change if fixes are implemented or functionality is added.
-      
 Channel Usage
 +++++++++++++++
 

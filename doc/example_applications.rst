@@ -90,17 +90,17 @@ Application Description
 
 The demonstration application shows a typical application structure that would employ the Multi-UART module. 
 
-In addition to the two Multi-UART threads used by ``sc_multi_uart``, the application utilises one more thread to manage UART data from transmit and receive threads. 
+In addition to the two Multi-UART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
 
 UART data received may be user commands to perform various user actions or transaction data related to a user action (see :ref:`sec_demo_features`).
 
-The application operates a state machine to differentiate between user commands and user data, and provides some buffers to hold data received from UARTs. When the RX thread receives a character over the UART it saves it into the local buffer. A state handler operates on the received data to identify its type and performs relevant actions .
+The application operates a state machine to differentiate between user commands and user data, and provides some buffers to hold data received from UARTs. When the RX logical core receives a character over the UART it saves it into the local buffer. A state handler operates on the received data to identify its type and performs relevant actions .
 
-Generally, the data token received by RX buffering thread tells which UART channel a character has been received on. The thread then extracts this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. The TX thread already provides some buffering supported at the component level. 
+Generally, the data token received by RX buffering logical core tells which UART channel a character has been received on. The logical core then extracts this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. The TX logical core already provides some buffering supported at the component level. 
 
 The TX handler operates by polling the buffer which is filled by the Rx handler. When an entry is seen, Tx handler pulls it from the buffer and perform an action based on current state of the handler.
 
-The channel for the TX thread is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
+The channel for the TX logical core is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
 
 
 .. _sec_demo_usage:

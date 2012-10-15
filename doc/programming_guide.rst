@@ -6,7 +6,7 @@ This section discusses the programming aspects of the Multi-UART component and t
 Structure
 ~~~~~~~~~~
 
-This is an overview of the key header files that are required, as well as the thread structure and information regarding the buffering provision and requirements for the component.
+This is an overview of the key header files that are required, as well as the logical core structure and information regarding the buffering provision and requirements for the component.
 
 Source Code
 ++++++++++++
@@ -19,7 +19,7 @@ All of the files required for operation are located in the ``module_multi_uart``
     * - File
       - Description
     * - ``multi_uart_rxtx.h``
-      - Header file for simplified launch of both the TX and RX server threads, also provides the headers for the individual RX and TX API interfaces.
+      - Header file for simplified launch of both the TX and RX server logical cores, also provides the headers for the individual RX and TX API interfaces.
     * - ``multi_uart_common.h``
       - Header file providing configuration ENUM definitions and other constants that may be required for operation
     * - ``multi_uart_rx.h``
@@ -136,7 +136,7 @@ The following working example is taken from `uart_manager.xc` and shows a typica
     :start-after: //::Init Start
     :end-before:  //::Init End
 
-The next stage of initialisation is to release the server threads from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.
+The next stage of initialisation is to release the server logical cores from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.
 
 .. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
     :start-after: //::Muart Server
@@ -154,7 +154,7 @@ To transmit data using the TX server the application should make use of :c:func:
     :start-after: //::Send Byte
     :end-before:  //::Send Byte End
 
-This operation must be completed on the same core as the TX server thread as the communication module utilises shared memory.
+This operation must be completed on the same tile as the TX server logical core as the communication module utilises shared memory.
 
 .. _sec_interfacing_rx:
 
@@ -176,11 +176,11 @@ Once the token is received over the channel informing the application of the UAR
 Reconfiguration of RX & TX Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The method for reconfiguring the UART software is the same for both the RX and the TX servers. When the application requires a reconfiguration then a call to :c:func:`uart_tx_reconf_pause` or :c:func:`uart_rx_reconf_pause` needs to be made. When reconfiguring the RX side the server thread will pause immediately, however when pausing the TX side the server thread will pause the application thread to allow the buffers to empty in the TX thread. 
+The method for reconfiguring the UART software is the same for both the RX and the TX servers. When the application requires a reconfiguration then a call to :c:func:`uart_tx_reconf_pause` or :c:func:`uart_rx_reconf_pause` needs to be made. When reconfiguring the RX side the server logical core will pause immediately, however when pausing the TX side the server logical core will pause the application logical core to allow the buffers to empty in the TX logical core. 
 
-Once the functions exit the server threads will be paused. Configuration is then done utilising the same methodology as initial configuration using a function such as the :c:func:`uart_tx_initialise_channel` or :c:func:`uart_rx_initialise_channel`.
+Once the functions exit the server logical cores will be paused. Configuration is then done utilising the same methodology as initial configuration using a function such as the :c:func:`uart_tx_initialise_channel` or :c:func:`uart_rx_initialise_channel`.
 
-Following the reconfiguration the application must then call :c:func:`uart_tx_reconf_enable` and :c:func:`uart_rx_reconf_enable` to re-enable the TX and RX threads respectively.
+Following the reconfiguration the application must then call :c:func:`uart_tx_reconf_enable` and :c:func:`uart_rx_reconf_enable` to re-enable the TX and RX logical cores respectively.
 
 The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.
 

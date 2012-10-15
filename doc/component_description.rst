@@ -3,24 +3,24 @@ Module Description
 
 The Multi-UART module consists of Transmit and Receive servers. These can be employed independently or togeather based on the application needs.
 
-Threads
--------
+Cores
+-----
 
-The multi-UART component comprises two threads, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
+The multi-UART component comprises two logical cores, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
 
 Buffering
 ---------
 
-Buffering for the TX server is handled within the UART TX thread. The buffer is configurable allowing the number of buffer slots that are available to be configured, subject only to available memory. Data is transferred to the UART TX thread via a shared memory interface and therefore any client thread must be on the same core as the UART thread.
+Buffering for the TX server is handled within the UART TX logical core. The buffer is configurable allowing the number of buffer slots that are available to be configured, subject only to available memory. Data is transferred to the UART TX logical core via a shared memory interface and therefore any client logical core must be on the same tile as the UART logical core.
 
-There is no buffering provided by the RX server. The application must provide a thread that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.
+There is no buffering provided by the RX server. The application must provide a logical core that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.
 
 Communication Model
 -------------------
 
-The module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the thread and subsequently release the thread when required for reconfiguration.
+The module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the logical core and subsequently release the logical core when required for reconfiguration.
 
-The primary means of data transfer for both the RX and TX threads is shared memory. The RX thread utilises a channel to notify any client of available data - this means that events can be utilised within an application to avoid the requirement for polling for received data.
+The primary means of data transfer for both the RX and TX logical cores is shared memory. The RX logical core utilises a channel to notify any client of available data - this means that events can be utilised within an application to avoid the requirement for polling for received data.
 
 .. _sec_ext_clk:
 
