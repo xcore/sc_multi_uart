@@ -5,6 +5,7 @@ Multi-UART Component
 :Maintainer: Srinivas-E
 :Description: Multiple UART to Ethernet (TELNET) bridge, plus web server controller
 
+
 :Version: 1.0.0rc0
 :Vendor: XMOS
 
