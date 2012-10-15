@@ -25,6 +25,8 @@ Setting Up The Multi Uart Slice Card
 .. figure:: images/pipe_hardware.png
    :align: center
 
+   Setting up the Loopback Jumpers
+
 The demo shows the transfer of characters accross all 8 uarts by looping them all back. Data will be received (RX) from the host computer on Uart 0 (pins 0 and 1 of the header on the Slice Card), transmitted through the remaining 7 uarts and then the result of that is sent back to the host via Uart 0 TX.
 
 You will need seven 2-pin jumpers, which should be placed on header J4 (the one nearest the DB9 connector) of the Slice Card, on all the rows numbered 1 through 7 on the Slice Card.
@@ -69,6 +71,8 @@ Setting Up The System
    
 .. figure:: images/hardware_setup.png
    :align: center
+
+   Full system setup for Multi-UART Demo
 
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
