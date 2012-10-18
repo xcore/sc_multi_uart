@@ -46,7 +46,8 @@
 #define MAX_BAUD_RATE_INDEX				7
 #define CRC_INDICATOR					'#'
 #define CRC_CHAR_LIMIT					10
-
+#define DELAY_CHAR_SEND					2000
+//at higher baud rate limiting the transmit data rate to give room to rx for processing the received byte using loopback
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
@@ -89,6 +90,8 @@ s_uart_rx_channel_fifo uart_rx_channel_state[NUM_ACTIVE_UARTS];
 uart_comm_state_t uart_comm_state[NUM_ACTIVE_UARTS];
 int valid_baud_rate[MAX_BAUD_RATE_INDEX]={115200, 57600, 38400, 19200, 9600, 4800, 600};
 unsigned Char_length=1,Channel_ID=1,INITIAL=1,num_chr_received=0;
+timer tmr;
+unsigned time_start,time_end;
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
@@ -502,7 +505,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 
 				case 'b': //Pipe option mode is selected
 				{
-					timer tmr;
+
 					num_chr_received=0;
 					for(int i=0; i<NUM_ACTIVE_UARTS;i++)
 					{
@@ -512,7 +515,6 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 							uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE_IDLE;
 						uart_comm_state[i].uart_mode = UART_MODE_DATA;
 					}
-					tmr :> uart_comm_state[0].get_ts;// start the time stamp
 				}
 					break;
 
@@ -578,8 +580,6 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 
 		case UART_CMD_PIPE_FILE_RCV: // Pipes the data through all Uart channels
 		{
-			timer tmr;
-			unsigned ts;
 			if(uart_char == 0x04) //Waits until ESC character is received
 			{
 				Char_length=-1;
@@ -596,12 +596,7 @@ static void uart_state_hanlder(unsigned uart_id, unsigned uart_char,
 						uart_comm_state[i].uart_usage_mode = UART_CMD_PIPE_FILE; //Pipe file theough all channel state
 					uart_comm_state[i].uart_mode = UART_MODE_DATA;
 				}
-				tmr :> ts;
-				if (ts >  uart_comm_state[uart_id].get_ts) //start the time stamps for data
-					uart_comm_state[uart_id].get_ts = ts - uart_comm_state[uart_id].get_ts;
-				else
-					uart_comm_state[uart_id].get_ts = uart_comm_state[uart_id].get_ts - ts;
-				tmr :> uart_comm_state[uart_id].put_ts;
+				tmr :> time_start;
 			}
 			Char_length++;
 			push_byte_to_uart_rx_buffer(uart_rx_channel_state[1], uart_char); //Pushes the byte to uart buffer
@@ -660,7 +655,7 @@ static void uart_tx_hanlder(unsigned uart_id)
 		unsigned int ts;
 		if(Channel_ID == uart_id) //checks if uart id is same as channels ID
 		{
-			send_byte_to_uart_tx(uart_rx_channel_state[uart_id]); //send byte to Tx pins
+
 			if(uart_rx_channel_state[uart_id].buf_depth == 0)
 				Channel_ID++;
 			if(Channel_ID == NUM_ACTIVE_UARTS)
@@ -675,6 +670,7 @@ static void uart_tx_hanlder(unsigned uart_id)
 						uart_comm_state[0].uart_usage_mode = UART_CMD_PUT_FILE;
 				}
 			}
+			send_byte_to_uart_tx(uart_rx_channel_state[uart_id]); //send byte to Tx pins
 		}
 	}
 		break;
@@ -688,29 +684,17 @@ static void uart_tx_hanlder(unsigned uart_id)
 			}
 		if (0 == uart_rx_channel_state[uart_id].buf_depth) //If buffer is empty, then appends timing inforamtion
 		{
-			timer tmr;
-			unsigned int ts;
 			char msg[50] = "";
 			int msg_len[1];
-			char separator = '.';
-			char sep_text[] = " Vs ";
 
-			tmr :> ts;
-			if (ts >  uart_comm_state[uart_id].put_ts) //time taken to transmit data
-				uart_comm_state[uart_id].put_ts = ts - uart_comm_state[uart_id].put_ts;
+			tmr :> time_end;
+			if (time_end >  time_start) //time taken to transmit data
+				uart_comm_state[uart_id].put_ts = time_end - time_start;
 			else
-				uart_comm_state[uart_id].put_ts = uart_comm_state[uart_id].put_ts - ts;
+				uart_comm_state[uart_id].put_ts = time_start - time_end;
 
 			send_message_to_uart_console(uart_id, IDX_FILE_STATS);// appends time to terminal messages
-
-				msg_len[0] = itoa((int)uart_comm_state[uart_id].get_ts/num_chr_received, msg, 10, 0);//displays time inforamtion per character
-			insert_separator(5, msg, msg_len, separator);
-
-			string_copy(msg[0], sep_text[0], 4);
-			msg_len[0] = 4;
-
-			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/num_chr_received, msg, 10, 0); //displays per character timing information
-			insert_separator(5, msg, msg_len, separator);
+			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/100, msg, 10, 0); //displays in usec data transfer timing information
 			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
 
 			uart_comm_state[uart_id].pending_file_transfer = 0;
@@ -774,7 +758,7 @@ void uart_manager(streaming chanend c_tx_uart, streaming chanend c_rx_uart)
                 break;
             }
 //::Receive Data End
-            case timer_event when timerafter (time+1500):> time:
+            case timer_event when timerafter (time+DELAY_CHAR_SEND):> time:
             	uart_tx_hanlder(uart_id);
             	uart_id++;
                 if (uart_id >= NUM_ACTIVE_UARTS)
