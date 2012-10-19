@@ -684,20 +684,6 @@ static void uart_tx_hanlder(unsigned uart_id)
 			}
 		if (0 == uart_rx_channel_state[uart_id].buf_depth) //If buffer is empty, then appends timing inforamtion
 		{
-			char msg[50] = "";
-			int msg_len[1];
-
-			tmr :> time_end;
-			if (time_end >  time_start) //time taken to transmit data
-				uart_comm_state[uart_id].put_ts = time_end - time_start;
-			else
-				uart_comm_state[uart_id].put_ts = time_start - time_end;
-
-			send_message_to_uart_console(uart_id, IDX_FILE_STATS);// appends time to terminal messages
-			msg_len[0] = itoa((int)uart_comm_state[uart_id].put_ts/100, msg, 10, 0); //displays in usec data transfer timing information
-			append_to_uart_console_message(uart_id, 1, 1, msg, msg_len);
-
-			uart_comm_state[uart_id].pending_file_transfer = 0;
 			uart_comm_state[uart_id].uart_mode = UART_MODE_CMD;
 			uart_comm_state[uart_id].uart_usage_mode = UART_CMD_ECHO_HELP;// after displaying the timing inforamtion Uart goes to echo help mode
 		}
