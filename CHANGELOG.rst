@@ -1,7 +1,7 @@
 Multi-UART Component Change Log
 ===============================
 
-1.1.0
+1.0.1
 -----
   * Updated documents for xSOFTip requirements
   * Added metainfo and XPD items
