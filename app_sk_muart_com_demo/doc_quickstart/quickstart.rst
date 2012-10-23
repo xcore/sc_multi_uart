@@ -74,7 +74,7 @@ Setting Up The System
    #. Connect a null serial cable to DB-9 connector on XA-SK-MUART Slice Card. The cable will need a cross over between the UART RX and TX pins at each end.
    #. Connect the other end of cable to the host computer DB-9 connector slot. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. We used the BF-810 USB to Uart adapter (See http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810). Any other usb to uart bridge should do just as well.
    #. Identify the serial (COM) port number provided by the Host or the USB to UART adapter and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above).
-   #. Configure the host terminal console program as follows: 115200 baud, 8 bit character length, even parity, 1 stop bit, no hardware flow control. The Transmit End-of-Line character should be set to `CR` (other options presented will probably be ``LF`` and ``CR\LF``).
+   #. Configure the host terminal console program as follows: 115200 baud, 8 bit character length, even parity, 1 stop bit, no hardware flow control. The Transmit End-of-Line character should be set to ``CR`` (other options presented will probably be ``LF`` and ``CR\LF``).
    #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. Switch on the power supply to the Slicekit Core board.
    #. Open the serial device on the host console program
    
@@ -117,10 +117,6 @@ Next Steps
 
    #. Refer to the module_multi_uart documentation for implementation details of this application and information on further things to try.
    #. Evaluate the full Ethernet to Serial (8 Uart) reference product. This is a fully featured reference product including an embedded webserver, multicast configuration via UDP and a host of other features. and can be accessed by applying to your XMOS sales representative.
-
-Look at the Code
-................
-
    #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_muart_com_demo and double click on the main.xc file within it. The file will open in the central editor window.
    #. This code employs three logical cores. The par{} statement at the bottom of ``main.xc`` instances the Multi-Uart by calling it's server function, ``run_multi_uart_rxtx()``. This is a function which does not return and runs the Multi-Uart and uses two logical cores (one for 8 Uart TX, and another for 8 uart RX) . It also instances a logical core running ``uart_manager()``. This uart_manager is the demo application code which displays the help menu, effects the 8 channel loopback and so on. 
    #. Since only one call is made to ``run_multi_uart_rxtx()`` in the ``par{}`` in ``main.xc``, why does it say above that two logical cores actually used by this component? To see why, navigate to the ``module_multi_uart`` in the Project Explorer pane, double-lick to open its contents and then navigate to the ``src`` directory and open ``multi_uart_rxtx.xc`` in the editor by double clicking it. Now it is possible to see the two logical cores used by the Multi-Uart - there is another ``par{}`` statement which calls the ``run_multi_uart_tx`` and ``run_multi_uart_rx`` server functions causing them to be executed on separate logical cores.

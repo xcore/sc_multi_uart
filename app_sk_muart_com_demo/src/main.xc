@@ -44,15 +44,6 @@ on tile[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1L; /* Define 1 bit ex
 on tile[UART_CORE]: clock clk_uart_tx = XS1_CLKBLK_4;
 on tile[UART_CORE]: clock clk_uart_rx = XS1_CLKBLK_5;
 
-/* Dummy Thread*/
-void dummy()
-{
-	while(1)
-	{
-
-	}
-}
-
 /**
  * Top level main for multi-UART demonstration
  */
