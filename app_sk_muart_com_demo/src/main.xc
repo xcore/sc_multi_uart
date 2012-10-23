@@ -63,15 +63,8 @@ int main(void)
 
     par
     {
-        on stdcore[UART_CORE]: uart_manager(c_tx_uart, c_rx_uart);
-        on stdcore[UART_CORE]: run_multi_uart_rxtx( c_tx_uart,  uart_tx_ports, c_rx_uart, uart_rx_ports, clk_uart_rx, p_uart_ref_ext_clk, clk_uart_tx);
-
-        /* dummy threads*/
-        on stdcore[UART_CORE]: dummy();
-        on stdcore[UART_CORE]: dummy();
-        on stdcore[UART_CORE]: dummy();
-        on stdcore[UART_CORE]: dummy();
-        on stdcore[UART_CORE]: dummy();
+        on tile[UART_CORE]: uart_manager(c_tx_uart, c_rx_uart);
+        on tile[UART_CORE]: run_multi_uart_rxtx( c_tx_uart,  uart_tx_ports, c_rx_uart, uart_rx_ports, clk_uart_rx, p_uart_ref_ext_clk, clk_uart_tx);
     }
 
     return 0;
