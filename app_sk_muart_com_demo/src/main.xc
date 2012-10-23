@@ -23,26 +23,26 @@
 
 #ifdef SK_MULTI_UART_SLOT_SQUARE
 #define UART_CORE   1
-on stdcore[UART_CORE]:s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8B };
-on stdcore[UART_CORE]:s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8A };
-on stdcore[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1F; /* Define 1 bit external clock */
+on tile[UART_CORE]: s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8B };
+on tile[UART_CORE]: s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8A };
+on tile[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1F; /* Define 1 bit external clock */
 
 #elif SK_MULTI_UART_SLOT_STAR
 #define UART_CORE   0
-on stdcore[UART_CORE]:s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8B };
-on stdcore[UART_CORE]:s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8A };
-on stdcore[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1F; /* Define 1 bit external clock */
+on tile[UART_CORE]: s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8B };
+on tile[UART_CORE]: s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8A };
+on tile[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1F; /* Define 1 bit external clock */
 
 #elif SK_MULTI_UART_SLOT_TRIANGLE
 #define UART_CORE   0
-on stdcore[UART_CORE]:s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8D };
-on stdcore[UART_CORE]:s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8C };
-on stdcore[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1L; /* Define 1 bit external clock */
+on tile[UART_CORE]: s_multi_uart_tx_ports uart_tx_ports = { XS1_PORT_8D };
+on tile[UART_CORE]: s_multi_uart_rx_ports uart_rx_ports = { XS1_PORT_8C };
+on tile[UART_CORE]: in port p_uart_ref_ext_clk = XS1_PORT_1L; /* Define 1 bit external clock */
 #endif
 
 
-on stdcore[UART_CORE]: clock clk_uart_tx = XS1_CLKBLK_4;
-on stdcore[UART_CORE]: clock clk_uart_rx = XS1_CLKBLK_5;
+on tile[UART_CORE]: clock clk_uart_tx = XS1_CLKBLK_4;
+on tile[UART_CORE]: clock clk_uart_rx = XS1_CLKBLK_5;
 
 /* Dummy Thread*/
 void dummy()
