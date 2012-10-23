@@ -1,6 +1,11 @@
 Multi-UART Component Change Log
 ===============================
 
+1.0.2
+-----
+  * Removed dummy threads
+  * Fixed quickstart guide issues
+
 1.0.1
 -----
   * Updated documents for xSOFTip requirements
@@ -10,3 +15,4 @@ Multi-UART Component Change Log
 1.0.0
 -----
   * Documentation Updates 
+
