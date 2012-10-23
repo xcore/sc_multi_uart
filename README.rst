@@ -1,7 +1,7 @@
 Multi-UART Component
 ......................
 
-:Latest release: 1.0.1alpha1
+:Latest release: 1.0.1alpha2
 :Maintainer: Srinivas-E
 :Description: Multiple UART to Ethernet (TELNET) bridge, plus web server controller
 
