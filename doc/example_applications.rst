@@ -30,15 +30,18 @@ Build options
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
-This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQUARE connector type. This application can also be built for other compatible connectors as follows:
+This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQUARE connector type. This application can also be built for TRIANGLE or STAR connectors as follows:
 
 To build for STAR connector, make the following changes in ``src\main.xc`` file:
 
-    * ``#define SK_MULTI_UART_SLOT_STAR 1``
+    * Modify tile number from ``1`` to ``0``
 
 To build for TRIANGLE connector, make the following changes in ``src\main.xc`` file:
 
-    * ``#define SK_MULTI_UART_SLOT_TRIANGLE 1``
+    * Modify tile number from ``1`` to ``0``
+    * Modify 8 bit port assignment of UART TX from ``XS1_PORT_8B`` to ``XS1_PORT_8D``
+    * Modify 8 bit port assignment of UART RX from ``XS1_PORT_8A`` to ``XS1_PORT_8C``
+    * Modify external clock refernce from ``XS1_PORT_1F`` to ``XS1_PORT_1L``
 
 The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the multi-uart component are derived automatically.
     
@@ -92,13 +95,13 @@ The demonstration application shows a typical application structure that would e
 
 In addition to the two Multi-UART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
 
-UART data received may be user commands to perform various user actions or transaction data related to a user action (see :ref:`sec_demo_features`).
+UART data received may be user commands or data related to a user command selection (see :ref:`sec_demo_features`).
 
-The application operates a state machine to differentiate between user commands and user data, and provides some buffers to hold data received from UARTs. When the RX logical core receives a character over the UART it saves it into the local buffer. A state handler operates on the received data to identify its type and performs relevant actions .
+The application provides some buffers (FIFO) to hold data received from UARTs. When the RX logical core receives a character over the UART, it signals application handler to process the data. Appliaction receive handler validates the data and performs specific actions.
 
 Generally, the data token received by RX buffering logical core tells which UART channel a character has been received on. The logical core then extracts this character out of the buffer slot, validates it utilising the provided validation function and inserts it into a larger, more comprehensive buffer.The RX buffering is implemented as an example only and may not be necessary for other applications. The TX logical core already provides some buffering supported at the component level. 
 
-The TX handler operates by polling the buffer which is filled by the Rx handler. When an entry is seen, the Tx handler pulls it from the buffer and performs an action based on the current state of the handler.
+The TX handler operates by polling the buffer when it has to transmit data related to any UARTS. 
 
 The channel for the TX logical core is primarily used for reconfiguration. This is discussed in more detail in :ref:`sec_reconf_rxtx`. Specific usage of the API is also discussed in :ref:`sec_interfacing_tx` and :ref:`sec_interfacing_rx`.
 
@@ -120,11 +123,13 @@ Command Interface
 
 The application provides the following commands to interact with it:
 
-    * e - in this mode, an entered character is echoed back on the console. In order to come out of this mode, press the ``Esc`` key
+    * e - in this mode, an entered character is echoed back on the console
     * r - reconfigure UART for a different baud rate
-    * b - pipe file through all uart channels.
+    * f - transfer a file using a single UART
+    * b - pipe file through all uart channels
     * h - displays user menu
     
+    In order to come out of a selected mode, press the ``Esc`` key.
     At any instance ``Esc`` key can be pressed to revert back to user menu.
 
 

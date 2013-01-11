@@ -1,13 +1,13 @@
 Multiuart Com Demo: Quick Start Guide
 --------------------------------------------------
 
-THis demonstration uses the XA-SK-UART-8 Multi UART Slice Card together with the xSOFTip Multi-UART component to create 8 UARTs. These are show working as follows
+This demonstration uses the XA-SK-UART-8 Multi UART Slice Card together with the xSOFTip Multi-UART component to create 8 UARTs. The working is shown as follows
 
    * Data is received from a host computer over a null modem cable on the first uart (Uart 0) using the DB9 connector.
    * Received data is piped through the remaining 7 uarts using loopback connections on the Slice Card. 
    * After data has passed through all uarts 1 through 7, the data is then returned back to the host computer via Uart 0 and the DB9 connector.
 
-This demo also features UART reconfiguration for various standard baud rates.
+This demo also features UART reconfiguration for a sample of standard baud rates.
 
 Host Computer Setup
 +++++++++++++++++++
@@ -17,7 +17,7 @@ The following tools should be installed on the host system in order to run this 
     * For Win 7: `Hercules Setup Utility by HW-Group <http://www.hw-group.com/products/hercules/index_en.html>`_
     * For MAC users: `SecureCRT7.0 <http://www.vandyke.com/download/securecrt/>`_
 
-Similar tools exist for Linux users but for the purposes of this demonstartion a Windows or OS X platform using the tools above is reccomended.
+Similar tools exist for Linux users but for the purposes of this demonstartion a Windows or OS X platform using the tools above is recommended.
 
 Hardware Setup
 ++++++++++++++
@@ -97,13 +97,14 @@ Note that the Developer Column in the xTimeComposer on the right hand side of yo
 Run the Application
 +++++++++++++++++++
 
-   #. Click on the ``Run`` icon (the white arrow in the green circle) and wait for the configuration completion messages in XDE console for all UARTs before proceeding to the next step.
    #. Open the configured terminal client application console on the host computer
-   #. Press any key on console. A user menu will be displayed
+   #. Click on the ``Run`` icon (the white arrow in the green circle) and wait for the application running message in XDE console for all UARTs before proceeding to the next step.
+   #. A user menu will be displayed on terminal client application console 
    #. Key in ``e`` to enter echo mode. Type in any character from thekey board and application echoes the key pressed. In order to get back to user menu, press ``Esc`` key.
-   #. Key in ``r`` to enter reconfiguration mode. Key in new baud rate value (select one of the values from 115200, 57600, 38400, 19200, 9600, 4800, 600) followed by CR (Enter) key. The UART will be reconfigured (XDE console will display the value entered). The terminal console should be reopened with the new selected baud rate. Press ``h`` to display user menu.
-   #. Key in ``b`` in order to pipe data through UART channels 1-7. Type in the Console window and then press Ctrl+D to send the data through 7 channels and recieve it for display. Hardware setup for Pipe option should be as shown in the Loopback Connections Figure above. If the connection to any of the channels is disconnected you will not see data received back and a message is displayed on the terminal saying that Muart pipe is broken.
-   #. If you successfully sent characters using the ``b`` option above, verify that the MUART pipe through all uarts is indeed present by removing one of the jumpers, repreating the ``b``, ``CTRL-D`` sequence above upon which an error message regarding the broken pipe should be displayed.  
+   #. Key in ``r`` to enter reconfiguration mode. Select a new baud rate value (choose 1 for 115200 baud, 2 for 57600 baud, 3 for 9600 baud and 4 for 600 baud selection). The UART will be reconfigured (XDE console will display the reconfigured value). The terminal console should be reopened with the new selected baud rate. Press ``h`` to display user menu.
+   #. Key in ``f`` in order to transfer a file through UART 0. Use file upload option if it is supported by terminal client application or type in the Console window and then press Ctrl+D to send the data and recieve it for display. In order to get back to user menu, press ``Esc`` key.
+   #. Key in ``b`` in order to pipe data through UART channels 1-7. Type in the Console window and then press Ctrl+D to send the data through 7 channels and recieve it for display. Hardware setup for Pipe option should be as shown in the Loopback Connections Figure above. If the connection to any of the channels is disconnected you will not see data received back and a message is displayed on the terminal console saying that the Muart pipe is broken.
+   #. If you successfully sent characters using the ``b`` option above, verify that the MUART pipe through all uarts is indeed present by removing one of the jumpers, repreating the ``b``, ``CTRL-D`` sequence above upon which an error message regarding the broken pipe should be displayed.
    #. Key in ``h`` in order to display user menu. This help is displayed any time during execution by pressing ``Esc`` key followed by ``h``
 
 .. figure:: images/help_menu.png

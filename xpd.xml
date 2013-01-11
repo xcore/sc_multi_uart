@@ -15,7 +15,7 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>afbba103d8b5ed3378eaa3832b8f694dec2844bc</githash>
+        <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>

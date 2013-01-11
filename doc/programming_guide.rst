@@ -120,7 +120,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
 Initialisation
 ~~~~~~~~~~~~~~
 
-The initialisation and configuration process for both the RX and TX operations is the same. For configuration, the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` are utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the echo test application that is used for verification.
+The initialisation and configuration process for both the RX and TX operations is the same. For configuration, the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` are utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the app_sk_muart_com_demo application that is used for verification.
 
 .. _fig_uart_init_flow:
 
@@ -148,7 +148,7 @@ The next stage of initialisation is to release the server logical cores from the
 Interfacing to the TX Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the demo application configuration simply takes a string in the form of a character array and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the loop moves onto the next channel. 
+To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the demo application configuration simply takes a string from the application buffer (simply can be a character array) and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the buffer index is not incremented in order to retain the character in the application buffer until it is successfully pushed to UART TX server.
 
 .. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
     :start-after: //::Send Byte

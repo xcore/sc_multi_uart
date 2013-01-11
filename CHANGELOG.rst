@@ -1,6 +1,11 @@
 Multi-UART Component Change Log
 ===============================
 
+1.0.3
+-----
+  * Reworked on a simpler version of app
+  * File transfer on a single UART is added back
+
 1.0.2
 -----
   * Removed dummy threads

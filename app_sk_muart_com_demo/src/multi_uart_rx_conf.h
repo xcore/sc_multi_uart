@@ -27,7 +27,7 @@
 #define UART_RX_CLOCK_DIVIDER      (UART_RX_CLOCK_RATE_HZ/UART_RX_MAX_BAUD)
 
 /**
- * Define oversample for max baud. This should be left at 4
+ * Define oversample for max baud.
  */
-#define UART_RX_OVERSAMPLE 4
+#define UART_RX_OVERSAMPLE 8
 
