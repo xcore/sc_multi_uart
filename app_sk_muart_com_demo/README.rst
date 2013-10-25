@@ -1,9 +1,9 @@
-Multi-UART PC Com Port Demo Application
-=======================================
+MultiUART PC com port demo application
+======================================
 
 :scope: Example
-:description: Usage Example for xSOFTip Multi-UART Module
-:keywords: Multi-UART, UART, demo
+:description: Usage example for xSOFTip MultiUART Module
+:keywords: MultiUART, UART, demo
 :boards: XA-SK-UART-8
 
-Demonstration application showing usage of MultiUart module to implement a serial communications with a PC.
+Demonstration application showing usage of MultiUART module to implement a serial communication with a PC.
