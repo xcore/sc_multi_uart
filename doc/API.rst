@@ -1,7 +1,7 @@
 .. _sec_common_api:
 
-Multi-UART Common API 
-======================
+Multi UART Common API 
+=====================
 
 The following describes the shared API between the UART RX Server and UART TX Server code.
 
@@ -18,7 +18,7 @@ Enum Definitions
 
 .. _sec_common_func:
 
-Combined RX & TX Server Launch Functions
+Combined RX & TX server launch functions
 -----------------------------------------
 
 .. doxygenfunction:: run_multi_uart_rxtx_int_clk
@@ -27,14 +27,14 @@ Combined RX & TX Server Launch Functions
 
 .. _sec_tx_api:
 
-Multi-UART Transmit API 
-========================
+Multi UART transmit API 
+=======================
 
 The following describes the public API for use in applications and the API's usage.
 
 .. _sec_tx_conf_defines:
 
-Configuration Defines
+Configuration defines
 ----------------------
 
 The file ``multi_uart_tx_conf.h`` must be provided in the application source code. This file should comprise of the following defines:
@@ -73,8 +73,8 @@ The file ``multi_uart_tx_conf.h`` must be provided in the application source cod
 
 .. _sec_tx_data_struct:
 
-Data Structures
-----------------
+Data structures
+---------------
 
 .. doxygenstruct:: STRUCT_MULTI_UART_TX_PORTS
 
@@ -82,8 +82,8 @@ Data Structures
 
 .. _sec_tx_conf_func:
 
-Configuration Functions
-------------------------
+Configuration functions
+-----------------------
 
 .. doxygenfunction:: uart_tx_initialise_channel
 
@@ -93,8 +93,8 @@ Configuration Functions
 
 .. _sec_tx_func:
 
-Transmission Functions
---------------------------
+Transmission functions
+----------------------
 
 .. doxygenfunction:: uart_tx_assemble_word
 
@@ -102,22 +102,22 @@ Transmission Functions
 
 .. _sec_tx_server_func:
 
-Multi-UART TX Server
----------------------
+Multi UART TX server
+--------------------
 
 .. doxygenfunction:: run_multi_uart_tx
 
 .. _sec_rx_api:
 
-Multi-UART Receive API 
+Multi UART receive API 
 =======================
 
 The following describes the public API for use in applications and the API's usage.
 
 .. _sec_rx_conf_defines:
 
-Configuration Defines
-----------------------
+Configuration defines
+---------------------
 
 The file ``multi_uart_rx_conf.h`` must be provided in the application source code. This file should comprise of the following defines:
 
@@ -143,8 +143,8 @@ The file ``multi_uart_rx_conf.h`` must be provided in the application source cod
 
 .. _sec_rx_data_struct:
 
-Data Structures
-----------------
+Data structures
+---------------
 
 .. doxygenstruct:: STRUCT_MULTI_UART_RX_PORTS
 
@@ -152,8 +152,8 @@ Data Structures
 
 .. _sec_rx_conf_func:
 
-Configuration Functions
-------------------------
+Configuration functions
+-----------------------
 
 .. doxygenfunction:: uart_rx_initialise_channel
 
@@ -163,27 +163,27 @@ Configuration Functions
 
 .. _sec_rx_data_validation_func:
 
-Data Validation Functions
---------------------------
+Data validation functions
+-------------------------
 
 .. doxygenfunction:: uart_rx_validate_char
 
-Data Fetch Functions
----------------------
+Data fetch functions
+--------------------
 
 .. doxygenfunction:: uart_rx_grab_char
 
 .. _sec_rx_server_func:
 
-Multi-UART RX Server
----------------------
+Multi UART RX server
+--------------------
 
 .. doxygenfunction:: run_multi_uart_rx
 
 .. _sec_helper_api:
 
-Multi-UART Helper API
-======================
+Multi UART helper API
+=====================
 
 This API provides a number of functions that allow the access of architecture specific functionality within C where XC semantics are not available.
 

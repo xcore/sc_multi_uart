@@ -1,7 +1,7 @@
-Example Applications
+Example applications
 ====================
 
-This section discusses the demonstration application that uses multi-uart module.
+This section discusses the demonstration application that uses Multi UART module.
 
 **app_sk_muart_com_demo** Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,7 +10,7 @@ This application is available as ``app_sk_muart_com_demo`` under ``sc_multi_uart
     
 .. _sec_demo_tools:
 
-Required Software Tools
+Required software tools
 -----------------------
 
 The following tools should be installed on the host system in order to run this application
@@ -30,7 +30,7 @@ Build options
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
-This demo application is built by default for XP-SKC-L2 Slicekit Core board, SQUARE connector type. This application can also be built for TRIANGLE or STAR connectors as follows:
+This demo application is built by default for XP-SKC-L2 sliceKIT Core board, SQUARE connector type. This application can also be built for TRIANGLE or STAR connectors as follows:
 
 To build for STAR connector, make the following changes in ``src\main.xc`` file:
 
@@ -43,34 +43,34 @@ To build for TRIANGLE connector, make the following changes in ``src\main.xc`` f
     * Modify 8 bit port assignment of UART RX from ``XS1_PORT_8A`` to ``XS1_PORT_8C``
     * Modify external clock refernce from ``XS1_PORT_1F`` to ``XS1_PORT_1L``
 
-The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the multi-uart component are derived automatically.
+The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the Multi UART component are derived automatically.
     
 
-Hardware Settings
+Hardware settings
 -----------------
 
-Voltage Levels
+Voltage levels
 ++++++++++++++
 
-The XA-SK-UART8 Slice Card has two options for uart signalling levels:
+The XA-SK-UART8 sliceCARD has two options for uart signalling levels:
     * CMOS TTL
     * RS-232
     
-By default, this Slice Card uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the Slice Card. All 8 UART channels must use the same voltage setting. 
+By default, this sliceCARD uses the RS-232 levels. In order to use the CMOS TTL levels, short J3 pins (25-26) of the sliceCARD. All 8 UART channels must use the same voltage setting. 
 
-Uart Header Connections
+UART header connections
 +++++++++++++++++++++++
 
-When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-UART8 Slice Card.
+When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-UART8 sliceCARD.
 
-When using TTL levels, UART device pins must be connected to J3 of Multi-UART Slice Card (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 Slice Card is as follows:
+When using TTL levels, UART device pins must be connected to J3 of Multi UART sliceCARD (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 sliceCARD is as follows:
 
 .. image:: images/XA-SK-UART8-SquareConnected.png
     :align: center
 
 .. _table_connector_breakout:
 
-XA-SK-UART8 Slice Card for Demo Applications 
+XA-SK-UART8 sliceCARD for demo applications 
 
 =================== ===================== =====================
 **UART Identifier** **J3/J4 Pin no.(TX)** **J3/J4 Pin no.(RX)**
@@ -85,15 +85,15 @@ XA-SK-UART8 Slice Card for Demo Applications
 7                   23                    24
 =================== ===================== =====================
 
-Optionally, Uart #0 may be accessed via the DB9 connector on the end of the Slice Card and thus connected directly to a PC COM port.
+Optionally, Uart #0 may be accessed via the DB9 connector on the end of the sliceCARD and thus connected directly to a PC COM port.
 
     
-Application Description
+Application description
 -----------------------
 
-The demonstration application shows a typical application structure that would employ the Multi-UART module. 
+The demonstration application shows a typical application structure that would employ the Multi UART module. 
 
-In addition to the two Multi-UART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
+In addition to the two Multi UART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
 
 UART data received may be user commands or data related to a user command selection (see :ref:`sec_demo_features`).
 
@@ -108,17 +108,17 @@ The channel for the TX logical core is primarily used for reconfiguration. This 
 
 .. _sec_demo_usage:
 
-Quick Start Guide
+Quickstart guide
 -----------------
 
-Quick starter guide and application usage is available in ``doc_quickstart`` of the application.
+Quickstarter guide and application usage is available in ``doc_quickstart`` of the application.
 
 .. _sec_demo_features:
 
-Interacting with the Application
+Interacting with the application
 --------------------------------
 
-Command Interface
+Command interface
 +++++++++++++++++
 
 The application provides the following commands to interact with it:
@@ -139,10 +139,10 @@ Makefiles
 The main Makefile for the project is in the application directory. This file specifies build options and used modules. The Makefile uses the common build infrastructure in ``xcommon``. This system includes the source files from the relevant modules and is documented within ``xcommon``.
 
 
-Using Command Line Tools
+Using command line tools
 ------------------------
 
-To build from the command line, change to `app_slicekit_com_demo` directory and execute the command:
+To build from the command line, change to `app_sliceKIT_com_demo` directory and execute the command:
 
    ::
 
