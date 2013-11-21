@@ -6,7 +6,7 @@ Recommended hardware
 
 This module may be evaluated using the sliceKIT modular development platform, available from digikey. Required boards are:
 
-   * XP-SKC-L2 plus XA-SK-UART8 plus XA-SK-XTAG2 (Slicekit XTAG-2 adaptor) plus XTAG2 (debug adaptor)
+   * XP-SKC-L16 plus XA-SK-UART8 plus XA-SK-XTAG2 (Slicekit XTAG-2 adaptor) plus XTAG2 (debug adaptor)
 
 XA-SK-UART8 sliceCARD
 ---------------------

@@ -1,9 +1,9 @@
 Example applications
 ====================
 
-This section discusses the demonstration application that uses Multi UART module.
+This section discusses the demonstration application that uses MultiUART module.
 
-**app_sk_muart_com_demo** Application
+**app_sk_muart_com_demo** application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This application is available as ``app_sk_muart_com_demo`` under ``sc_multi_uart`` component directory. See the evaluation platforms section of this document for required hardware.
@@ -30,7 +30,7 @@ Build options
     * **sc_multi_uart**: utilizes TX and RX servers provided by the component
     * **sc_util**: uses ``module_xc_ptr`` functions to perform pointer related arithmetic such as reading from and writing into memory
 
-This demo application is built by default for XP-SKC-L2 sliceKIT Core board, SQUARE connector type. This application can also be built for TRIANGLE or STAR connectors as follows:
+This demo application is built by default for XP-SKC-L16 sliceKIT board, SQUARE connector type. This application can also be built for TRIANGLE or STAR connectors as follows:
 
 To build for STAR connector, make the following changes in ``src\main.xc`` file:
 
@@ -43,7 +43,7 @@ To build for TRIANGLE connector, make the following changes in ``src\main.xc`` f
     * Modify 8 bit port assignment of UART RX from ``XS1_PORT_8A`` to ``XS1_PORT_8C``
     * Modify external clock refernce from ``XS1_PORT_1F`` to ``XS1_PORT_1L``
 
-The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the Multi UART component are derived automatically.
+The module requires 8-bit ports for both UART transmit and UART receive ports. Upon selection of an appropriate type of connector, the port declarations for the MultiUART component are derived automatically.
     
 
 Hardware settings
@@ -63,7 +63,7 @@ UART header connections
 
 When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-UART8 sliceCARD.
 
-When using TTL levels, UART device pins must be connected to J3 of Multi UART sliceCARD (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 sliceCARD is as follows:
+When using TTL levels, UART device pins must be connected to J3 of MultiUART sliceCARD (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 sliceCARD is as follows:
 
 .. image:: images/XA-SK-UART8-SquareConnected.png
     :align: center
@@ -91,9 +91,9 @@ Optionally, Uart #0 may be accessed via the DB9 connector on the end of the slic
 Application description
 -----------------------
 
-The demonstration application shows a typical application structure that would employ the Multi UART module. 
+The demonstration application shows a typical application structure that would employ the MultiUART module. 
 
-In addition to the two Multi UART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
+In addition to the two MultiUART logical cores used by ``sc_multi_uart``, the application utilises one more logical core to manage UART data from transmit and receive logical cores. 
 
 UART data received may be user commands or data related to a user command selection (see :ref:`sec_demo_features`).
 
@@ -142,7 +142,7 @@ The main Makefile for the project is in the application directory. This file spe
 Using command line tools
 ------------------------
 
-To build from the command line, change to `app_sliceKIT_com_demo` directory and execute the command:
+To build from the command line, change to `app_sk_muart_com_demo` directory and execute the command:
 
    ::
 

@@ -1,7 +1,7 @@
 Programming guide
 =================
 
-This section discusses the programming aspects of the Multi UART component and typical implementation and usage of the API.
+This section discusses the programming aspects of the MultiUART component and typical implementation and usage of the API.
 
 Structure
 ~~~~~~~~~~
@@ -27,10 +27,10 @@ All of the files required for operation are located in the ``module_multi_uart``
     * - ``multi_uart_tx.h``
       - Header file for accessing the API of the TX UART server - included by ``multi_uart_rxtx.h``
 
-Configuration of Multi UART component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration of MultiUART component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Multi UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`). 
+MultiUART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`). 
 
 Static configuration is done by the application providing configuration header files ``multi_uart_tx_conf.h`` and ``multi_uart_rx_conf.h``. 
 
@@ -82,7 +82,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_tx_
       - Define the number of interframe bits - n should not make the total number of bits in a UART word exceed 32
       
 Static configuration of UART RX
-++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
 Below is a summary of the configuration options that are in the ``multi_uart_rx_conf.h`` file, their suggested defaults and an explanation of their function.
 
@@ -117,7 +117,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
       
 .. _sec_initialisation:
 
-Initialisation
+Initialization
 ~~~~~~~~~~~~~~
 
 The initialisation and configuration process for both the RX and TX operations is the same. For configuration, the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` are utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the app_sk_muart_com_demo application that is used for verification.
@@ -165,7 +165,7 @@ To receive data from the RX server the application should make use of the channe
 
 The application implements an level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Receive Data
     :end-before:  //:: Receive Data End
 

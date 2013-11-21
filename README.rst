@@ -1,7 +1,7 @@
 Multi UART Component
 .....................
 
-:Latest release: 1.0.3rc0
+:Latest release: 1.0.4rc0
 :Maintainer: XMOS
 :Description: Multiple UARTs implementation
 

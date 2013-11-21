@@ -1,5 +1,5 @@
-Multi UART COM port demo quickstart guide
-=========================================
+MultiUART COM port demo quickstart guide
+========================================
 
 .. toctree::
 

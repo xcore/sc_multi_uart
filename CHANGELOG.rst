@@ -1,6 +1,10 @@
 Multi-UART Component Change Log
 ===============================
 
+1.0.4
+-----
+  * Documentation updates
+
 1.0.3
 -----
   * Reworked on a simpler version of app

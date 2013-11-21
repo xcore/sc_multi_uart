@@ -1,12 +1,12 @@
 Module description
 ==================
 
-The Multi UART module consists of transmit and receive servers. These can be employed independently or together based on the application needs.
+The MultiUART module consists of transmit and receive servers. These can be employed independently or together based on the application needs.
 
 Cores
 -----
 
-The Multi UART component comprises two logical cores, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
+The MultiUART component comprises two logical cores, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
 
 Buffering
 ---------

@@ -1,13 +1,13 @@
 .. _sec_common_api:
 
-Multi UART Common API 
-=====================
+MultiUART common API 
+====================
 
 The following describes the shared API between the UART RX Server and UART TX Server code.
 
 .. _sec_common_enum:
 
-Enum Definitions
+Enum definitions
 -----------------
 
 .. doxygenenum:: ENUM_UART_CONFIG_PARITY
@@ -27,8 +27,8 @@ Combined RX & TX server launch functions
 
 .. _sec_tx_api:
 
-Multi UART transmit API 
-=======================
+MultiUART transmit API 
+======================
 
 The following describes the public API for use in applications and the API's usage.
 
@@ -102,15 +102,15 @@ Transmission functions
 
 .. _sec_tx_server_func:
 
-Multi UART TX server
---------------------
+MultiUART TX server
+-------------------
 
 .. doxygenfunction:: run_multi_uart_tx
 
 .. _sec_rx_api:
 
-Multi UART receive API 
-=======================
+MultiUART receive API 
+=====================
 
 The following describes the public API for use in applications and the API's usage.
 
@@ -175,15 +175,15 @@ Data fetch functions
 
 .. _sec_rx_server_func:
 
-Multi UART RX server
---------------------
+MultiUART RX server
+-------------------
 
 .. doxygenfunction:: run_multi_uart_rx
 
 .. _sec_helper_api:
 
-Multi UART helper API
-=====================
+MultiUART helper API
+====================
 
 This API provides a number of functions that allow the access of architecture specific functionality within C where XC semantics are not available.
 

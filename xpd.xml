@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "Usage Example for xSOFTip Multi-UART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "Multi-UART PC Com Port Demo Application">
+        <component description = "Usage example for xSOFTip MultiUART module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC COM port demo application">
             <board>XA-SK-UART-8</board>
             <componentDependency>module_multi_uart</componentDependency>
             <componentDependency>module_xc_ptr</componentDependency>
@@ -9,7 +9,7 @@
             <keyword>UART</keyword>
             <keyword>demo</keyword>
         </component>
-        <component name = "Multi-UART Module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in Two Logical Cores, based on Serial2Ethernet reference design">
+        <component name = "MultiUART module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in two logical cores">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>
@@ -18,13 +18,13 @@
         <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
-    <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
+    <description>Example application to use MultiUART component</description>
     <docdir>doc</docdir>
     <docdir>app_sk_muart_com_demo/doc_quickstart</docdir>
     <exclude_dir>app_multi_uart_demo</exclude_dir>
     <location>https://github.com/xcore/sc_multi_uart.git</location>
     <name>sc_multi_uart</name>
-    <maintainer>Srinivas-E</maintainer>
+    <maintainer>XMOS</maintainer>
     <partnumber>XM-001810-DH</partnumber>
     <release parenthash = "ced19a3dce38ea90ec845d3f7606f41fb8cc0717" version = "1.0.0alpha0" githash = "b09b04265918fb4abc913265fe33104e446d09d8"></release>
     <release parenthash = "705ab3b803fa95e5c638accc7de1996131c4f257" version = "1.0.0alpha1" githash = "0ba2e5554bdd4c3a27d67f8cdf4e5badb41ff4fa"></release>

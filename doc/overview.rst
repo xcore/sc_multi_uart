@@ -1,12 +1,12 @@
 Overview
 ========
 
-This module provides a software library that allows multiple uarts to share 8 bit ports for multiple channel UART communication. It is dynamically re-configurable for applications that require a level of flexibility during operation.
+This module provides a software library that allows multiple uarts to share 8 bit ports for a multiple UART communication. It is dynamically re-configurable for applications that require a level of flexibility during operation.
 
 Features
 --------
 
-Multi UART component provides the following functionality. All options are dynamically reconfigurable via the API.
+MultiUART component provides the following functionality. All options are dynamically reconfigurable via the API.
 
 .. list-table::
     :header-rows: 1
