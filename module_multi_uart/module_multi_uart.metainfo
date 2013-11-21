@@ -5,7 +5,7 @@
 componentName = "Multi-UART"
 componentFullName = ""
 alternativeNames = { }
-componentDescription = "Octuple UAT in Two Logical Cores, based on Serial2Ethernet reference design"
+componentDescription = "Octuple UART in Two Logical Cores, based on Serial2Ethernet reference design"
 componentVersion = "1v0"
 
 -------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ function getConfigStatus()
   end
   return status, issues
 end
-            
+
 -------------------------------------------------------------------------------
 -- Source generation functions
 -------------------------------------------------------------------------------

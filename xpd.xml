@@ -4,12 +4,12 @@
         <component description = "Usage example for xSOFTip MultiUART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC com port demo application">
             <board>XA-SK-UART-8</board>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
-            <componentDependency version = "1.0.3">module_multi_uart</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_multi_uart.git" version = "1.0.3">module_multi_uart</componentDependency>
             <keyword>MultiUART</keyword>
             <keyword>UART</keyword>
             <keyword>demo</keyword>
         </component>
-        <component name = "Multi-UART Module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in two logical cores">
+        <component name = "MultiUART Module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in two logical cores">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <allbuildresults>
-<buildresults component="module_multi_uart" packagename="xm-local-sc_multi_uart(bb22a8e1)" packageversion="bb22a8e1" toolsversion="latest">
+<buildresults component="module_multi_uart" packagename="xm-local-sc_multi_uart(feb17483)" packageversion="feb17483" toolsversion="latest">
 <buildresult>
 <configuration>
 <parameter id="ClockSource" value="true"/>
@@ -12,7 +12,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="4480"/>
+<resourceusageitem id="codememory" value="4468"/>
 <resourceusageitem id="datamemory" value="1560"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -38,7 +38,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="4448"/>
+<resourceusageitem id="codememory" value="4436"/>
 <resourceusageitem id="datamemory" value="9720"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -64,7 +64,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="3432"/>
+<resourceusageitem id="codememory" value="3420"/>
 <resourceusageitem id="datamemory" value="1088"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -90,7 +90,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="3332"/>
+<resourceusageitem id="codememory" value="3320"/>
 <resourceusageitem id="datamemory" value="1008"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -116,7 +116,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="3920"/>
+<resourceusageitem id="codememory" value="3908"/>
 <resourceusageitem id="datamemory" value="1240"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -142,7 +142,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="4448"/>
+<resourceusageitem id="codememory" value="4436"/>
 <resourceusageitem id="datamemory" value="1192"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -168,7 +168,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="4408"/>
+<resourceusageitem id="codememory" value="4396"/>
 <resourceusageitem id="datamemory" value="1124"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
@@ -194,7 +194,7 @@
 <resourceusage>
 <resourceusageitem id="cores" value="2"/>
 <resourceusageitem id="memory" value="0"/>
-<resourceusageitem id="codememory" value="4464"/>
+<resourceusageitem id="codememory" value="4452"/>
 <resourceusageitem id="datamemory" value="1312"/>
 <resourceusageitem id="ports1bit" value="1"/>
 <resourceusageitem id="ports4bit" value="0"/>
