@@ -1,5 +1,5 @@
-Multi-UART Module
-=================
+MultiUART Module
+================
 
 :scope: General Use
 :description: Octuple UART in two logical cores

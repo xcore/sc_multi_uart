@@ -1,21 +1,21 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "Usage example for xSOFTip MultiUART module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC COM port demo application">
+        <component description = "Usage example for xSOFTip MultiUART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC com port demo application">
             <board>XA-SK-UART-8</board>
-            <componentDependency>module_multi_uart</componentDependency>
-            <componentDependency>module_xc_ptr</componentDependency>
-            <keyword>Multi-UART</keyword>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
+            <componentDependency version = "1.0.3">module_multi_uart</componentDependency>
+            <keyword>MultiUART</keyword>
             <keyword>UART</keyword>
             <keyword>demo</keyword>
         </component>
-        <component name = "MultiUART module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in two logical cores">
+        <component name = "Multi-UART Module" type = "component" buildresults_path = "module_multi_uart/.module_multi_uart.buildinfo" scope = "General Use" path = "module_multi_uart" metainfo_path = "module_multi_uart/module_multi_uart.metainfo" local = "false" id = "module_multi_uart" description = "Octuple UART in two logical cores">
             <board>XA-SK-UART-8</board>
             <keyword>UART</keyword>
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
+        <githash>eb2fab197d49d35b878dd7bd0cc0196f6bbeff3f</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
     <description>Example application to use MultiUART component</description>
@@ -38,10 +38,10 @@
     <release parenthash = "cb8438d1e3dcfc95f5f2e4f0a6adb65a2181ea98" version = "1.0.1alpha2" githash = "4bfab740431cc8a4ec9262605d6767b93496f9c6"></release>
     <release parenthash = "1bca3609523444ccd1f24be468a2bd3a2a6ce242" version = "1.0.1rc0" githash = "adb4687b1426d880fd029d42f8fcb68f9b4929ca"></release>
     <release parenthash = "3bc555589887a2f377c762bb80ed021823d735f6" version = "1.0.3alpha0"></release>
-    <release parenthash = "a54424cf27cd8640969b676cfbbceae305c2346b" version = "1.0.3rc0"></release>
+    <release parenthash = "a54424cf27cd8640969b676cfbbceae305c2346b" version = "1.0.3rc0" githash = "7a917c3f0c60fea2c74e6e27d05a7c450fad1fb7"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
+    <version_defines></version_defines>
     <xcore_repo>sc_multi_uart.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
-    <version>1.0.0rc0</version>
 </xpd>

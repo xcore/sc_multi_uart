@@ -12,7 +12,7 @@ XA-SK-UART8 sliceCARD
 ---------------------
 
 .. image:: images/XA-SK-UART8.png
-    :align: centre
+    :align: center
 
 Demonstration application
 -------------------------

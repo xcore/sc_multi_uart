@@ -1,4 +1,4 @@
-Multi-UART Component Change Log
+MultiUART component change log
 ===============================
 
 1.0.4

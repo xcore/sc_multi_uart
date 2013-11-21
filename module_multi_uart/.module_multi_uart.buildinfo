@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<allbuildresults>
+<buildresults component="module_multi_uart" packagename="xm-local-sc_multi_uart(bb22a8e1)" packageversion="bb22a8e1" toolsversion="latest">
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="8"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="4480"/>
+<resourceusageitem id="datamemory" value="1560"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="8"/>
+<parameter id="txBufferSize" value="256"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="4448"/>
+<resourceusageitem id="datamemory" value="9720"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="2"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="3432"/>
+<resourceusageitem id="datamemory" value="1088"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="1"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="3332"/>
+<resourceusageitem id="datamemory" value="1008"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="4"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="3920"/>
+<resourceusageitem id="datamemory" value="1240"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="8"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="2"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="4448"/>
+<resourceusageitem id="datamemory" value="1192"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="8"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="1"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="4408"/>
+<resourceusageitem id="datamemory" value="1124"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="ClockSource" value="true"/>
+<parameter id="txChannels" value="8"/>
+<parameter id="txBufferSize" value="1"/>
+<parameter id="txInterFrameBits" value="0"/>
+<parameter id="rxChannels" value="4"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="2"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="4464"/>
+<resourceusageitem id="datamemory" value="1312"/>
+<resourceusageitem id="ports1bit" value="1"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="2"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="2"/>
+<resourceusageitem id="timers" value="1"/>
+<resourceusageitem id="hwtimers" value="0"/>
+<resourceusageitem id="distributed_tasks" value="0"/>
+<resourceusageitem id="combined_tasks" value="0"/>
+</resourceusage>
+</buildresult>
+</buildresults>
+</allbuildresults>

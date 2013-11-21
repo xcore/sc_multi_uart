@@ -1,5 +1,5 @@
-Multi UART Component
-.....................
+MultiUART Component
+...................
 
 :Latest release: 1.0.4rc0
 :Maintainer: XMOS
