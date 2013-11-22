@@ -1,5 +1,5 @@
-Multi UART module usage manual
-==============================
+MultiUART module usage manual
+=============================
 
 .. toctree::
 
