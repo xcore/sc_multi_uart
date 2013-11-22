@@ -1,7 +1,7 @@
 MultiUART Component
 ...................
 
-:Latest release: 1.0.4beta0
+:Latest release: 1.0.4beta1
 :Maintainer: XMOS
 :Description: Example application to use MultiUART component
 
