@@ -3,8 +3,8 @@
     <components>
         <component description = "Usage example for xSOFTip MultiUART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC com port demo application">
             <board>XA-SK-UART-8</board>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_multi_uart.git" version = "1.0.3">module_multi_uart</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
             <keyword>MultiUART</keyword>
             <keyword>UART</keyword>
             <keyword>demo</keyword>
@@ -15,8 +15,9 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>eb2fab197d49d35b878dd7bd0cc0196f6bbeff3f</githash>
+        <githash>d0531d7c68ab67334582c324828e36d617baf8b3</githash>
         <uri>git@github.com:xcore/sc_util</uri>
+        <version>1.0.3rc0</version>
     </dependency>
     <description>Example application to use MultiUART component</description>
     <docdir>doc</docdir>

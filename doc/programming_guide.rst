@@ -132,13 +132,13 @@ The initialisation and configuration process for both the RX and TX operations i
 
 The following working example is taken from `uart_manager.xc` and shows a typical initial configuration.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Init Start
     :end-before:  //::Init End
 
 The next stage of initialisation is to release the server logical cores from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Muart Server
     :end-before:  //::Muart End
     
@@ -150,7 +150,7 @@ Interfacing to the TX server
 
 To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the demo application configuration simply takes a string from the application buffer (simply can be a character array) and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the buffer index is not incremented in order to retain the character in the application buffer until it is successfully pushed to UART TX server.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Send Byte
     :end-before:  //::Send Byte End
 
@@ -184,7 +184,7 @@ Following the reconfiguration the application must then call :c:func:`uart_tx_re
 
 The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Reconfig Start
     :end-before:  //::Reconfig End
     
