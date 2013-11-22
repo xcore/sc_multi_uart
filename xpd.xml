@@ -3,7 +3,7 @@
     <components>
         <component description = "Usage example for xSOFTip MultiUART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC com port demo application">
             <board>XA-SK-UART-8</board>
-            <componentDependency repo = "git://github.com/xcore/sc_multi_uart.git" version = "1.0.3">module_multi_uart</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_multi_uart.git" version = "1.0.4">module_multi_uart</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
             <keyword>MultiUART</keyword>
             <keyword>UART</keyword>
@@ -39,7 +39,8 @@
     <release parenthash = "1bca3609523444ccd1f24be468a2bd3a2a6ce242" version = "1.0.1rc0" githash = "adb4687b1426d880fd029d42f8fcb68f9b4929ca"></release>
     <release parenthash = "3bc555589887a2f377c762bb80ed021823d735f6" version = "1.0.3alpha0"></release>
     <release parenthash = "a54424cf27cd8640969b676cfbbceae305c2346b" version = "1.0.3rc0" githash = "7a917c3f0c60fea2c74e6e27d05a7c450fad1fb7"></release>
-    <release parenthash = "39fe85a99376e5476c09e73fe3ba688413ec1fa3" version = "1.0.4alpha0"></release>
+    <release parenthash = "39fe85a99376e5476c09e73fe3ba688413ec1fa3" version = "1.0.4alpha0" githash = "3891f1eae8c895a4284676aad02f9fb36b424d6b"></release>
+    <release parenthash = "3891f1eae8c895a4284676aad02f9fb36b424d6b" version = "1.0.4beta0"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
