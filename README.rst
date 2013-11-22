@@ -1,9 +1,9 @@
 MultiUART Component
 ...................
 
-:Latest release: 1.0.4rc0
+:Latest release: 1.0.4alpha0
 :Maintainer: XMOS
-:Description: Multiple UARTs implementation
+:Description: Example application to use MultiUART component
 
 
 Key Features
@@ -13,7 +13,6 @@ Key Features
 * Reconfigurable at runtime
 * Supports upto 115200bps in both directions
 * Support for a variety of data lengths, parity configurations and stop bit configurations, start bit polarity
-
 
 Known Issues
 ============

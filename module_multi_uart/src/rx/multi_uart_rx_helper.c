@@ -3,6 +3,6 @@
 
 unsigned getUnsignedArrayAddressAsUnsigned( unsigned *array )
 {
-    return (unsigned)array;   
-    
+    return (unsigned)array;
+
 }

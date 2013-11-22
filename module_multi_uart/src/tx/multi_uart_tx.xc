@@ -28,9 +28,9 @@ void multi_uart_tx_port_init( s_multi_uart_tx_ports &tx_ports, clock uart_clock 
         configure_clock_ref( uart_clock, UART_TX_CLOCK_DIVIDER/(2*UART_TX_OVERSAMPLE) );
     }
     #endif
-    
-    configure_out_port(	tx_ports.pUart, uart_clock, 0xFF); 
-    
+
+    configure_out_port(	tx_ports.pUart, uart_clock, 0xFF);
+
     start_clock( uart_clock );
 }
 
@@ -38,7 +38,7 @@ void multi_uart_tx_port_init( s_multi_uart_tx_ports &tx_ports, clock uart_clock 
 unsigned multi_uart_tx_buffer_get( int chan_id )
 {
     unsigned word = 0;
-    
+
     return word;
 }
 
@@ -48,18 +48,18 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
     unsigned port_val; // TODO honour IDLE/STOP polarity
     unsigned short port_ts;
     unsigned idle_val = 0xFF;
-    
+
     unsigned current_word[UART_TX_CHAN_COUNT];
     unsigned current_word_pos[UART_TX_CHAN_COUNT];
     unsigned tick_count[UART_TX_CHAN_COUNT];
     unsigned clocks_per_bit[UART_TX_CHAN_COUNT];
-    
+
     multi_uart_tx_port_init( tx_ports, uart_clock );
-    
+
     /* wait until release (post config) */
 	cUART <: (char)MULTI_UART_GO;
 	cUART :> int _;
-	
+
 	/* initialise data structures */
 	for (int i = 0; i < UART_TX_CHAN_COUNT; i++)
 	{
@@ -70,7 +70,7 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 	    uart_tx_channel[i].rd_ptr = 0;
 	    uart_tx_channel[i].nelements = 0;
 	    clocks_per_bit[i] = uart_tx_channel[i].clocks_per_bit;
-	    
+
 	    /* build idle value */
 	    switch(uart_tx_channel[i].polarity_mode)
 	    {
@@ -78,15 +78,15 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 	        case start_1: idle_val &= ~(1<<i); break;
 	        default: idle_val |= (1<<i); break;
 	    }
-	    
+
 	}
-	
+
 	port_val = idle_val;
-	
+
 	/* initialise port */
 	tx_ports.pUart <: port_val @ port_ts;
 	port_ts += 20;
-	
+
 	while (1)
 	{
 		    /* process the next bit on the ports */
@@ -108,8 +108,8 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 		            current_word_pos[i] -= 1;
 		            tick_count[i] = clocks_per_bit[i];
 		        }
-		        
-		        if ((current_word_pos[i] == 0) && 
+
+		        if ((current_word_pos[i] == 0) &&
 		            (uart_tx_channel[i].rd_ptr != uart_tx_channel[i].wr_ptr)) // rd == wr => empty
 		        {
 		            int rd_ptr = uart_tx_channel[i].rd_ptr;
@@ -118,26 +118,26 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 		            if (rd_ptr >= UART_TX_BUF_SIZE)
 		                rd_ptr = 0;
 		            uart_tx_channel[i].rd_ptr = rd_ptr;
-		            
+
 		            current_word_pos[i] = uart_tx_channel[i].uart_word_len;
 		            tick_count[i] = clocks_per_bit[i];
 		        }
 		    }
-		    
+
 		    /* check for request to pause for reconfigure */
 		    select
 		    {
 		        #pragma xta endpoint "tx_bit_ep1"
 		        case cUART :> int v: // anything here will pause the TX thread
-		            
+
 		            /* set port to IDLE */
 		            port_val = 0xffffffff;
 		            tx_ports.pUart <: port_val;
-		            
+
 		            /* allow otherside to hold us while we wait */
 		            cUART <: (char)MULTI_UART_GO;
 		            cUART :> int _;
-		            
+
 		            /* initialise data structures */
 		            for (int i = 0; i < UART_TX_CHAN_COUNT; i++)
 		            {
@@ -149,7 +149,7 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 		                uart_tx_channel[i].nelements = 0;
 		                clocks_per_bit[i] = uart_tx_channel[i].clocks_per_bit;
 		            }
-		            
+
 		            /* initialise port */
 		            tx_ports.pUart <: port_val @ port_ts;
 		            port_ts += 20;
@@ -157,7 +157,7 @@ void run_multi_uart_tx( streaming chanend cUART, s_multi_uart_tx_ports &tx_ports
 		        default:
 		            break;
 		    }
-    }   
+    }
 }
 
 /* do timing for loop - 4.34uS is 230400bps, 8.68uS for 115200bps */

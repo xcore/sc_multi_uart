@@ -32,7 +32,7 @@ typedef struct STRUCT_MULTI_UART_TX_PORTS
 #endif
 
 /**
- * Structure to hold configuration information and data for the UART channel TX side - 
+ * Structure to hold configuration information and data for the UART channel TX side -
  * this should only be interacted with via the API and not accessed directly.
  */
 typedef struct STRUCT_MULTI_UART_TX_CHANNEL
@@ -44,14 +44,14 @@ typedef struct STRUCT_MULTI_UART_TX_CHANNEL
     int clocks_per_bit; /**< define baud rate in relation to max baud rate */
     int invert_output; /**< define if output is inverted (set to 1) */
     /*@}*/
-    
+
     /*@{*/
     /** Mode definition */
     e_uart_config_stop_bits sb_mode;
     e_uart_config_parity parity_mode;
     e_uart_config_polarity polarity_mode;
     /*@}*/
-    
+
     /*@{*/
     /** Buffering variables */
     int wr_ptr; /**< Write pointer */
@@ -59,7 +59,7 @@ typedef struct STRUCT_MULTI_UART_TX_CHANNEL
     unsigned nelements; /**< Number of valid entries in the buffer */
     unsigned buf[UART_TX_BUF_SIZE]; /**< Buffer array */
     /*@}*/
-    
+
 } s_multi_uart_tx_channel;
 
 
@@ -79,7 +79,7 @@ int uart_tx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
  * Assemble full word for transmission
  * @param channel_id    Channel identifier
  * @param uart_char     The character being sent
- * @return              Full UART word in the format (msb -> lsb) STOP|PARITY|DATA|START 
+ * @return              Full UART word in the format (msb -> lsb) STOP|PARITY|DATA|START
  */
 unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char );
 
@@ -108,5 +108,5 @@ void uart_tx_reconf_pause( streaming chanend cUART, timer t );
  * @param cUART channel end to TX UART
  */
 void uart_tx_reconf_enable( streaming chanend cUART );
- 
+
 #endif /* __MULTI_UART_TX_H__ */

@@ -8,20 +8,20 @@ unsigned rx_char_slots[UART_RX_CHAN_COUNT];
 unsigned crc8_helper(unsigned *checksum, unsigned data, unsigned poly);
 
 /**
- * Calculate if the baud rate is valid for the defined divider 
- * @param baud  Requested baud rate                                                 
+ * Calculate if the baud rate is valid for the defined divider
+ * @param baud  Requested baud rate
  * @return      Divider on success (i.e. >=1), 0 on error
  */
 static int uart_rx_calc_baud( int baud )
 {
-    int max_baud = UART_RX_MAX_BAUD; 
-    
+    int max_baud = UART_RX_MAX_BAUD;
+
     /* check we are not requesting a value greater than the max */
     if (baud > max_baud)
     	return 0;
-    
+
     // return clock divider - this is the number of port ticks per bit
-    return ((max_baud / baud) * UART_RX_OVERSAMPLE); 
+    return ((max_baud / baud) * UART_RX_OVERSAMPLE);
 }
 
 /**
@@ -33,7 +33,7 @@ static int uart_rx_calc_baud( int baud )
 static unsigned uart_rx_calc_parity(int channel_id, unsigned int uart_char)
 {
     unsigned p;
-    
+
     switch (uart_rx_channel[channel_id].parity_mode)
     {
         case mark:
@@ -43,7 +43,7 @@ static unsigned uart_rx_calc_parity(int channel_id, unsigned int uart_char)
         default:
             break;
     }
-        
+
     if (uart_rx_channel[channel_id].uart_char_len != 8)
     {
         /* manually calculate parity */
@@ -52,7 +52,7 @@ static unsigned uart_rx_calc_parity(int channel_id, unsigned int uart_char)
         {
             p ^= ((uart_char >> i) & 1);
         }
-        
+
     }
     else
     {
@@ -61,7 +61,7 @@ static unsigned uart_rx_calc_parity(int channel_id, unsigned int uart_char)
         crc8_helper(&p, uart_char, poly);
         p &= 1;
     }
-    
+
     switch (uart_rx_channel[channel_id].parity_mode)
     {
         case even:
@@ -87,18 +87,18 @@ int uart_rx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
     /* check and calculate baud rate divider */
     if ((uart_rx_channel[channel_id].clocks_per_bit = uart_rx_calc_baud(baud)) == 0)
         return 1;
-    
+
     /* set which sample we will use */
     uart_rx_channel[channel_id].use_sample = uart_rx_channel[channel_id].clocks_per_bit >> 1;
-    
+
     /* set operation mode */
     uart_rx_channel[channel_id].sb_mode = stop_bits;
     uart_rx_channel[channel_id].parity_mode = parity;
     uart_rx_channel[channel_id].polarity_mode = polarity;
-    
+
     /* set the uart character length */
     uart_rx_channel[channel_id].uart_char_len = char_len;
-    
+
     /* calculate word length for data_bit state */
     uart_rx_channel[channel_id].uart_word_len = 0; // start bit ignored as this is used as a state machine condition for counting in bits - start bit is handled in its own state.
     switch (parity)
@@ -112,7 +112,7 @@ int uart_rx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
         case none:
             break;
     }
-    
+
     switch (stop_bits)
     {
         case sb_1:
@@ -122,9 +122,9 @@ int uart_rx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
             uart_rx_channel[channel_id].uart_word_len += 2;
             break;
     }
-    
+
     uart_rx_channel[channel_id].uart_word_len += char_len;
-    
+
     return 0;
 }
 
@@ -132,14 +132,14 @@ int uart_rx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
  * Validate RX'd character
  * @param   chan_id     uart channel id from which the char came from
  * @param   uart_word   uart char in the format DATA_BITS|PARITY|STOP BITS (parity optional according to config)
- * @return              Return 0 on valid data, -1 on stop bit fail - remaining character in uart_word 
+ * @return              Return 0 on valid data, -1 on stop bit fail - remaining character in uart_word
  */
 int uart_rx_validate_char( int chan_id, unsigned *uart_word )
 {
     int error = 0;
     unsigned val, test_result;
     unsigned word = *uart_word;
-    
+
     /* set stop bits */
     switch (uart_rx_channel[chan_id].polarity_mode)
     {
@@ -147,7 +147,7 @@ int uart_rx_validate_char( int chan_id, unsigned *uart_word )
         case start_1: val = 0x0; test_result = 0x0; break;
         default: val = 0x3; test_result = 0x3; break;
     }
-        
+
     switch (uart_rx_channel[chan_id].sb_mode)
     {
         case sb_1:
@@ -158,14 +158,14 @@ int uart_rx_validate_char( int chan_id, unsigned *uart_word )
             word >>= 1;
             break;
         case sb_2:
-            if ((word & val) != test_result) 
+            if ((word & val) != test_result)
                 error = 1;
             word >>= 2;
             break;
     }
-    
+
     if (error) { return -1;}
-    
+
     switch (uart_rx_channel[chan_id].parity_mode)
     {
         case odd:
@@ -181,11 +181,11 @@ int uart_rx_validate_char( int chan_id, unsigned *uart_word )
         case none:
             break;
     }
-    
+
     if (error) { return -2;}
-    
+
     *uart_word = (bitrev(word) >> (32-uart_rx_channel[chan_id].uart_char_len));
-       
+
     return 0;
 }
 
@@ -215,7 +215,7 @@ void uart_rx_reconf_pause( chanend cUART )
 void uart_rx_reconf_enable( chanend cUART )
 {
     char temp;
-    
+
     do { temp = get_streaming_token(cUART); } while (temp != MULTI_UART_GO);
     send_streaming_int(cUART, 1);
 }
