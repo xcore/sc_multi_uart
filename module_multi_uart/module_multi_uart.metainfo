@@ -4,10 +4,10 @@
 -- Descriptive metadata
 -------------------------------------------------------------------------------
 
-componentName = "Multi-UART"
+componentName = "MultiUART"
 componentFullName = ""
 alternativeNames = { }
-componentDescription = "Octuple UART in Two Logical Cores, based on Serial2Ethernet reference design"
+componentDescription = "Octuple UART in two logical cores"
 componentVersion = "1v0"
 
 -------------------------------------------------------------------------------
