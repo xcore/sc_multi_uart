@@ -65,7 +65,7 @@ When using the RS-232 levels, UART device pins must be connected to J4 of XA-SK-
 
 When using TTL levels, UART device pins must be connected to J3 of MultiUART sliceCARD (along with J3 25-26 pins shorted). UART information of XA-SK-UART8 sliceCARD is as follows:
 
-.. image:: images/XA-SK-UART8-SquareConnected.png
+.. image:: images/XA-SK-UART8_square_slot.png
     :align: center
 
 .. _table_connector_breakout:
