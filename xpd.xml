@@ -4,7 +4,7 @@
         <component description = "Usage example for xSOFTip MultiUART Module" type = "demoCode" scope = "Example" path = "app_sk_muart_com_demo" local = "false" id = "app_sk_muart_com_demo" name = "MultiUART PC com port demo application">
             <board>XA-SK-UART-8</board>
             <componentDependency repo = "git://github.com/xcore/sc_multi_uart.git" version = "1.0.4">module_multi_uart</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_xc_ptr</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_xc_ptr</componentDependency>
             <keyword>MultiUART</keyword>
             <keyword>UART</keyword>
             <keyword>demo</keyword>
@@ -15,9 +15,10 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>d0531d7c68ab67334582c324828e36d617baf8b3</githash>
+        <gitbranch>(no branch)</gitbranch>
+        <githash>f09fda14976cf969ae792e7c28b4e5a30e4c1eb9</githash>
         <uri>git@github.com:xcore/sc_util</uri>
-        <version>1.0.3rc0</version>
+        <version>1.0.4rc0</version>
     </dependency>
     <description>Example application to use MultiUART component</description>
     <docdir>doc</docdir>
@@ -42,7 +43,8 @@
     <release parenthash = "39fe85a99376e5476c09e73fe3ba688413ec1fa3" version = "1.0.4alpha0" githash = "3891f1eae8c895a4284676aad02f9fb36b424d6b"></release>
     <release parenthash = "3891f1eae8c895a4284676aad02f9fb36b424d6b" version = "1.0.4beta0" githash = "8b8f038b95c6af5bb5fae8d0710e1993a4aba611"></release>
     <release parenthash = "25bdc305189d4d4188098dda30bc2c0fe12485bd" version = "1.0.4beta1" githash = "fff304d5a7dfc5bf8a8514827765ed87d4b51dff"></release>
-    <release parenthash = "f1c74c9460258cba0cfa89245106b9f63e168cb0" version = "1.0.4rc0"></release>
+    <release parenthash = "f1c74c9460258cba0cfa89245106b9f63e168cb0" version = "1.0.4rc0" githash = "d88d839efdc1b214f6535333da9455dac6ed4d4e"></release>
+    <release parenthash = "5873066011f20f93343f2727c77d91d4d80c0a74" version = "1.0.4rc1"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
