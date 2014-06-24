@@ -13,14 +13,14 @@ extern unsigned rx_char_slots[UART_RX_CHAN_COUNT];
 
 void multi_uart_rx_port_init( s_multi_uart_rx_ports &rx_ports, clock uart_clock )
 {
-    
+
     if (UART_RX_CLOCK_DIVIDER > 1)
     {
-        configure_clock_ref( uart_clock, UART_RX_CLOCK_DIVIDER/(2*UART_RX_OVERSAMPLE));	
+        configure_clock_ref( uart_clock, UART_RX_CLOCK_DIVIDER/(2*UART_RX_OVERSAMPLE));
     }
-    
-    configure_in_port(	rx_ports.pUart, uart_clock); 
-    
+
+    configure_in_port(	rx_ports.pUart, uart_clock);
+
     start_clock( uart_clock );
 }
 
@@ -51,14 +51,14 @@ void run_multi_uart_rx( streaming chanend cUART, s_multi_uart_rx_ports &rx_ports
 
     unsigned port_val;
     e_uart_rx_chan_state state[UART_RX_CHAN_COUNT];
-    
+
     int tickcount[UART_RX_CHAN_COUNT];
     int bit_count[UART_RX_CHAN_COUNT];
     int uart_word[UART_RX_CHAN_COUNT];
-    
-    
+
+
     /*
-     * Four bit look up table that takes the CRC32 with poly 0xf of the masked off 32 bit word 
+     * Four bit look up table that takes the CRC32 with poly 0xf of the masked off 32 bit word
      * from an 8 bit port and translates it into the 4 desired bits - huzzah!
      * bit 4-7 indicates whether there could be a start bit and how many are swallowed
      */
@@ -101,25 +101,25 @@ void run_multi_uart_rx( streaming chanend cUART, s_multi_uart_rx_ports &rx_ports
         startBitLookup0[i] = 0xffffffff;
         startBitLookup1[i] = 0xffffffff;
     }
-    
+
     startBitLookup0[0b0000] = 4;
     startBitLookup0[0b0001] = 3;
     startBitLookup0[0b0011] = 2;
     startBitLookup0[0b0111] = 1;
-    
+
     startBitLookup1[0b1111] = 4;
     startBitLookup1[0b1110] = 3;
     startBitLookup1[0b1100] = 2;
     startBitLookup1[0b1000] = 1;
-    
+
     multi_uart_rx_port_init( rx_ports, uart_clock );
-    
+
     while (1)
     {
-        
+
         cUART <: (char)MULTI_UART_GO;
         cUART :> int _;
-        
+
         /* initialisation loop */
         for (int i = 0; i < UART_RX_CHAN_COUNT; i++)
         {
@@ -127,26 +127,26 @@ void run_multi_uart_rx( streaming chanend cUART, s_multi_uart_rx_ports &rx_ports
             uart_word[i] = 0;
             bit_count[i] = 0;
             tickcount[i] = uart_rx_channel[i].use_sample;
-            
+
             switch(uart_rx_channel[i].polarity_mode)
             {
-                case start_0: 
-                    startBitConfig[i] = getUnsignedArrayAddressAsUnsigned(startBitLookup0); 
+                case start_0:
+                    startBitConfig[i] = getUnsignedArrayAddressAsUnsigned(startBitLookup0);
                     fourBitConfig[i]  = getUnsignedArrayAddressAsUnsigned(fourBitLookup0);
                     break;
-                case start_1: 
+                case start_1:
                     startBitConfig[i] = getUnsignedArrayAddressAsUnsigned(startBitLookup1);
                     fourBitConfig[i]  = getUnsignedArrayAddressAsUnsigned(fourBitLookup1);
                     break;
-                default: 
+                default:
                     startBitConfig[i] = getUnsignedArrayAddressAsUnsigned(startBitLookup0);
                     fourBitConfig[i]  = getUnsignedArrayAddressAsUnsigned(fourBitLookup0);
                     break;
             }
         }
-        
+
         rx_ports.pUart :> port_val; // junk data
-        
+
         /* run ASM function - will exit on reconfiguration request over the channel */
         uart_rx_loop_8( rx_ports.pUart, state, tickcount, bit_count, uart_word, cUART, rx_char_slots );
     }

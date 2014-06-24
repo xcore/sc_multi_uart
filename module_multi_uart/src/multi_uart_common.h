@@ -32,6 +32,6 @@ typedef enum ENUM_UART_CONFIG_POLARITY
 {
     start_1 = 1, /**< Start bit is a 1, implies stop bit/idle is a 0 */
     start_0 = 0, /**< Start bit is a 0, implies stop bit/idle is a 1 */
-} e_uart_config_polarity; 
+} e_uart_config_polarity;
 
 #endif /* __MULTI_UART_COMMON_H__ */

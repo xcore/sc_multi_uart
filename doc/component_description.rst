@@ -1,12 +1,12 @@
-Module Description
+Module description
 ==================
 
-The Multi-UART module consists of Transmit and Receive servers. These can be employed independently or together based on the application needs.
+The MultiUART module consists of transmit and receive servers. These can be employed independently or together based on the application needs.
 
 Cores
 -----
 
-The multi-UART component comprises two logical cores, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
+The MultiUART component comprises two logical cores, one acting as a transmit (TX) server for up to 8 uarts, and the other acting as a receive (RX) server for up to 8 uarts.
 
 Buffering
 ---------
@@ -15,7 +15,7 @@ Buffering for the TX server is handled within the UART TX logical core. The buff
 
 There is no buffering provided by the RX server. The application must provide a logical core that is able to respond to received characters in real time and handle any buffering requirements for the application that is being developed.
 
-Communication Model
+Communication model
 -------------------
 
 The module utilises a combination of shared memory and channel communication. Channel communication is used on both the RX and TX servers to pause the logical core and subsequently release the logical core when required for reconfiguration.

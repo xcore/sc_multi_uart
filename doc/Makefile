@@ -1,6 +1,6 @@
 all: html
 
-SPHINX_PROJECT_NAME = Multi-UART Module
+SPHINX_PROJECT_NAME = MultiUART Module
 VERSION = 0.1
 DOXYGEN_DIRS = ../module_multi_uart
 SOURCE_INCLUDE_DIRS = ../../sc_multi_uart

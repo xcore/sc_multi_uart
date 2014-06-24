@@ -6,29 +6,29 @@ s_multi_uart_tx_channel uart_tx_channel[UART_TX_CHAN_COUNT];
 unsigned crc8_helper(unsigned *checksum, unsigned data, unsigned poly);
 
 /**
- * Calculate if the baud rate is valid for the defined divider 
- * @param baud  Requested baud rate                                                 
+ * Calculate if the baud rate is valid for the defined divider
+ * @param baud  Requested baud rate
  * @return      Divider on success (i.e. >=1), 0 on error
  */
 static int uart_tx_calc_baud( int baud )
 {
     int max_baud = UART_TX_MAX_BAUD_RATE;
-    
+
     /* check we are not requesting a value greater than the max */
     if (baud > max_baud)
         return 0;
-    
+
     #ifdef UART_TX_USE_EXTERNAL_CLOCK
     if (UART_TX_CLOCK_RATE_HZ % baud != 0)
-        return 0; 
-    
+        return 0;
+
     return (UART_TX_CLOCK_RATE_HZ/baud)/(UART_TX_CLOCK_RATE_HZ/UART_TX_MAX_BAUD_RATE);
     #else
     /* checks and calculations for internal clocking */
     /* check we divide exactly */
     if (max_baud % baud != 0)
-        return 0; 
-    
+        return 0;
+
     return (max_baud / baud)*UART_TX_OVERSAMPLE; // return clock divider
     #endif
 }
@@ -42,7 +42,7 @@ static int uart_tx_calc_baud( int baud )
 static unsigned uart_tx_calc_parity(int channel_id, unsigned int uart_char)
 {
     unsigned p=0;
-    
+
     switch (uart_tx_channel[channel_id].parity_mode)
     {
         case mark:
@@ -52,7 +52,7 @@ static unsigned uart_tx_calc_parity(int channel_id, unsigned int uart_char)
         default:
             break;
     }
-        
+
     if (uart_tx_channel[channel_id].uart_char_len != 8)
     {
         /* manually calculate parity */
@@ -61,7 +61,7 @@ static unsigned uart_tx_calc_parity(int channel_id, unsigned int uart_char)
         {
             p ^= ((uart_char >> i) & 1);
         }
-        
+
     }
     else
     {
@@ -69,9 +69,9 @@ static unsigned uart_tx_calc_parity(int channel_id, unsigned int uart_char)
         p = uart_char;
         crc8_helper(&p, uart_char, poly);
     }
-    
+
     p &= 1;
-    
+
     switch (uart_tx_channel[channel_id].parity_mode)
     {
         case even:
@@ -97,15 +97,15 @@ int uart_tx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
     /* check and calculate baud rate divider */
     if ((uart_tx_channel[channel_id].clocks_per_bit = uart_tx_calc_baud(baud)) == 0)
         return 1;
-    
+
     /* set operation mode */
     uart_tx_channel[channel_id].sb_mode = stop_bits;
     uart_tx_channel[channel_id].parity_mode = parity;
     uart_tx_channel[channel_id].polarity_mode = polarity;
-    
+
     /* set the uart character length */
     uart_tx_channel[channel_id].uart_char_len = char_len;
-    
+
     /* calculate word length */
     uart_tx_channel[channel_id].uart_word_len = 1; // start bit
     switch (parity)
@@ -119,7 +119,7 @@ int uart_tx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
         case none:
             break;
     }
-    
+
     switch (stop_bits)
     {
         case sb_1:
@@ -129,12 +129,12 @@ int uart_tx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
             uart_tx_channel[channel_id].uart_word_len += 2;
             break;
     }
-    
+
     uart_tx_channel[channel_id].uart_word_len += char_len;
-    
+
     /* add interframe bits */
     uart_tx_channel[channel_id].uart_word_len += UART_TX_IFB;
-    
+
     return 0;
 }
 
@@ -142,16 +142,16 @@ int uart_tx_initialise_channel( int channel_id, e_uart_config_parity parity, e_u
  * Assemble tx full word
  * @param channel_id    Channel identifier
  * @param uart_char     The character being sent
- * @return              Full UART word in the format (msb -> lsb) STOP|PARITY|DATA|START 
+ * @return              Full UART word in the format (msb -> lsb) STOP|PARITY|DATA|START
  */
 unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
 {
     unsigned int full_word;
     unsigned int temp;
     int pos = 0;
-    
+
     /* format data into the word (msb -> lsb) STOP|PARITY|DATA|START */
-    
+
     /* start bit */
     switch (uart_tx_channel[channel_id].polarity_mode)
     {
@@ -159,14 +159,14 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
         case start_1: full_word = 1; break;
         default: full_word = 0; break;
     }
-    
+
     pos += 1;
-    
+
     /* uart word - mask, reverse char and put into full word */
     temp = (((1 << uart_tx_channel[channel_id].uart_char_len) - 1) & uart_char);
     full_word |=  temp << pos;
     pos += uart_tx_channel[channel_id].uart_char_len;
-    
+
     /* parity */
     if (uart_tx_channel[channel_id].parity_mode != none)
     {
@@ -174,8 +174,8 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
         full_word |= ( parity << pos);
         pos += 1;
     }
-    
-    
+
+
     /* setup polarity for stop bits */
     switch (uart_tx_channel[channel_id].polarity_mode)
     {
@@ -183,7 +183,7 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
         case start_1: temp = 0x0; break;
         default: temp = 0x3; break;
     }
-    
+
     /* stop bits */
     switch (uart_tx_channel[channel_id].sb_mode)
     {
@@ -196,12 +196,12 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
             pos += 2;
             break;
     }
-    
+
     full_word |= ((1 << UART_TX_IFB) - (temp&1)) << pos;
-    
+
     /* mask off word to uart word length */
     full_word = (((1 << (uart_tx_channel[channel_id].uart_word_len+UART_TX_IFB)) - 1) & full_word);
-    
+
     /* do calc XOR'd output */
     switch (uart_tx_channel[channel_id].polarity_mode)
     {
@@ -210,7 +210,7 @@ unsigned int uart_tx_assemble_word( int channel_id, unsigned int uart_char )
         default: temp = (full_word << 1) | 0x1; break;
     }
     full_word = temp ^ full_word;
-    
+
     return full_word;
 }
 
@@ -247,7 +247,7 @@ void uart_tx_reconf_pause( chanend cUART, timer t )
     unsigned min_baud_chan;
     unsigned temp = 0;
     char go;
-    
+
     /* find slowest channel - which is max(clocks_per_bit)*/
     for (int i = 0; i < UART_TX_CHAN_COUNT; i++)
     {
@@ -257,33 +257,33 @@ void uart_tx_reconf_pause( chanend cUART, timer t )
             min_baud_chan = i;
         }
     }
-    
+
     /* calculate baud rate from clocks per bit*/
     #ifdef UART_TX_USE_EXTERNAL_CLOCK
     pause_time = (UART_TX_CLOCK_RATE_HZ)/(uart_tx_channel[min_baud_chan].clocks_per_bit * (UART_TX_CLOCK_RATE_HZ/UART_TX_MAX_BAUD_RATE));
     #else
     pause_time = ((UART_TX_MAX_BAUD_RATE)*UART_TX_OVERSAMPLE)*uart_tx_channel[min_baud_chan].clocks_per_bit;
     #endif
-    
+
     /* calculate uart word rate, add margin for any IWD */
     pause_time = pause_time / (uart_tx_channel[min_baud_chan].uart_word_len+2);
-    
+
     /* get number of clock ticks per word */
     pause_time = 100000000 / pause_time;
-    
+
     /* get total time to complete a buffer */
     pause_time = pause_time * UART_TX_BUF_SIZE;
-    
+
     /* pause for buffer empty */
     wait_for(t, pause_time );
-    
+
     /* request pause */
-    send_streaming_int(cUART, 0); 
-    do 
+    send_streaming_int(cUART, 0);
+    do
     {
     	go = get_streaming_token(cUART); // wait for UART to be ready for reconf
     } while (go != MULTI_UART_GO);
-    
+
 }
 
 /**

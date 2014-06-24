@@ -1,12 +1,12 @@
-Multi-UART Module
-=================
+MultiUART Module
+================
 
 :scope: General Use
-:description: Octuple UART in Two Logical Cores, based on Serial2Ethernet reference design
+:description: Octuple UART in two logical cores
 :keywords: UART
 :boards: XA-SK-UART-8
 
-This module provides an efficient implementation of multiple uarts, up to 8 uarts with RX and TX drivers in two logical cores. The uarts use 8 bit ports, thus leaving critical 1 bit port resources free for other uses.
+This module provides an efficient implementation of multiple UARTs, up to 8 uarts with RX and TX drivers in two cores. The uarts use 8 bit ports, thus leaving critical 1 bit port resources free for other uses.
 
 Features
 --------

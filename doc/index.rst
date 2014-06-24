@@ -1,5 +1,5 @@
-Multi-UART Module Usage Manual
-==============================
+MultiUART module usage manual
+=============================
 
 .. toctree::
 
@@ -7,6 +7,6 @@ Multi-UART Module Usage Manual
    resource_requirements
    hardware_requirements
    component_description
-   API
+   api
    programming_guide
    example_applications

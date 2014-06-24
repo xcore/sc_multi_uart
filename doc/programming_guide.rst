@@ -1,15 +1,15 @@
-Programming Guide
-==================
+Programming guide
+=================
 
-This section discusses the programming aspects of the Multi-UART component and typical implementation and usage of the API.
+This section discusses the programming aspects of the MultiUART component and typical implementation and usage of the API.
 
 Structure
 ~~~~~~~~~~
 
 This is an overview of the key header files that are required, as well as the logical core structure and information regarding the buffering provision and requirements for the component.
 
-Source Code
-++++++++++++
+Source code
++++++++++++
 
 All of the files required for operation are located in the ``module_multi_uart`` directory. The files that need to be included for use of this component in an application are:
 
@@ -27,10 +27,10 @@ All of the files required for operation are located in the ``module_multi_uart``
     * - ``multi_uart_tx.h``
       - Header file for accessing the API of the TX UART server - included by ``multi_uart_rxtx.h``
 
-Configuration of Multi-UART component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration of MultiUART component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Multi-UART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`). 
+MultiUART component configuration takes place in two domains - a static compile time configuration (discussed in this section) and a runtime dynamic configuration (as discussed in :ref:`sec_initialisation` and :ref:`sec_reconf_rxtx`). 
 
 Static configuration is done by the application providing configuration header files ``multi_uart_tx_conf.h`` and ``multi_uart_rx_conf.h``. 
 
@@ -82,7 +82,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_tx_
       - Define the number of interframe bits - n should not make the total number of bits in a UART word exceed 32
       
 Static configuration of UART RX
-++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
 Below is a summary of the configuration options that are in the ``multi_uart_rx_conf.h`` file, their suggested defaults and an explanation of their function.
 
@@ -117,7 +117,7 @@ Below is a summary of the configuration options that are in the ``multi_uart_rx_
       
 .. _sec_initialisation:
 
-Initialisation
+Initialization
 ~~~~~~~~~~~~~~
 
 The initialisation and configuration process for both the RX and TX operations is the same. For configuration, the functions :c:func:`uart_rx_initialise_channel` or :c:func:`uart_tx_initialise_channel` are utilised. The flow is visualised in :ref:`fig_uart_init_flow` and a working example taken from the app_sk_muart_com_demo application that is used for verification.
@@ -132,25 +132,25 @@ The initialisation and configuration process for both the RX and TX operations i
 
 The following working example is taken from `uart_manager.xc` and shows a typical initial configuration.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Init Start
     :end-before:  //::Init End
 
 The next stage of initialisation is to release the server logical cores from their paused state. Upon start up their default state is to be paused until the following channel communication is completed.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Muart Server
     :end-before:  //::Muart End
     
     
 .. _sec_interfacing_tx:
     
-Interfacing to the TX Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Interfacing to the TX server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To transmit data using the TX server the application should make use of :c:func:`uart_tx_put_char`. An example use is shown below. This example, taken from the demo application configuration simply takes a string from the application buffer (simply can be a character array) and pushes it into the buffer one character at a time. When the API indicates that the buffer is full by returning a value of `-1` then the buffer index is not incremented in order to retain the character in the application buffer until it is successfully pushed to UART TX server.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Send Byte
     :end-before:  //::Send Byte End
 
@@ -158,14 +158,14 @@ This operation must be completed on the same tile as the TX server logical core 
 
 .. _sec_interfacing_rx:
 
-Interfacing to the RX Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Interfacing to the RX server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To receive data from the RX server the application should make use of the channel that is provided. The channel provides notification to the application of which UART channel has data ready. The data itself is stored in a single storage slot with no buffering. This means that if the application layer fails to meet the timing requirements (as discussed in Client Timing :ref:`sec_client_timing`) data may be lost and/or duplicated.
+To receive data from the RX server the application should make use of the channel that is provided. The channel provides notification to the application of which UART channel has data ready. The data itself is stored in a single storage slot with no buffering. This means that if the application layer fails to meet the timing requirements (as discussed in Client timing :ref:`sec_client_timing`) data may be lost and/or duplicated.
 
 The application implements an level buffering for receiving data. This may or may not be required in a particular implementation - dependant on whether timing requirements can be met. The receive and processing loop is shown below.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Receive Data
     :end-before:  //:: Receive Data End
 
@@ -173,8 +173,8 @@ Once the token is received over the channel informing the application of the UAR
 
 .. _sec_reconf_rxtx:
 
-Reconfiguration of RX & TX Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Reconfiguration of RX & TX server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The method for reconfiguring the UART software is the same for both the RX and the TX servers. When the application requires a reconfiguration then a call to :c:func:`uart_tx_reconf_pause` or :c:func:`uart_rx_reconf_pause` needs to be made. When reconfiguring the RX side the server logical core will pause immediately, however when pausing the TX side the server logical core will pause the application logical core to allow the buffers to empty in the TX logical core. 
 
@@ -184,7 +184,7 @@ Following the reconfiguration the application must then call :c:func:`uart_tx_re
 
 The listing below gives an example of reconfiguration that is taken from the echo test demonstration and test application.
 
-.. literalinclude:: app_sk_muart_Com_demo/src/uart_manager.xc
+.. literalinclude:: app_sk_muart_com_demo/src/uart_manager.xc
     :start-after: //::Reconfig Start
     :end-before:  //::Reconfig End
     

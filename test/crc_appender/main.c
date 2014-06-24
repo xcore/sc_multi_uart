@@ -22,7 +22,7 @@ int calc_checksum(unsigned *checksum, unsigned data, unsigned poly)
 {
 	int i;
 	int xorBit;
-	
+
 	for (i = 0; i < 32; i++) {
 		xorBit = (*checksum & 1);
 
@@ -43,7 +43,7 @@ void usage(void)
 	exit (2);
 }
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
     unsigned poly = CRC_POLYNOMIAL;
     FILE *f_input_file;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     int i;
     char in_file_name[50] = "";//"infile";
     char out_file_name[50] = "outfile";
-    
+
     welcome_text();
 
 	while ((argc > 1) && (argv[1][0] == '-'))
@@ -80,9 +80,9 @@ int main(int argc, char *argv[])
 		++argv;
 		--argc;
 	}
-	
+
     f_input_file = fopen(in_file_name, "rb");
-    
+
     if (NULL == f_input_file)
     {
         printf("Invalid input file. \t <File %s is not present on host directory!>\n", in_file_name);

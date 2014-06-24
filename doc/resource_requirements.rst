@@ -1,4 +1,4 @@
-Resource Requirements
+Resource requirements
 =====================
 
 This section provides an overview of the required resources of ``sc_multi_uart`` component so that the application designer can operate within these constraints accordingly.
@@ -32,8 +32,8 @@ The following ports are required for each of the receive and transmit functions 
       - Input
       - Data Receive
 
-Logical Cores
-++++++++++
+Logical cores
++++++++++++++
 
 .. list-table::
     :header-rows: 1
@@ -49,7 +49,7 @@ Logical Cores
       - Single logical core server - requires 62.5MIPS per logical core
 
 Memory
-++++++++++
+++++++
 
 The following is a summary of memory usage of the component for all functionality utilised by the echo test application when compiled at optimisation level 3. It assumes a TX buffer of 16 slots and operating at the maximum of 8 UART channels. This is deemed to be a guide only and memory usage may differ according how much of the API is utilised.
 
@@ -83,8 +83,8 @@ Stack usage is estimated at 460 bytes.
       - **1364**
       - **3523**
 
-Channel Usage
-+++++++++++++++
+Channel usage
++++++++++++++
 
 .. list-table::
     :header-rows: 1
@@ -98,8 +98,8 @@ Channel Usage
 
 .. _sec_client_timing:
 
-Client Timing Requirements
-++++++++++++++++++++++++++++
+Client timing requirements
+++++++++++++++++++++++++++
 
 The application that interfaces to the receive side of UART component must meet the following timing requirement. This requirement is dependent on configuration so the worst case configuration must be accounted for - this means the shortest UART word (length of the start, data parity and stop bits combined).
 

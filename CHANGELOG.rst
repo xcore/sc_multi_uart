@@ -1,5 +1,9 @@
-Multi-UART Component Change Log
+MultiUART component change log
 ===============================
+
+1.0.4
+-----
+  * Documentation updates
 
 1.0.3
 -----

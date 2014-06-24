@@ -4,7 +4,7 @@
 unsigned get_time( timer t )
 {
     unsigned ts;
-    
+
     t :> ts;
     return ts;
 }
@@ -12,7 +12,7 @@ unsigned get_time( timer t )
 unsigned wait_for( timer t, unsigned delta )
 {
     unsigned ts;
-    
+
     t :> ts;
     t when timerafter(ts+delta) :> ts;
     return ts;
@@ -33,9 +33,9 @@ void send_streaming_int( streaming chanend c, int i )
 unsigned get_streaming_uint( streaming chanend c )
 {
     unsigned i;
-    
+
     c :> i;
-    
+
     return i;
 }
 
@@ -47,9 +47,9 @@ void send_streaming_token( streaming chanend c, char i )
 char get_streaming_token( streaming chanend c )
 {
     char i;
-    
+
     c :> i;
-    
+
     return i;
 }
 
