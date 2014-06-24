@@ -15,7 +15,7 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <gitbranch>master</gitbranch>
+        <gitbranch>(no branch)</gitbranch>
         <githash>f09fda14976cf969ae792e7c28b4e5a30e4c1eb9</githash>
         <uri>git@github.com:xcore/sc_util</uri>
         <version>1.0.4rc0</version>
