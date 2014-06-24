@@ -15,8 +15,10 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
+        <gitbranch>master</gitbranch>
+        <githash>f09fda14976cf969ae792e7c28b4e5a30e4c1eb9</githash>
         <uri>git@github.com:xcore/sc_util</uri>
+        <version>1.0.4rc0</version>
     </dependency>
     <description>Multiple UART to Ethernet (TELNET) bridge, plus web server controller</description>
     <docdir>doc</docdir>
@@ -38,10 +40,10 @@
     <release parenthash = "cb8438d1e3dcfc95f5f2e4f0a6adb65a2181ea98" version = "1.0.1alpha2" githash = "4bfab740431cc8a4ec9262605d6767b93496f9c6"></release>
     <release parenthash = "1bca3609523444ccd1f24be468a2bd3a2a6ce242" version = "1.0.1rc0" githash = "adb4687b1426d880fd029d42f8fcb68f9b4929ca"></release>
     <release parenthash = "3bc555589887a2f377c762bb80ed021823d735f6" version = "1.0.3alpha0"></release>
-    <release parenthash = "a54424cf27cd8640969b676cfbbceae305c2346b" version = "1.0.3rc0"></release>
+    <release parenthash = "a54424cf27cd8640969b676cfbbceae305c2346b" version = "1.0.3rc0" githash = "7a917c3f0c60fea2c74e6e27d05a7c450fad1fb7"></release>
     <subpartnumber>XM-001811-SM</subpartnumber>
     <vendor>XMOS</vendor>
+    <version_defines></version_defines>
     <xcore_repo>sc_multi_uart.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
-    <version>1.0.0rc0</version>
 </xpd>
